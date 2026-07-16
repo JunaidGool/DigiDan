@@ -2,12 +2,17 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { nav } from "@/content/site";
 import { LogoLockup } from "./Logo";
 
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const strip = (s: string) => s.replace(/\/$/, "");
+  const isActive = (href: string) =>
+    href.startsWith("/") && !href.includes("#") && strip(pathname ?? "") === strip(href);
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-paper/95 backdrop-blur-sm">
@@ -31,7 +36,8 @@ export function Nav() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm text-ink/80 transition-colors hover:text-ink"
+                aria-current={isActive(item.href) ? "page" : undefined}
+                className="text-sm text-ink/80 transition-colors hover:text-ink aria-[current=page]:text-ink aria-[current=page]:underline aria-[current=page]:underline-offset-4"
               >
                 {item.label}
               </Link>

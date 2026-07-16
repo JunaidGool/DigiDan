@@ -28,9 +28,9 @@ export type NavItem = { label: string; href: string; accent?: boolean };
 
 export const nav: NavItem[] = [
   { label: "Services", href: "/#services" },
-  { label: "Work", href: "/#work" },
-  { label: "Approach", href: "/#approach" },
-  { label: "About", href: "/#about" },
+  { label: "Work", href: "/work" },
+  { label: "Approach", href: "/approach" },
+  { label: "About", href: "/about" },
   { label: "Talk to us", href: "/contact", accent: true },
 ];
 

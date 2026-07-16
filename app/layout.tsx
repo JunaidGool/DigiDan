@@ -1,6 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import { site } from "@/content/site";
+import { Nav } from "@/components/Nav";
+import { Footer } from "@/components/Footer";
+import { Analytics } from "@/components/Analytics";
 import "./globals.css";
 
 const display = Space_Grotesk({
@@ -39,9 +42,28 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: `${site.name} — ${site.tagline}`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — ${site.tagline}`,
+    description: site.description,
+    images: ["/og.png"],
   },
   robots: { index: true, follow: true },
-  alternates: { canonical: site.url },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#FAF9F6",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -58,7 +80,10 @@ export default function RootLayout({
         <a href="#main" className="skip-link">
           Skip to content
         </a>
+        <Nav />
         {children}
+        <Footer />
+        <Analytics />
       </body>
     </html>
   );

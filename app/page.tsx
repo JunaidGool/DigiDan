@@ -1,12 +1,15 @@
-import { Nav } from "@/components/Nav";
-import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { Services } from "@/components/sections/Services";
 import { Approach } from "@/components/sections/Approach";
 import { Portfolio } from "@/components/sections/Portfolio";
 import { Harness } from "@/components/sections/Harness";
 import { Leadership } from "@/components/sections/Leadership";
+import type { Metadata } from "next";
 import { site } from "@/content/site";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const orgSchema = {
   "@context": "https://schema.org",
@@ -39,7 +42,6 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
       />
-      <Nav />
       <main id="main">
         <Hero />
         <Services />
@@ -48,7 +50,6 @@ export default function Home() {
         <Harness />
         <Leadership />
       </main>
-      <Footer />
     </>
   );
 }

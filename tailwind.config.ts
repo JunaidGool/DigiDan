@@ -38,7 +38,7 @@ const config: Config = {
           warm: "#FAF9F6",
         },
         line: "#E5E3DC",
-        muted: "#8A8778",
+        muted: "#726F63",
       },
       fontFamily: {
         display: ["var(--font-display)", "system-ui", "sans-serif"],

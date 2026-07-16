@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { steps, approachIntro, type Step } from "@/content/approach";
 import { Staircase } from "@/components/iso/Staircase";
 import { Reveal } from "@/components/Reveal";
@@ -16,7 +17,13 @@ export function Approach() {
         <span className="eyebrow">{approachIntro.eyebrow}</span>
         <h2 className="mt-4 text-3xl md:text-4xl">{approachIntro.heading}</h2>
         <p className="mt-4 max-w-prose text-lg text-ink/80">
-          {approachIntro.lead}
+          {approachIntro.lead}{" "}
+          <Link
+            href="/approach"
+            className="text-teal-900 underline underline-offset-4 hover:text-teal-500"
+          >
+            Read the full approach.
+          </Link>
         </p>
 
         {/* Isometric staircase — blocks drop into place on scroll (staggered).

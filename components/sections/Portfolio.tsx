@@ -7,8 +7,18 @@ export function Portfolio() {
   return (
     <section id="work" className="scroll-mt-20 py-20 md:py-28">
       <div className="shell">
-        <span className="eyebrow">{portfolioIntro.eyebrow}</span>
-        <h2 className="mt-4 text-3xl md:text-4xl">{portfolioIntro.heading}</h2>
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <span className="eyebrow">{portfolioIntro.eyebrow}</span>
+            <h2 className="mt-4 text-3xl md:text-4xl">{portfolioIntro.heading}</h2>
+          </div>
+          <Link
+            href="/work"
+            className="text-sm text-teal-900 underline underline-offset-4 hover:text-teal-500"
+          >
+            View all work
+          </Link>
+        </div>
 
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((p) => (
@@ -36,7 +46,7 @@ export function Portfolio() {
                 <p className="mt-1 text-sm text-muted">{p.client}</p>
               )}
               <p className="mt-3 flex-1 text-sm text-ink/80">{p.outcome}</p>
-              <p className="mt-5 font-mono text-xs text-ink/60">{p.stack}</p>
+              <p className="mt-5 font-mono text-xs text-ink/70">{p.stack}</p>
             </Link>
           ))}
         </div>

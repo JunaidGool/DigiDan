@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" font-family="'Space Grotesk','Helvetica Neue',Arial,sans-serif">
+  <rect width="1200" height="1200" fill="#FAF9F6"/>
+  <g transform="translate(0,285)">
+  <rect x="0" y="0" width="1200" height="10" fill="#1D9E75"/>
+  <rect x="0" y="0" width="800" height="10" fill="#EF9F27"/>
+  <rect x="0" y="0" width="400" height="10" fill="#D85A30"/>
+  <g transform="translate(78,70)">
+    <text font-size="28" font-weight="500" letter-spacing="13" fill="#26261F">d g d n</text>
+  </g>
+  <g transform="translate(78,0)">
+    <text y="185" font-size="58" font-weight="500" fill="#26261F">Financial-grade software,</text>
+    <text y="253" font-size="58" font-weight="500" fill="#26261F">built block by block.</text>
+    <text y="322" font-size="26" fill="#4A4A40">Engineering that connects the whole system.</text>
+    <text y="470" font-size="20" font-family="monospace" fill="#726F63">South African software engineering partner</text>
+    <text y="506" font-size="20" font-family="monospace" fill="#085041">digidan.co.za</text>
+  </g>
+  <g transform="translate(1012,430) scale(1.55)"><polygon points="-68.00,34.00 0.00,68.00 0.00,34.00 -68.00,0.00" fill="#147A5A"/><polygon points="68.00,34.00 0.00,68.00 0.00,34.00 68.00,0.00" fill="#1D9E75"/><polygon points="0.00,-34.00 68.00,0.00 0.00,34.00 -68.00,0.00" fill="#5DCAA5"/><polygon points="0.00,0.00 34.00,17.00 34.00,-51.00 0.00,-68.00" fill="#C67C10"/><polygon points="68.00,0.00 34.00,17.00 34.00,-51.00 68.00,-68.00" fill="#EF9F27"/><polygon points="34.00,-85.00 68.00,-68.00 34.00,-51.00 0.00,-68.00" fill="#FAC775"/><polygon points="-68.00,0.00 -34.00,17.00 -34.00,-17.00 -68.00,-34.00" fill="#A8431F"/><polygon points="0.00,0.00 -34.00,17.00 -34.00,-17.00 0.00,-34.00" fill="#D85A30"/><polygon points="-34.00,-51.00 0.00,-34.00 -34.00,-17.00 -68.00,-34.00" fill="#F0997B"/></g>
+</g>
+</svg>
