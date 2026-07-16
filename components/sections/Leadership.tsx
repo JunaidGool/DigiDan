@@ -1,9 +1,4 @@
-import {
-  partners,
-  references,
-  referencesNote,
-  leadershipIntro,
-} from "@/content/leadership";
+import { partners, leadershipIntro } from "@/content/leadership";
 
 const AVATAR = ["bg-teal-100 text-teal-900", "bg-coral-100 text-coral-900"];
 
@@ -41,24 +36,6 @@ export function Leadership() {
           <p className="text-teal-900">{leadershipIntro.commitment}</p>
         </blockquote>
 
-        {/* References — names/roles/companies only; details on request */}
-        <div className="mt-14">
-          <div className="flex flex-wrap items-baseline justify-between gap-2">
-            <h3 className="text-lg">References</h3>
-            <p className="text-sm text-muted">{referencesNote}</p>
-          </div>
-          <ul className="mt-5 grid gap-4 md:grid-cols-3">
-            {references.map((r) => (
-              <li key={r.name} className="rounded-tile border border-line p-5">
-                <p className="font-medium text-ink">{r.name}</p>
-                <p className="text-sm text-muted">
-                  {r.role} · {r.company}
-                </p>
-                <p className="mt-3 text-sm text-ink/75">{r.engagement}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
       </div>
     </section>
   );

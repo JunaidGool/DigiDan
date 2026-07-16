@@ -31,36 +31,6 @@ export const partners: Partner[] = [
   },
 ];
 
-export type Reference = {
-  name: string;
-  role: string;
-  company: string;
-  engagement: string;
-};
-
-export const references: Reference[] = [
-  {
-    name: "Renusha Matadin",
-    role: "Digital Performance HOD",
-    company: "Cheil",
-    engagement: "Samsung CRM and digital campaign engineering.",
-  },
-  {
-    name: "Fuad Gierdien",
-    role: "Founder / Owner",
-    company: "FG Uniforms",
-    engagement: "TrimBase garment manufacturing operations platform.",
-  },
-  {
-    name: "Jannie Vermeulen",
-    role: "Reference Contact",
-    company: "Brand Name Marketing",
-    engagement: "Retained development, e-commerce, integration and support.",
-  },
-];
-
-export const referencesNote = "Contact details available on request.";
-
 export const leadershipIntro = {
   eyebrow: "About",
   heading: "Senior engineers, hands on the build.",

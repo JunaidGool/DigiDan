@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
-import {
-  partners,
-  references,
-  referencesNote,
-  leadershipIntro,
-  aboutIntro,
-} from "@/content/leadership";
+import { partners, leadershipIntro, aboutIntro } from "@/content/leadership";
 
 export const metadata: Metadata = {
   title: "About",
@@ -63,24 +57,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* References */}
-      <div className="shell mt-20">
-        <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <h2 className="text-2xl">References</h2>
-          <p className="text-sm text-muted">{referencesNote}</p>
-        </div>
-        <ul className="mt-6 grid gap-4 md:grid-cols-3">
-          {references.map((r) => (
-            <li key={r.name} className="rounded-tile border border-line p-5">
-              <p className="font-medium text-ink">{r.name}</p>
-              <p className="text-sm text-muted">
-                {r.role} · {r.company}
-              </p>
-              <p className="mt-3 text-sm text-ink/75">{r.engagement}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
     </main>
   );
 }
