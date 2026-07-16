@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-74.00 -91.00 148.00 165.00" role="img" aria-labelledby="dgdn-logo-title">
+  <title id="dgdn-logo-title">DigiDan</title>
+  <g data-piece="teal">
+    <polygon points="-68.00,34.00 0.00,68.00 0.00,34.00 -68.00,0.00" fill="#147A5A"/>
+    <polygon points="68.00,34.00 0.00,68.00 0.00,34.00 68.00,0.00" fill="#1D9E75"/>
+    <polygon points="0.00,-34.00 68.00,0.00 0.00,34.00 -68.00,0.00" fill="#5DCAA5"/>
+  </g>
+  <g data-piece="amber">
+    <polygon points="0.00,0.00 34.00,17.00 34.00,-51.00 0.00,-68.00" fill="#C67C10"/>
+    <polygon points="68.00,0.00 34.00,17.00 34.00,-51.00 68.00,-68.00" fill="#EF9F27"/>
+    <polygon points="34.00,-85.00 68.00,-68.00 34.00,-51.00 0.00,-68.00" fill="#FAC775"/>
+  </g>
+  <g data-piece="coral">
+    <polygon points="-68.00,0.00 -34.00,17.00 -34.00,-17.00 -68.00,-34.00" fill="#A8431F"/>
+    <polygon points="0.00,0.00 -34.00,17.00 -34.00,-17.00 0.00,-34.00" fill="#D85A30"/>
+    <polygon points="-34.00,-51.00 0.00,-34.00 -34.00,-17.00 -68.00,-34.00" fill="#F0997B"/>
+  </g>
+</svg>

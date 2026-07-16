@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Palette tokens (brief 3.1) — mirrored here for hand-authored SVG + raw CSS. */
+  --teal-100: #e1f5ee;
+  --teal-300: #5dcaa5;
+  --teal-500: #1d9e75;
+  --teal-900: #085041;
+  --coral-100: #faece7;
+  --coral-300: #f0997b;
+  --coral-500: #d85a30;
+  --coral-900: #712b13;
+  --amber-100: #faeeda;
+  --amber-200: #fac775;
+  --amber-400: #ef9f27;
+  --amber-900: #633806;
+  --ink: #26261f;
+  --paper: #ffffff;
+  --paper-warm: #faf9f6;
+  --line: #e5e3dc;
+  --muted: #8a8778;
+
+  /* Derived flat "dark face" tones for isometric block illustration. */
+  --teal-face-dark: #147a5a;
+  --coral-face-dark: #a8431f;
+  --amber-face-dark: #c67c10;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body), system-ui, sans-serif;
+    font-size: 1.0625rem; /* 17px base */
+    line-height: 1.68;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+
+  /* Visible keyboard focus (WCAG 2.1 AA). */
+  :focus-visible {
+    outline: 2px solid var(--teal-500);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--teal-100);
+    color: var(--teal-900);
+  }
+}
+
+@layer components {
+  .shell {
+    width: 100%;
+    max-width: theme("maxWidth.shell");
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .shell {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  .eyebrow {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-size: theme("fontSize.eyebrow[0]");
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--muted);
+  }
+
+  /* Skip-to-content link for keyboard/screen-reader users. */
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -3rem;
+    z-index: 100;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: top 150ms ease-out;
+  }
+  .skip-link:focus {
+    top: 1rem;
+  }
+}
+
+/* Motion is opt-in: everything animated falls back to its final state. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
