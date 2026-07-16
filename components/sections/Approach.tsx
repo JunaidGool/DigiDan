@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { steps, approachIntro, type Step } from "@/content/approach";
 import { Staircase } from "@/components/iso/Staircase";
+import { MobileStaircase } from "@/components/iso/MobileStaircase";
 import { Reveal } from "@/components/Reveal";
 
 // mid-stop block fills; the staircase climbs teal -> amber -> coral.
@@ -26,14 +27,11 @@ export function Approach() {
           </Link>
         </p>
 
-        {/* Isometric staircase — blocks drop into place on scroll (staggered).
-            The ordered list below carries the accessible content. */}
+        {/* Desktop: horizontal isometric staircase (decorative) + content grid. */}
         <Reveal className="mt-12 hidden md:block">
           <Staircase steps={steps} />
         </Reveal>
-
-        {/* Accessible, always-present content. On mobile this is the primary view. */}
-        <ol className="mt-10 grid gap-x-8 gap-y-6 md:mt-12 md:grid-cols-2 lg:grid-cols-3">
+        <ol className="mt-12 hidden gap-x-8 gap-y-6 md:grid md:grid-cols-2 lg:grid-cols-3">
           {steps.map((s) => (
             <li key={s.n} className="flex gap-4">
               <span
@@ -48,6 +46,11 @@ export function Approach() {
             </li>
           ))}
         </ol>
+
+        {/* Mobile: vertical block stack that builds top-down (carries content). */}
+        <Reveal className="mt-10 md:hidden">
+          <MobileStaircase steps={steps} />
+        </Reveal>
       </div>
     </section>
   );

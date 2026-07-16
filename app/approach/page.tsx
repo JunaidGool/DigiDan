@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { Staircase } from "@/components/iso/Staircase";
+import { MobileStaircase } from "@/components/iso/MobileStaircase";
 import { Reveal } from "@/components/Reveal";
 import { steps, type Step } from "@/content/approach";
 import { harness } from "@/content/harness";
@@ -32,7 +33,7 @@ export default function ApproachPage() {
           <Staircase steps={steps} />
         </Reveal>
 
-        <ol className="mt-12 grid gap-x-10 gap-y-8 md:grid-cols-2">
+        <ol className="mt-12 hidden gap-x-10 gap-y-8 md:grid md:grid-cols-2">
           {steps.map((s) => (
             <li key={s.n} className="flex gap-4 border-t border-line pt-5">
               <span
@@ -47,6 +48,11 @@ export default function ApproachPage() {
             </li>
           ))}
         </ol>
+
+        {/* Mobile: vertical block stack that builds top-down. */}
+        <Reveal className="mt-10 md:hidden">
+          <MobileStaircase steps={steps} headingLevel="h2" />
+        </Reveal>
       </div>
 
       {/* AI harness philosophy in depth */}
