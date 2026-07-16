@@ -2,6 +2,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Services } from "@/components/sections/Services";
 import { Approach } from "@/components/sections/Approach";
 import { Portfolio } from "@/components/sections/Portfolio";
+import { Stats } from "@/components/sections/Stats";
 import { Harness } from "@/components/sections/Harness";
 import { Leadership } from "@/components/sections/Leadership";
 import type { Metadata } from "next";
@@ -47,6 +48,7 @@ export default function Home() {
         <Services />
         <Approach />
         <Portfolio />
+        <Stats />
         <Harness />
         <Leadership />
       </main>
