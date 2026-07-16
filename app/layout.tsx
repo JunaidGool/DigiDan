@@ -4,6 +4,7 @@ import { site } from "@/content/site";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Analytics } from "@/components/Analytics";
+import { Assistant } from "@/components/Assistant";
 import "./globals.css";
 
 const display = Space_Grotesk({
@@ -83,6 +84,7 @@ export default function RootLayout({
         <Nav />
         {children}
         <Footer />
+        <Assistant />
         <Analytics />
       </body>
     </html>
