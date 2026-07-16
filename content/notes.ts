@@ -24,6 +24,16 @@ export const notesIntro = {
 
 export const notes: Note[] = [
   {
+    slug: "idempotent-consumers-under-duplicate-delivery",
+    title: "Idempotent consumers under duplicate delivery",
+    dek: `“Exactly-once delivery” doesn’t exist — so we build exactly-once effect into the consumer instead, the way a ledger requires.`,
+    topic: "Event-driven architecture",
+    date: "2026-07-16",
+    displayDate: "July 2026",
+    minutes: 8,
+    author: "DigiDan Engineering",
+  },
+  {
     slug: "ai-inside-a-deterministic-frame",
     title: "AI inside a deterministic frame",
     dek: "Why we treat language models as volatile components — and the rails we build around them before they touch anything that matters.",
