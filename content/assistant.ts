@@ -47,6 +47,7 @@ export const nodes: Record<string, Node> = {
       "Financial-grade is our core. We build terminal-to-backend transaction flows — authorisation, clearing, reversals and reconciliation — with ISO 8583 / ISO 20022 messaging, self-service and edge/kiosk orchestration, and event-driven architectures under strict transaction consistency.",
     choices: [
       { label: "See release-assurance work", href: "/work/deployseal" },
+      { label: "Security & data handling", href: "/security" },
       { label: "How we deliver", href: "/approach" },
       { label: "Talk to an engineer", href: "/contact" },
       { label: "← Something else", goto: "welcome" },

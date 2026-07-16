@@ -124,6 +124,14 @@ export function ContactForm() {
       >
         {status === "sending" ? "Sending…" : "Start a build"}
       </button>
+
+      <p className="text-xs text-muted">
+        By submitting, you agree to our{" "}
+        <a href="/privacy" className="underline underline-offset-2 hover:text-ink">
+          privacy notice
+        </a>
+        .
+      </p>
     </form>
   );
 }

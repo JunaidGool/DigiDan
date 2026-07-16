@@ -45,7 +45,7 @@ export function Nav() {
           </Link>
 
           {/* Desktop nav */}
-          <nav aria-label="Primary" className="hidden items-center gap-7 md:flex">
+          <nav aria-label="Primary" className="hidden items-center gap-5 lg:gap-7 md:flex">
             {nav.map((item) =>
               item.accent ? (
                 <Link

@@ -31,9 +31,13 @@ export const nav: NavItem[] = [
   { label: "Work", href: "/work" },
   { label: "Approach", href: "/approach" },
   { label: "Notes", href: "/notes" },
+  { label: "Security", href: "/security" },
   { label: "About", href: "/about" },
   { label: "Talk to us", href: "/contact", accent: true },
 ];
+
+// Footer-only utility links (kept out of the main nav).
+export const footerLinks: NavItem[] = [{ label: "Privacy", href: "/privacy" }];
 
 export const primaryCta = { label: "Start a build", href: "/contact" } as const;
 export const secondaryCta = { label: "See our work", href: "/#work" } as const;

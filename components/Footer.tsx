@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { nav, site } from "@/content/site";
+import { nav, footerLinks, site } from "@/content/site";
 import { closing } from "@/content/leadership";
 import { LogoMark, Wordmark } from "./Logo";
 
@@ -37,7 +37,7 @@ export function Footer() {
           </div>
 
           <nav aria-label="Footer" className="flex flex-col gap-3">
-            {nav.map((item) => (
+            {[...nav, ...footerLinks].map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
