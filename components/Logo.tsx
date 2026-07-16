@@ -20,9 +20,9 @@ import {
  * (Phase 3 tweens between exploded and assembled).
  */
 
-type Piece = { name: Family; box: Box; explode: Pt };
+export type Piece = { name: Family; box: Box; explode: Pt };
 
-const PIECES: Piece[] = [
+export const PIECES: Piece[] = [
   { name: "teal", box: [0, 0, 0, 2, 2, 1], explode: [0, 46] },
   { name: "amber", box: [1, 0, 1, 2, 1, 3], explode: [30, -78] },
   { name: "coral", box: [0, 1, 1, 1, 2, 2], explode: [-52, 22] },
@@ -35,7 +35,7 @@ const ALL_POINTS: Pt[] = PIECES.flatMap((p) => {
   const moved = flat.map((pt) => [pt[0] + p.explode[0], pt[1] + p.explode[1]] as Pt);
   return [...flat, ...moved];
 });
-const VB = bounds(ALL_POINTS, 8).viewBox;
+export const VB = bounds(ALL_POINTS, 8).viewBox;
 
 function PieceG({ piece, exploded }: { piece: Piece; exploded: boolean }) {
   const f = boxFaces(...piece.box);

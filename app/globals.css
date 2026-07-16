@@ -108,6 +108,22 @@
   }
 }
 
+/* Staircase scroll-drop (brief 5.4 / 6): blocks drop into place, staggered,
+   with a gentle settle (no overshoot). Driven by <Reveal data-reveal>.
+   "idle" (no JS) = final visible state, so content is never stuck hidden. */
+[data-reveal="armed"] .stair-step {
+  transform: translateY(-14px);
+  opacity: 0;
+}
+[data-reveal="in"] .stair-step {
+  transform: translateY(0);
+  opacity: 1;
+  transition:
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 380ms ease-out;
+  transition-delay: calc(var(--i) * 90ms);
+}
+
 /* Motion is opt-in: everything animated falls back to its final state. */
 @media (prefers-reduced-motion: reduce) {
   html {

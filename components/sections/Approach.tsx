@@ -1,5 +1,6 @@
 import { steps, approachIntro, type Step } from "@/content/approach";
 import { Staircase } from "@/components/iso/Staircase";
+import { Reveal } from "@/components/Reveal";
 
 // mid-stop block fills; the staircase climbs teal -> amber -> coral.
 const FILL: Record<Step["family"], string> = {
@@ -18,11 +19,11 @@ export function Approach() {
           {approachIntro.lead}
         </p>
 
-        {/* Isometric staircase — decorative reinforcement (Phase 3 adds
-            scroll-drop). The ordered list below carries the accessible content. */}
-        <div className="mt-12 hidden md:block">
+        {/* Isometric staircase — blocks drop into place on scroll (staggered).
+            The ordered list below carries the accessible content. */}
+        <Reveal className="mt-12 hidden md:block">
           <Staircase steps={steps} />
-        </div>
+        </Reveal>
 
         {/* Accessible, always-present content. On mobile this is the primary view. */}
         <ol className="mt-10 grid gap-x-8 gap-y-6 md:mt-12 md:grid-cols-2 lg:grid-cols-3">

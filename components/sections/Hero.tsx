@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { hero, credibility } from "@/content/hero";
 import { primaryCta, secondaryCta } from "@/content/site";
-import { LogoMark } from "@/components/Logo";
+import { HeroLogo } from "@/components/HeroLogo";
 
 export function Hero() {
   return (
@@ -32,14 +32,9 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Right: the signature mark. Phase 1 static assembled state;
-            Phase 3 replaces with the drift-and-click assembly animation. */}
+        {/* Right: the signature drift-and-click assembly (brief 5.2). */}
         <div className="flex justify-center md:justify-end">
-          <LogoMark
-            size={280}
-            className="motion-safe:animate-ambient-float"
-            title="DigiDan — modular blocks assembled into one system"
-          />
+          <HeroLogo size={280} />
         </div>
       </div>
 

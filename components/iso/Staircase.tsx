@@ -50,7 +50,12 @@ export function Staircase({ steps }: { steps: Item[] }) {
         const c = BLOCK_FILLS[s.family];
         const [cx, cy] = centroid(f.top);
         return (
-          <g key={s.n} data-step={s.n}>
+          <g
+            key={s.n}
+            data-step={s.n}
+            className="stair-step"
+            style={{ "--i": i } as React.CSSProperties}
+          >
             <polygon points={pts(f.left)} fill={c.dark} />
             <polygon points={pts(f.right)} fill={c.mid} />
             <polygon points={pts(f.top)} fill={c.light} />
