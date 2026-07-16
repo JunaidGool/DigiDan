@@ -1,4 +1,5 @@
 import { steps, approachIntro, type Step } from "@/content/approach";
+import { Staircase } from "@/components/iso/Staircase";
 
 // mid-stop block fills; the staircase climbs teal -> amber -> coral.
 const FILL: Record<Step["family"], string> = {
@@ -17,23 +18,10 @@ export function Approach() {
           {approachIntro.lead}
         </p>
 
-        {/* Visual staircase — decorative reinforcement (Phase 3 adds scroll-drop).
-            The ordered list below carries the accessible content. */}
-        <div
-          className="mt-14 hidden items-end gap-2 md:flex"
-          aria-hidden="true"
-        >
-          {steps.map((s, i) => (
-            <div key={s.n} className="flex flex-1 flex-col items-center gap-2">
-              <div
-                className={`w-full rounded-t-md ${FILL[s.family]}`}
-                style={{ height: `${70 + i * 24}px` }}
-              />
-              <span className="font-display text-sm font-medium text-ink">
-                {s.n}. {s.title}
-              </span>
-            </div>
-          ))}
+        {/* Isometric staircase — decorative reinforcement (Phase 3 adds
+            scroll-drop). The ordered list below carries the accessible content. */}
+        <div className="mt-12 hidden md:block">
+          <Staircase steps={steps} />
         </div>
 
         {/* Accessible, always-present content. On mobile this is the primary view. */}

@@ -1,12 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { projects, portfolioIntro, type Family } from "@/content/portfolio";
-
-const SQUARE: Record<Family, string> = {
-  teal: "bg-teal-500",
-  coral: "bg-coral-500",
-  amber: "bg-amber-400",
-};
+import { projects, portfolioIntro } from "@/content/portfolio";
+import { IsoCube } from "@/components/iso/IsoCube";
 
 export function Portfolio() {
   return (
@@ -23,12 +18,9 @@ export function Portfolio() {
               className="group flex flex-col rounded-tile border border-line bg-paper p-6 transition-transform duration-200 ease-settle hover:-translate-y-1 hover:border-ink/20"
             >
               {/* the blocks this structure was built from */}
-              <div className="flex gap-1.5" aria-hidden="true">
+              <div className="flex items-end gap-1.5" aria-hidden="true">
                 {p.blocks.map((b, i) => (
-                  <span
-                    key={i}
-                    className={`h-3.5 w-3.5 rounded-[3px] ${SQUARE[b]}`}
-                  />
+                  <IsoCube key={i} family={b} size={22} />
                 ))}
               </div>
 

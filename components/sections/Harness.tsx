@@ -1,4 +1,5 @@
 import { harness } from "@/content/harness";
+import { HarnessCage } from "@/components/iso/HarnessCage";
 
 export function Harness() {
   return (
@@ -30,38 +31,20 @@ export function Harness() {
           </blockquote>
         </div>
 
-        {/* Illustration: volatile amber block inside a rigid deterministic frame.
-            Pulse disabled under reduced motion (motion-safe:). */}
+        {/* Illustration: volatile amber block inside a rigid deterministic
+            frame. The cage pulse is disabled under reduced motion. */}
         <figure className="flex flex-col items-center">
-          <div
-            className="relative grid aspect-square w-full max-w-sm place-items-center rounded-xl border-2 border-ink p-8"
-            role="img"
-            aria-label="A volatile AI block held inside a rigid frame of deterministic gates: schema validation, evaluation, cost and loop control, and human approval."
-          >
-            {harness.gates.map((gate, i) => {
-              const pos = [
-                "left-1/2 top-0 -translate-x-1/2 -translate-y-1/2",
-                "right-0 top-1/2 translate-x-1/2 -translate-y-1/2",
-                "left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2",
-                "left-0 top-1/2 -translate-x-1/2 -translate-y-1/2",
-              ][i];
-              return (
-                <span
-                  key={gate}
-                  className={`absolute ${pos} whitespace-nowrap rounded bg-ink px-2.5 py-1 font-mono text-[11px] text-paper`}
-                >
-                  {gate}
-                </span>
-              );
-            })}
-
-            {/* the non-deterministic component */}
-            <div className="grid h-28 w-28 place-items-center rounded-lg bg-amber-400 motion-safe:animate-harness-pulse">
-              <span className="font-display text-sm font-medium text-amber-900">
-                AI
-              </span>
-            </div>
-          </div>
+          <HarnessCage className="w-full max-w-md" />
+          <ul className="mt-6 flex flex-wrap justify-center gap-2" aria-hidden="true">
+            {harness.gates.map((gate) => (
+              <li
+                key={gate}
+                className="rounded bg-ink px-2.5 py-1 font-mono text-[11px] text-paper"
+              >
+                {gate}
+              </li>
+            ))}
+          </ul>
           <figcaption className="mt-4 text-center text-sm text-muted">
             Volatile model, rigid frame.
           </figcaption>
