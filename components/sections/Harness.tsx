@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { harness } from "@/content/harness";
 import { HarnessCage } from "@/components/iso/HarnessCage";
 
@@ -29,6 +31,18 @@ export function Harness() {
             </p>
             <p className="mt-2 text-amber-900">{harness.principle.quote}</p>
           </blockquote>
+
+          <Link
+            href="/products/war-room"
+            className="group mt-6 inline-flex items-center gap-2 font-medium text-teal-900 underline underline-offset-4 hover:text-teal-500"
+          >
+            See the harness running — The War Room
+            <ArrowRight
+              size={16}
+              className="transition-transform group-hover:translate-x-0.5"
+              aria-hidden
+            />
+          </Link>
         </div>
 
         {/* Illustration: volatile amber block inside a rigid deterministic

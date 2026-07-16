@@ -66,6 +66,7 @@ export const nodes: Record<string, Node> = {
     message:
       "We treat AI as a volatile component inside a deterministic frame: schema-validated outputs, evaluation harnesses, cost and loop controls, and human approval. AI suggests; systems and people decide.",
     choices: [
+      { label: "See The War Room", href: "/products/war-room" },
       { label: "Read our AI approach", href: "/approach" },
       { label: "Talk to an engineer", href: "/contact" },
       { label: "← Something else", goto: "welcome" },

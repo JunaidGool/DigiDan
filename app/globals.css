@@ -108,6 +108,75 @@
   }
 }
 
+/* ---- The War Room theme (scoped) ----
+   Dark tactical HUD identity, mirrored from the_war_room frontend. Applied only
+   under .wr so it never leaks into the DigiDan light theme. */
+.wr {
+  --wr-bg: #0a0806;
+  --wr-panel: #14100b;
+  --wr-panel-2: #1b150d;
+  --wr-border: rgba(245, 166, 35, 0.2);
+  --wr-border-strong: rgba(245, 166, 35, 0.5);
+  --wr-amber: #f5a623;
+  --wr-amber-bright: #ffb43f;
+  --wr-teal: #2ec4b6;
+  --wr-text: #e9dfce;
+  --wr-dim: #9a8b73;
+  --wr-faint: #6b5f4d;
+  color: var(--wr-text);
+  background:
+    radial-gradient(1200px 800px at 50% -10%, rgba(245, 166, 35, 0.07), transparent 60%),
+    radial-gradient(900px 600px at 90% 110%, rgba(46, 196, 182, 0.05), transparent 60%),
+    var(--wr-bg);
+}
+.wr ::selection {
+  background: rgba(245, 166, 35, 0.3);
+  color: var(--wr-amber-bright);
+}
+.wr-title {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  color: var(--wr-amber);
+}
+.wr-eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 10px;
+  color: var(--wr-faint);
+}
+.wr-panel {
+  background: var(--wr-panel);
+  border: 1px solid var(--wr-border);
+}
+/* Corner-bracket framing — the War Room's panel motif. */
+.wr-frame {
+  position: relative;
+}
+.wr-frame::before,
+.wr-frame::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--wr-amber);
+  border-style: solid;
+  opacity: 0.55;
+  pointer-events: none;
+}
+.wr-frame::before {
+  top: -1px;
+  left: -1px;
+  border-width: 1px 0 0 1px;
+}
+.wr-frame::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 1px 1px 0;
+}
+
 /* Staircase scroll-drop (brief 5.4 / 6): blocks drop into place, staggered,
    with a gentle settle (no overshoot). Driven by <Reveal data-reveal>.
    "idle" (no JS) = final visible state, so content is never stuck hidden. */
