@@ -37,6 +37,7 @@ export const nodes: Record<string, Node> = {
       { label: "AI / automation", goto: "ai" },
       { label: "Custom software / a product", goto: "product" },
       { label: "Systems integration", goto: "integration" },
+      { label: "See The War Room", goto: "warroom" },
       { label: "Just exploring", goto: "explore" },
     ],
   },
@@ -66,9 +67,19 @@ export const nodes: Record<string, Node> = {
     message:
       "We treat AI as a volatile component inside a deterministic frame: schema-validated outputs, evaluation harnesses, cost and loop controls, and human approval. AI suggests; systems and people decide.",
     choices: [
-      { label: "See The War Room", href: "/products/war-room" },
+      { label: "See The War Room", goto: "warroom" },
       { label: "Read our AI approach", href: "/approach" },
       { label: "Talk to an engineer", href: "/contact" },
+      { label: "← Something else", goto: "welcome" },
+    ],
+  },
+  warroom: {
+    id: "warroom",
+    message:
+      "The War Room is our multi-model deliberation product: five AI advisors, each on a different model from a different lab, debate a hard question to a verdict that shows its work. It's a live showcase of how we keep AI inside a deterministic frame — and it's in limited access right now.",
+    choices: [
+      { label: "Open The War Room", href: "/products/war-room" },
+      { label: "Request access", href: "/contact" },
       { label: "← Something else", goto: "welcome" },
     ],
   },
@@ -98,6 +109,7 @@ export const nodes: Record<string, Node> = {
     message: "Take a look around — here's the fastest way in.",
     choices: [
       { label: "Our work", href: "/work" },
+      { label: "The War Room", goto: "warroom" },
       { label: "How we deliver", href: "/approach" },
       { label: "About the team", href: "/about" },
       { label: "Talk to an engineer", href: "/contact" },
