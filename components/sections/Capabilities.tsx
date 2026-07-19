@@ -32,7 +32,7 @@ export function Capabilities() {
     <section id="capabilities" className="section">
       <div className="shell">
         <Reveal>
-          <p className="label label-cyan">{capabilities.label}</p>
+          <p className="label label-neon">{capabilities.label}</p>
           <h2 className="glow-text mt-4 text-h2 font-light">{capabilities.title}</h2>
         </Reveal>
 
@@ -49,7 +49,7 @@ export function Capabilities() {
                 <path
                   d={d}
                   fill="none"
-                  stroke="#00E5FF"
+                  stroke="#2DE1C6"
                   strokeWidth={active(i) ? 0.7 : 0.4}
                   strokeOpacity={active(i) ? 0.65 : 0.16}
                   vectorEffect="non-scaling-stroke"
@@ -58,14 +58,14 @@ export function Capabilities() {
                   <path
                     d={d}
                     fill="none"
-                    stroke="#00E5FF"
+                    stroke="#2DE1C6"
                     strokeWidth={1.4}
                     strokeLinecap="round"
                     vectorEffect="non-scaling-stroke"
                     style={{
                       strokeDasharray: "6 60",
                       animation: "pulse-travel 1.1s linear infinite",
-                      filter: "drop-shadow(0 0 3px #00E5FF)",
+                      filter: "drop-shadow(0 0 3px #2DE1C6)",
                     }}
                   />
                 )}
@@ -76,8 +76,8 @@ export function Capabilities() {
           {/* The System Core router. */}
           <div className="relative z-10 hidden flex-col items-center justify-center gap-1 wide:col-start-2 wide:row-start-1 wide:flex">
             <div className="glass glass-lit flex h-28 w-28 flex-col items-center justify-center rounded-full">
-              <span className="status-dot mb-1 h-2 w-2 rounded-full bg-amber shadow-glow-amber" />
-              <span className="label label-cyan text-[0.55rem]">{capabilities.core}</span>
+              <span className="status-dot mb-1 h-2 w-2 rounded-full bg-action shadow-glow-action" />
+              <span className="label label-neon text-[0.55rem]">{capabilities.core}</span>
               <span className="label text-[0.5rem]">{capabilities.coreSub}</span>
             </div>
           </div>
@@ -101,10 +101,10 @@ export function Capabilities() {
                 }`}
               >
                 <span className="flex items-center justify-between">
-                  <span className="label label-cyan">{blade.index}</span>
+                  <span className="label label-neon">{blade.index}</span>
                   <span
                     aria-hidden="true"
-                    className="font-mono text-lg leading-none text-amber"
+                    className="font-mono text-lg leading-none text-action"
                   >
                     {isOpen ? "−" : "+"}
                   </span>
@@ -127,7 +127,7 @@ export function Capabilities() {
           {open !== null && (
             <div className="glass glass-lit mt-5 grid gap-10 p-8 wide:grid-cols-2 wide:p-10">
               <div>
-                <p className="label label-cyan">{capabilities.blades[open].index}</p>
+                <p className="label label-neon">{capabilities.blades[open].index}</p>
                 <h3 className="glow-text mt-3 font-display text-lg font-normal text-white">
                   {capabilities.blades[open].title}
                 </h3>
@@ -136,7 +136,7 @@ export function Capabilities() {
                     <li key={b} className="flex items-start gap-3 text-sm text-white/80">
                       <span
                         aria-hidden="true"
-                        className="mt-[0.5em] h-1.5 w-1.5 shrink-0 rotate-45 bg-cyan shadow-glow-cyan"
+                        className="mt-[0.5em] h-1.5 w-1.5 shrink-0 rotate-45 bg-neon shadow-glow-neon"
                       />
                       <span>{b}</span>
                     </li>
@@ -146,13 +146,13 @@ export function Capabilities() {
 
               <div
                 aria-hidden="true"
-                className="self-start border border-cyan/25 bg-void/70 p-6"
+                className="self-start border border-neon/25 bg-void/70 p-6"
               >
                 <div className="flex items-center gap-2">
-                  <span className="status-dot h-2 w-2 rounded-full bg-cyan shadow-glow-cyan" />
-                  <span className="label label-cyan text-[0.58rem]">console</span>
+                  <span className="status-dot h-2 w-2 rounded-full bg-neon shadow-glow-neon" />
+                  <span className="label label-neon text-[0.58rem]">console</span>
                 </div>
-                <pre className="mt-4 whitespace-pre-wrap font-mono text-xs leading-relaxed text-cyan/90">
+                <pre className="mt-4 whitespace-pre-wrap font-mono text-xs leading-relaxed text-neon/90">
                   {capabilities.blades[open].console.join("\n")}
                 </pre>
               </div>

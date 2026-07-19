@@ -3,19 +3,21 @@
 @tailwind utilities;
 
 /* ---------------------------------------------------------------------------
-   DigiDan "The Grid" (Tron-infused). A light-emitting interface on a pure void.
+   DigiDan "The Grid": a neon interface on a pure void, tuned to the brand
+   palette (neon teal identity, brand teal, brand orange, brand yellow).
    Tokens mirrored as CSS custom properties for raw CSS (grid, glows, canvas).
    --------------------------------------------------------------------------- */
 :root {
   --void: #000000;
-  --cyan: #00e5ff;
-  --teal: #00838f;
-  --amber: #ff9100;
+  --neon: #2de1c6; /* identity emitter */
+  --dim: #45a08e; /* dormant / sub-text (brand teal) */
+  --action: #f07e26; /* actions (brand orange) */
+  --spark: #f5c518; /* energy nodes (brand yellow) */
   --white: #ffffff;
-  --panel: #05090b;
-  --panel-raised: #080d10;
-  --line: rgba(0, 229, 255, 0.16);
-  --line-soft: rgba(0, 229, 255, 0.08);
+  --panel: #04100e;
+  --panel-raised: #07160f;
+  --line: rgba(45, 225, 198, 0.16);
+  --line-soft: rgba(45, 225, 198, 0.08);
 
   color-scheme: only dark;
 }
@@ -40,7 +42,7 @@
     overflow-x: hidden;
   }
 
-  /* The Grid floor: a faint cyan perspective grid fixed behind everything. */
+  /* The Grid floor: a faint neon perspective grid fixed behind everything. */
   body::before {
     content: "";
     position: fixed;
@@ -54,7 +56,6 @@
     -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, #000 30%, transparent 80%);
     pointer-events: none;
   }
-  /* A deep vignette to keep the void pure at the edges. */
   body::after {
     content: "";
     position: fixed;
@@ -75,15 +76,14 @@
     text-wrap: balance;
   }
 
-  /* Focus visible: cyan light ring. */
   :focus-visible {
-    outline: 1px solid var(--cyan);
+    outline: 1px solid var(--neon);
     outline-offset: 4px;
-    box-shadow: 0 0 12px rgba(0, 229, 255, 0.5);
+    box-shadow: 0 0 12px rgba(45, 225, 198, 0.5);
   }
 
   ::selection {
-    background: rgba(0, 229, 255, 0.25);
+    background: rgba(45, 225, 198, 0.25);
     color: var(--white);
   }
 }
@@ -110,19 +110,19 @@
     }
   }
 
-  /* Neon typography: white gas illumination. */
+  /* Neon typography: white gas illumination with a teal halo. */
   .glow-text {
     text-shadow:
-      0 0 8px rgba(0, 229, 255, 0.55),
+      0 0 8px rgba(45, 225, 198, 0.55),
       0 0 2px rgba(255, 255, 255, 0.6);
   }
-  .glow-cyan-text {
-    color: var(--cyan);
-    text-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
+  .glow-neon-text {
+    color: var(--neon);
+    text-shadow: 0 0 10px rgba(45, 225, 198, 0.6);
   }
-  .glow-amber-text {
-    color: var(--amber);
-    text-shadow: 0 0 10px rgba(255, 145, 0, 0.6);
+  .glow-action-text {
+    color: var(--action);
+    text-shadow: 0 0 10px rgba(240, 126, 38, 0.6);
   }
 
   /* Mono system label. */
@@ -132,24 +132,24 @@
     font-size: 0.66rem;
     text-transform: uppercase;
     letter-spacing: 0.26em;
-    color: var(--teal);
+    color: var(--dim);
   }
-  .label-cyan {
-    color: var(--cyan);
+  .label-neon {
+    color: var(--neon);
   }
 
-  /* Dark glass panel with a lit cyan frame. */
+  /* Dark glass panel with a lit neon frame. */
   .glass {
     background:
-      linear-gradient(180deg, rgba(0, 229, 255, 0.05) 0%, rgba(0, 229, 255, 0) 40%),
+      linear-gradient(180deg, rgba(45, 225, 198, 0.05) 0%, rgba(45, 225, 198, 0) 40%),
       var(--panel);
     border: 1px solid var(--line);
   }
   .glass-lit {
-    border-color: rgba(0, 229, 255, 0.55);
+    border-color: rgba(45, 225, 198, 0.55);
     box-shadow:
-      0 0 24px rgba(0, 229, 255, 0.18),
-      inset 0 0 24px rgba(0, 229, 255, 0.06);
+      0 0 24px rgba(45, 225, 198, 0.18),
+      inset 0 0 24px rgba(45, 225, 198, 0.06);
   }
 
   /* Buttons. */
@@ -171,28 +171,28 @@
       border-color 180ms ease,
       box-shadow 180ms ease;
   }
-  /* Primary: amber, the single high-priority action colour. */
-  .btn-amber {
-    background: rgba(255, 145, 0, 0.12);
-    color: var(--amber);
-    border-color: var(--amber);
-    text-shadow: 0 0 8px rgba(255, 145, 0, 0.5);
+  /* Primary: brand orange, the single high-priority action colour. */
+  .btn-action {
+    background: rgba(240, 126, 38, 0.12);
+    color: var(--action);
+    border-color: var(--action);
+    text-shadow: 0 0 8px rgba(240, 126, 38, 0.5);
   }
-  .btn-amber:hover {
-    background: var(--amber);
+  .btn-action:hover {
+    background: var(--action);
     color: var(--void);
-    box-shadow: 0 0 24px rgba(255, 145, 0, 0.55);
+    box-shadow: 0 0 24px rgba(240, 126, 38, 0.55);
     text-shadow: none;
   }
-  /* Ghost: cyan light track. */
+  /* Ghost: neon light track. */
   .btn-ghost {
-    background: rgba(0, 229, 255, 0.04);
-    color: var(--cyan);
+    background: rgba(45, 225, 198, 0.04);
+    color: var(--neon);
     border-color: var(--line);
   }
   .btn-ghost:hover {
-    border-color: var(--cyan);
-    box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+    border-color: var(--neon);
+    box-shadow: 0 0 20px rgba(45, 225, 198, 0.3);
   }
 
   .skip-link {
@@ -201,8 +201,8 @@
     top: -3.5rem;
     z-index: 100;
     background: var(--panel-raised);
-    color: var(--cyan);
-    border: 1px solid var(--cyan);
+    color: var(--neon);
+    border: 1px solid var(--neon);
     padding: 0.5rem 1rem;
     font-family: var(--font-mono), ui-monospace, monospace;
     font-size: 0.7rem;
@@ -214,10 +214,9 @@
     top: 1rem;
   }
 
-  /* Horizontal light rule. */
-  .rule-cyan {
+  .rule-neon {
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    background: linear-gradient(90deg, transparent, var(--neon), transparent);
     opacity: 0.5;
   }
 }
@@ -233,7 +232,6 @@
   animation: status-blink 2s ease-in-out infinite;
 }
 
-/* Pulse travelling along a circuit path (SVG stroke dash). */
 @keyframes pulse-travel {
   to { stroke-dashoffset: -240; }
 }

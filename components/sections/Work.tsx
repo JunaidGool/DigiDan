@@ -60,9 +60,9 @@ export function Work() {
         const size = 1.6 + env * 2.8;
         ctx.beginPath();
         ctx.arc(x, y, size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${env > 0.4 ? "255,255,255" : "0,229,255"},${bright})`;
+        ctx.fillStyle = `rgba(${env > 0.4 ? "255,255,255" : "45,225,198"},${bright})`;
         ctx.shadowBlur = 8 + env * 16;
-        ctx.shadowColor = "rgba(0,229,255,0.8)";
+        ctx.shadowColor = "rgba(45,225,198,0.8)";
         ctx.fill();
       }
       ctx.shadowBlur = 0;
@@ -95,7 +95,7 @@ export function Work() {
     <section id="work" className="section">
       <div className="shell">
         <Reveal>
-          <p className="label label-cyan">{work.label}</p>
+          <p className="label label-neon">{work.label}</p>
           <h2 className="glow-text mt-4 text-h2 font-light">{work.title}</h2>
         </Reveal>
 
@@ -105,7 +105,7 @@ export function Work() {
             aria-hidden="true"
             className="pointer-events-none absolute inset-0"
           />
-          <ul className="relative grid gap-px overflow-hidden border border-cyan/25 bg-cyan/15 wide:grid-cols-5">
+          <ul className="relative grid gap-px overflow-hidden border border-neon/25 bg-neon/15 wide:grid-cols-5">
             {work.items.map((name, i) => (
               <li key={name}>
                 <a
@@ -116,7 +116,7 @@ export function Work() {
                   onBlur={leave}
                   className="flex h-full flex-col gap-3 bg-panel/50 px-6 py-9 backdrop-blur-[2px] transition-colors hover:bg-panel-raised/70 focus-visible:bg-panel-raised/70"
                 >
-                  <span className="label label-cyan">
+                  <span className="label label-neon">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="font-display text-lg font-normal text-white">

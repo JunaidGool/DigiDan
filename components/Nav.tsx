@@ -7,8 +7,8 @@ import { nav, footer, CONTACT_HREF } from "@/content/home";
 
 /**
  * Nav (The Grid): a light-track strip over the void. Fixed, near-black with
- * blur, its bottom edge a glowing cyan circuit line. Left: cyan mini mark plus
- * the `d g d n` wordmark. Right: mono links plus the amber Contact action.
+ * blur, its bottom edge a glowing neon circuit line. Left: neon mini mark plus
+ * the `d g d n` wordmark. Right: mono links plus the action Contact action.
  */
 export function Nav() {
   const [open, setOpen] = useState(false);
@@ -32,12 +32,12 @@ export function Nav() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-cyan/40 bg-void/80 shadow-[0_1px_20px_rgba(0,229,255,0.25)] backdrop-blur-md">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-neon/40 bg-void/80 shadow-[0_1px_20px_rgba(45,225,198,0.25)] backdrop-blur-md">
         <div className="shell flex h-16 items-center justify-between">
           <a
             href="#top"
             aria-label="DigiDan home"
-            className="flex shrink-0 items-center gap-3 text-cyan"
+            className="flex shrink-0 items-center gap-3 text-neon"
           >
             <LogoMark size={26} title="DigiDan" />
             <Wordmark className="text-[0.95rem] text-white" />
@@ -48,12 +48,12 @@ export function Nav() {
               <a
                 key={item.href}
                 href={item.href}
-                className="label transition-colors hover:text-cyan"
+                className="label transition-colors hover:text-neon"
               >
                 {item.label}
               </a>
             ))}
-            <a href={CONTACT_HREF} className="btn btn-amber">
+            <a href={CONTACT_HREF} className="btn btn-action">
               {footer.contact}
             </a>
           </nav>
@@ -61,7 +61,7 @@ export function Nav() {
           <button
             ref={toggleRef}
             type="button"
-            className="-mr-1 p-1 text-cyan wide:hidden"
+            className="-mr-1 p-1 text-neon wide:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label="Open menu"
@@ -80,15 +80,15 @@ export function Nav() {
           aria-label="Menu"
           className="fixed inset-0 z-[60] flex flex-col bg-void wide:hidden"
         >
-          <div className="flex h-16 shrink-0 items-center justify-between border-b border-cyan/40 px-6 shadow-[0_1px_20px_rgba(0,229,255,0.25)]">
-            <span className="flex items-center gap-3 text-cyan">
+          <div className="flex h-16 shrink-0 items-center justify-between border-b border-neon/40 px-6 shadow-[0_1px_20px_rgba(45,225,198,0.25)]">
+            <span className="flex items-center gap-3 text-neon">
               <LogoMark size={26} title="DigiDan" />
               <Wordmark className="text-[0.95rem] text-white" />
             </span>
             <button
               ref={closeRef}
               type="button"
-              className="-mr-1 p-1 text-cyan"
+              className="-mr-1 p-1 text-neon"
               aria-label="Close menu"
               onClick={() => setOpen(false)}
             >
@@ -102,7 +102,7 @@ export function Nav() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="border-b border-cyan/15 py-4 font-display text-xl text-white transition-colors hover:text-cyan"
+                className="border-b border-neon/15 py-4 font-display text-xl text-white transition-colors hover:text-neon"
               >
                 {item.label}
               </a>
@@ -110,7 +110,7 @@ export function Nav() {
             <a
               href={CONTACT_HREF}
               onClick={() => setOpen(false)}
-              className="btn btn-amber mt-8 w-full"
+              className="btn btn-action mt-8 w-full"
             >
               {footer.contact}
             </a>

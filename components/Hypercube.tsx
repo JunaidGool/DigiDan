@@ -5,7 +5,7 @@ import type * as T3 from "three";
 
 /**
  * The hero hypercube: a WebGL representation of the DigiDan core, drawn strictly
- * from cyan light tracks with pulsing internal energy nodes. It tilts subtly
+ * from neon-teal light tracks with pulsing internal energy nodes. It tilts subtly
  * toward the cursor and idles with a slow rotation. UnrealBloom gives the lines
  * their neon-gas glow.
  *
@@ -54,8 +54,10 @@ export function Hypercube() {
       const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
       camera.position.set(0, 0, 7.2);
 
-      const CYAN = new THREE.Color(0x00e5ff);
-      const AMBER = new THREE.Color(0xff9100);
+      // Brand tri-colour: neon-teal light tracks, yellow energy nodes, orange core.
+      const NEON = new THREE.Color(0x2de1c6);
+      const SPARK = new THREE.Color(0xf5c518);
+      const ACTION = new THREE.Color(0xf07e26);
 
       // The core group: an outer cube, an inner cube and energy nodes.
       const core = new THREE.Group();
@@ -63,13 +65,13 @@ export function Hypercube() {
 
       const outer = new THREE.LineSegments(
         new THREE.EdgesGeometry(new THREE.BoxGeometry(2.6, 2.6, 2.6)),
-        new THREE.LineBasicMaterial({ color: CYAN, transparent: true, opacity: 0.9 })
+        new THREE.LineBasicMaterial({ color: NEON, transparent: true, opacity: 0.9 })
       );
       core.add(outer);
 
       const inner = new THREE.LineSegments(
         new THREE.EdgesGeometry(new THREE.BoxGeometry(1.25, 1.25, 1.25)),
-        new THREE.LineBasicMaterial({ color: CYAN, transparent: true, opacity: 0.65 })
+        new THREE.LineBasicMaterial({ color: NEON, transparent: true, opacity: 0.65 })
       );
       core.add(inner);
 
@@ -86,11 +88,11 @@ export function Hypercube() {
           "position",
           new THREE.Float32BufferAttribute(spokePts, 3)
         ),
-        new THREE.LineBasicMaterial({ color: CYAN, transparent: true, opacity: 0.22 })
+        new THREE.LineBasicMaterial({ color: NEON, transparent: true, opacity: 0.22 })
       );
       core.add(spokes);
 
-      // Energy nodes: corners in cyan, centre in amber.
+      // Energy nodes: corners in brand yellow, centre in brand orange.
       const nodeGeo = new THREE.BufferGeometry().setAttribute(
         "position",
         new THREE.Float32BufferAttribute(corners.flat(), 3)
@@ -98,7 +100,7 @@ export function Hypercube() {
       const nodes = new THREE.Points(
         nodeGeo,
         new THREE.PointsMaterial({
-          color: CYAN,
+          color: SPARK,
           size: 0.16,
           transparent: true,
           opacity: 0.95,
@@ -114,7 +116,7 @@ export function Hypercube() {
           new THREE.Float32BufferAttribute([0, 0, 0], 3)
         ),
         new THREE.PointsMaterial({
-          color: AMBER,
+          color: ACTION,
           size: 0.34,
           transparent: true,
           opacity: 1,

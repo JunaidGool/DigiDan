@@ -12,22 +12,22 @@ export function Hero() {
     <section className="relative pt-16">
       <div className="shell grid items-center gap-10 pb-16 pt-12 wide:grid-cols-[1fr_minmax(0,30rem)] wide:pb-24 wide:pt-20">
         <div>
-          <Reveal as="p" className="label label-cyan" delay={0}>
+          <Reveal as="p" className="label label-neon" delay={0}>
             {hero.eyebrow}
           </Reveal>
           <Reveal delay={1}>
-            <p className="mt-6 font-mono text-xs uppercase tracking-[0.28em] text-teal">
+            <p className="mt-6 font-mono text-xs uppercase tracking-[0.28em] text-dim">
               {hero.legal}
             </p>
             <h1 className="glow-text mt-4 text-h1 font-light">{hero.h1}</h1>
-            <p className="glow-cyan-text mt-3 font-display text-xl font-light tracking-[0.04em] wide:text-2xl">
+            <p className="glow-neon-text mt-3 font-display text-xl font-light tracking-[0.04em] wide:text-2xl">
               {hero.tagline}
             </p>
           </Reveal>
           <Reveal delay={2}>
             <p className="mt-7 max-w-xl text-lg text-white/75">{hero.paragraph}</p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <a href={CONTACT_HREF} className="btn btn-amber">
+              <a href={CONTACT_HREF} className="btn btn-action">
                 {hero.primary}
               </a>
               <a href="#capabilities" className="btn btn-ghost">
@@ -40,7 +40,7 @@ export function Hero() {
         {/* The core. */}
         <div className="relative">
           <Hypercube />
-          <p className="label label-cyan mt-2 text-center">{hero.cubeCaption}</p>
+          <p className="label label-neon mt-2 text-center">{hero.cubeCaption}</p>
         </div>
       </div>
     </section>
