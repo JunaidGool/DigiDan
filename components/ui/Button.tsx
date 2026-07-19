@@ -1,5 +1,5 @@
 import { clsx } from "clsx";
-import { ArrowRight } from "lucide-react";
+import { Arrow } from "./glyphs";
 
 /**
  * Button: the DigiDan action primitive, built entirely by hand (no library).
@@ -80,9 +80,8 @@ function Inner({
       <span className="relative z-10 inline-flex items-center gap-2">
         {children}
         {withArrow && (
-          <ArrowRight
+          <Arrow
             size={18}
-            aria-hidden="true"
             className="transition-transform duration-200 group-hover:translate-x-0.5"
           />
         )}
