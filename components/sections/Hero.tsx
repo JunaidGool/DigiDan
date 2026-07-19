@@ -19,13 +19,17 @@ export function Hero() {
             <p className="mt-6 font-mono text-xs uppercase tracking-[0.28em] text-dim">
               {hero.legal}
             </p>
-            <h1 className="glow-text mt-4 text-h1 font-light">{hero.h1}</h1>
-            <p className="glow-neon-text mt-3 font-display text-xl font-light tracking-[0.04em] wide:text-2xl">
+            <h1 className="mt-4 text-h1 font-semibold tracking-tight text-white">
+              {hero.h1}
+            </h1>
+            <p className="mt-4 text-xl font-light text-white/70 wide:text-2xl">
               {hero.tagline}
             </p>
           </Reveal>
           <Reveal delay={2}>
-            <p className="mt-7 max-w-xl text-lg text-white/75">{hero.paragraph}</p>
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/80">
+              {hero.paragraph}
+            </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <a href={CONTACT_HREF} className="btn btn-action">
                 {hero.primary}

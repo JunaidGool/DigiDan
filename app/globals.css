@@ -27,19 +27,24 @@
     background-color: var(--void);
     color-scheme: only dark;
     scroll-behavior: smooth;
+    /* Belt and braces against any stray horizontal overflow on mobile. */
+    overflow-x: clip;
+    max-width: 100%;
   }
 
   body {
     background-color: var(--void);
     color: var(--white);
-    font-family: var(--font-body), system-ui, sans-serif;
-    font-weight: 300;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-weight: 400;
     font-size: 1rem;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     position: relative;
-    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
   }
 
   /* The Grid floor: a faint neon perspective grid fixed behind everything. */
@@ -65,21 +70,22 @@
     pointer-events: none;
   }
 
+  /* Swiss headings: crisp, tightly tracked, flat white. No glow. */
   h1,
   h2,
   h3,
   h4 {
-    font-family: var(--font-display), system-ui, sans-serif;
-    font-weight: 400;
-    letter-spacing: 0.02em;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.014em;
+    line-height: 1.1;
     color: var(--white);
     text-wrap: balance;
   }
 
   :focus-visible {
     outline: 1px solid var(--neon);
-    outline-offset: 4px;
-    box-shadow: 0 0 12px rgba(45, 225, 198, 0.5);
+    outline-offset: 3px;
   }
 
   ::selection {
@@ -110,19 +116,16 @@
     }
   }
 
-  /* Neon typography: white gas illumination with a teal halo. */
+  /* Enterprise rule: text is razor-sharp and flat. Neon is reserved for thin
+     borders, grid lines, data paths and small indicators, never a text glow. */
   .glow-text {
-    text-shadow:
-      0 0 8px rgba(45, 225, 198, 0.55),
-      0 0 2px rgba(255, 255, 255, 0.6);
+    color: var(--white);
   }
   .glow-neon-text {
     color: var(--neon);
-    text-shadow: 0 0 10px rgba(45, 225, 198, 0.6);
   }
   .glow-action-text {
     color: var(--action);
-    text-shadow: 0 0 10px rgba(240, 126, 38, 0.6);
   }
 
   /* Mono system label. */
@@ -239,7 +242,6 @@
   }
   .accent-glow {
     color: var(--accent);
-    text-shadow: 0 0 10px color-mix(in srgb, var(--accent) 60%, transparent);
   }
   .accent-lip {
     background: var(--accent);
