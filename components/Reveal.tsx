@@ -1,51 +1,57 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-type State = "idle" | "armed" | "in";
+// useLayoutEffect on the client (no flash), noop on the server.
+const useIsoLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : () => {};
 
 /**
- * Scroll-reveal wrapper. Exposes its state as `data-reveal` for CSS to key off.
- * Progressive enhancement: default (no JS) stays "idle" = final visible state,
- * so content is never stuck hidden. JS arms it (hidden) then reveals on
- * intersection. Reduced motion skips straight to visible with no animation.
+ * Scroll reveal orchestrated by GSAP ScrollTrigger: fade up 24px as the element
+ * enters, once. `delay` is a stagger index (delay * 0.1s).
+ *
+ * Progressive enhancement: the SSR / no-JS render is the final visible state.
+ * gsap.context sets the hidden start before first paint and reverts all inline
+ * styles on unmount. Reduced motion leaves everything visible with no motion.
  */
 export function Reveal({
   children,
   className,
-  threshold = 0.3,
+  as: Tag = "div",
+  delay = 0,
 }: {
   children: React.ReactNode;
   className?: string;
-  threshold?: number;
+  as?: React.ElementType;
+  delay?: number;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [state, setState] = useState<State>("idle");
+  const ref = useRef<HTMLElement>(null);
 
-  useEffect(() => {
+  useIsoLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    setState("armed");
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            setState("in");
-            io.disconnect();
-          }
-        }
-      },
-      { threshold }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [threshold]);
+    gsap.registerPlugin(ScrollTrigger);
+    const ctx = gsap.context(() => {
+      gsap.set(el, { opacity: 0, y: 24 });
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        delay: delay * 0.1,
+        scrollTrigger: { trigger: el, start: "top 85%", once: true },
+      });
+    }, el);
+    return () => ctx.revert();
+  }, [delay]);
 
   return (
-    <div ref={ref} data-reveal={state} className={className}>
+    <Tag ref={ref} className={className}>
       {children}
-    </div>
+    </Tag>
   );
 }

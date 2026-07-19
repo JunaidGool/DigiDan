@@ -1,60 +1,50 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
-import { site } from "@/content/site";
+import { Orbitron, Inter, JetBrains_Mono } from "next/font/google";
+import { site } from "@/content/home";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Analytics } from "@/components/Analytics";
-import { Assistant } from "@/components/Assistant";
 import "./globals.css";
 
-const display = Space_Grotesk({
+const display = Orbitron({
   subsets: ["latin"],
-  weight: ["500", "700"],
+  weight: ["400", "500", "700"],
   variable: "--font-display",
   display: "swap",
 });
 
 const body = Inter({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["300", "400"],
   variable: "--font-body",
   display: "swap",
 });
 
 const mono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["300", "400", "500"],
   variable: "--font-mono",
   display: "swap",
 });
 
+const title = "DigiDan: software strong enough to depend on";
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: {
-    default: `${site.name}: ${site.tagline}`,
-    template: `%s: ${site.name}`,
-  },
+  title,
   description: site.description,
-  keywords: [...site.keywords],
   openGraph: {
     type: "website",
     locale: "en_ZA",
     url: site.url,
     siteName: site.name,
-    title: `${site.name}: ${site.tagline}`,
+    title,
     description: site.description,
-    images: [
-      {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
-        alt: `${site.name}: ${site.tagline}`,
-      },
-    ],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: title }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name}: ${site.tagline}`,
+    title,
     description: site.description,
     images: ["/og.png"],
   },
@@ -62,7 +52,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FAF9F6",
+  themeColor: "#000000",
+  colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
 };
@@ -78,13 +69,12 @@ export default function RootLayout({
       className={`${display.variable} ${body.variable} ${mono.variable}`}
     >
       <body>
-        <a href="#main" className="skip-link">
+        <a href="#top" className="skip-link">
           Skip to content
         </a>
         <Nav />
         {children}
         <Footer />
-        <Assistant />
         <Analytics />
       </body>
     </html>

@@ -2,45 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------------------------------------------------------------------------
+   DigiDan "The Grid": a neon interface on a pure void, tuned to the brand
+   palette (neon teal identity, brand teal, brand orange, brand yellow).
+   Tokens mirrored as CSS custom properties for raw CSS (grid, glows, canvas).
+   --------------------------------------------------------------------------- */
 :root {
-  /* Palette tokens (brief 3.1): mirrored here for hand-authored SVG + raw CSS. */
-  --teal-100: #e1f5ee;
-  --teal-300: #5dcaa5;
-  --teal-500: #1d9e75;
-  --teal-900: #085041;
-  --coral-100: #faece7;
-  --coral-300: #f0997b;
-  --coral-500: #d85a30;
-  --coral-900: #712b13;
-  --amber-100: #faeeda;
-  --amber-200: #fac775;
-  --amber-400: #ef9f27;
-  --amber-900: #633806;
-  --ink: #26261f;
-  --paper: #ffffff;
-  --paper-warm: #faf9f6;
-  --line: #e5e3dc;
-  --muted: #726f63;
+  --void: #000000;
+  --neon: #2de1c6; /* identity emitter */
+  --dim: #45a08e; /* dormant / sub-text (brand teal) */
+  --action: #f07e26; /* actions (brand orange) */
+  --spark: #f5c518; /* energy nodes (brand yellow) */
+  --white: #ffffff;
+  --panel: #04100e;
+  --panel-raised: #07160f;
+  --line: rgba(45, 225, 198, 0.16);
+  --line-soft: rgba(45, 225, 198, 0.08);
 
-  /* Derived flat "dark face" tones for isometric block illustration. */
-  --teal-face-dark: #147a5a;
-  --coral-face-dark: #a8431f;
-  --amber-face-dark: #c67c10;
+  color-scheme: only dark;
 }
 
 @layer base {
   html {
+    background-color: var(--void);
+    color-scheme: only dark;
     scroll-behavior: smooth;
   }
 
   body {
-    background-color: var(--paper);
-    color: var(--ink);
+    background-color: var(--void);
+    color: var(--white);
     font-family: var(--font-body), system-ui, sans-serif;
-    font-size: 1.0625rem; /* 17px base */
-    line-height: 1.68;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* The Grid floor: a faint neon perspective grid fixed behind everything. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background:
+      linear-gradient(to right, var(--line-soft) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line-soft) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, #000 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, #000 30%, transparent 80%);
+    pointer-events: none;
+  }
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(ellipse 120% 80% at 50% 0%, transparent 55%, rgba(0, 0, 0, 0.85) 100%);
+    pointer-events: none;
   }
 
   h1,
@@ -48,23 +70,21 @@
   h3,
   h4 {
     font-family: var(--font-display), system-ui, sans-serif;
-    font-weight: 500;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    color: var(--ink);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--white);
     text-wrap: balance;
   }
 
-  /* Visible keyboard focus (WCAG 2.1 AA). */
   :focus-visible {
-    outline: 2px solid var(--teal-500);
-    outline-offset: 3px;
-    border-radius: 2px;
+    outline: 1px solid var(--neon);
+    outline-offset: 4px;
+    box-shadow: 0 0 12px rgba(45, 225, 198, 0.5);
   }
 
   ::selection {
-    background: var(--teal-100);
-    color: var(--teal-900);
+    background: rgba(45, 225, 198, 0.25);
+    color: var(--white);
   }
 }
 
@@ -75,132 +95,176 @@
     margin-inline: auto;
     padding-inline: 1.5rem;
   }
-
-  @media (min-width: 768px) {
+  @media (min-width: 960px) {
     .shell {
-      padding-inline: 2.5rem;
+      padding-inline: 3rem;
     }
   }
 
-  .eyebrow {
-    font-family: var(--font-display), system-ui, sans-serif;
-    font-size: theme("fontSize.eyebrow[0]");
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: var(--muted);
+  .section {
+    padding-block: 4.5rem;
+  }
+  @media (min-width: 960px) {
+    .section {
+      padding-block: 7rem;
+    }
   }
 
-  /* Skip-to-content link for keyboard/screen-reader users. */
+  /* Neon typography: white gas illumination with a teal halo. */
+  .glow-text {
+    text-shadow:
+      0 0 8px rgba(45, 225, 198, 0.55),
+      0 0 2px rgba(255, 255, 255, 0.6);
+  }
+  .glow-neon-text {
+    color: var(--neon);
+    text-shadow: 0 0 10px rgba(45, 225, 198, 0.6);
+  }
+  .glow-action-text {
+    color: var(--action);
+    text-shadow: 0 0 10px rgba(240, 126, 38, 0.6);
+  }
+
+  /* Mono system label. */
+  .label {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-weight: 400;
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.26em;
+    color: var(--dim);
+  }
+  .label-neon {
+    color: var(--neon);
+  }
+
+  /* Dark glass panel with a lit neon frame. */
+  .glass {
+    background:
+      linear-gradient(180deg, rgba(45, 225, 198, 0.05) 0%, rgba(45, 225, 198, 0) 40%),
+      var(--panel);
+    border: 1px solid var(--line);
+  }
+  .glass-lit {
+    border-color: rgba(45, 225, 198, 0.55);
+    box-shadow:
+      0 0 24px rgba(45, 225, 198, 0.18),
+      inset 0 0 24px rgba(45, 225, 198, 0.06);
+  }
+
+  /* Buttons. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-weight: 400;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.85rem 1.5rem;
+    border: 1px solid transparent;
+    transition:
+      background-color 180ms ease,
+      color 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease;
+  }
+  /* Primary: brand orange, the single high-priority action colour. */
+  .btn-action {
+    background: rgba(240, 126, 38, 0.12);
+    color: var(--action);
+    border-color: var(--action);
+    text-shadow: 0 0 8px rgba(240, 126, 38, 0.5);
+  }
+  .btn-action:hover {
+    background: var(--action);
+    color: var(--void);
+    box-shadow: 0 0 24px rgba(240, 126, 38, 0.55);
+    text-shadow: none;
+  }
+  /* Ghost: neon light track. */
+  .btn-ghost {
+    background: rgba(45, 225, 198, 0.04);
+    color: var(--neon);
+    border-color: var(--line);
+  }
+  .btn-ghost:hover {
+    border-color: var(--neon);
+    box-shadow: 0 0 20px rgba(45, 225, 198, 0.3);
+  }
+
   .skip-link {
     position: absolute;
     left: 1rem;
-    top: -3rem;
+    top: -3.5rem;
     z-index: 100;
-    background: var(--ink);
-    color: var(--paper);
+    background: var(--panel-raised);
+    color: var(--neon);
+    border: 1px solid var(--neon);
     padding: 0.5rem 1rem;
-    border-radius: 6px;
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
     transition: top 150ms ease-out;
   }
   .skip-link:focus {
     top: 1rem;
   }
-}
 
-/* ---- The War Room theme (scoped) ----
-   Dark tactical HUD identity, mirrored from the_war_room frontend. Applied only
-   under .wr so it never leaks into the DigiDan light theme. */
-.wr {
-  --wr-bg: #0a0806;
-  --wr-panel: #14100b;
-  --wr-panel-2: #1b150d;
-  --wr-border: rgba(245, 166, 35, 0.2);
-  --wr-border-strong: rgba(245, 166, 35, 0.5);
-  --wr-amber: #f5a623;
-  --wr-amber-bright: #ffb43f;
-  --wr-teal: #2ec4b6;
-  --wr-text: #e9dfce;
-  --wr-dim: #9a8b73;
-  --wr-faint: #6b5f4d;
-  color: var(--wr-text);
-  background:
-    radial-gradient(1200px 800px at 50% -10%, rgba(245, 166, 35, 0.07), transparent 60%),
-    radial-gradient(900px 600px at 90% 110%, rgba(46, 196, 182, 0.05), transparent 60%),
-    var(--wr-bg);
-}
-.wr ::selection {
-  background: rgba(245, 166, 35, 0.3);
-  color: var(--wr-amber-bright);
-}
-.wr-title {
-  font-family: var(--font-mono), ui-monospace, monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-weight: 600;
-  color: var(--wr-amber);
-}
-.wr-eyebrow {
-  font-family: var(--font-mono), ui-monospace, monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
-  font-size: 10px;
-  color: var(--wr-faint);
-}
-.wr-panel {
-  background: var(--wr-panel);
-  border: 1px solid var(--wr-border);
-}
-/* Corner-bracket framing: the War Room's panel motif. */
-.wr-frame {
-  position: relative;
-}
-.wr-frame::before,
-.wr-frame::after {
-  content: "";
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border-color: var(--wr-amber);
-  border-style: solid;
-  opacity: 0.55;
-  pointer-events: none;
-}
-.wr-frame::before {
-  top: -1px;
-  left: -1px;
-  border-width: 1px 0 0 1px;
-}
-.wr-frame::after {
-  bottom: -1px;
-  right: -1px;
-  border-width: 0 1px 1px 0;
-}
-
-/* Staircase scroll-drop (brief 5.4 / 6): blocks drop into place, staggered,
-   with a gentle settle (no overshoot). Driven by <Reveal data-reveal>.
-   "idle" (no JS) = final visible state, so content is never stuck hidden. */
-[data-reveal="armed"] .stair-step {
-  transform: translateY(-14px);
-  opacity: 0;
-}
-[data-reveal="in"] .stair-step {
-  transform: translateY(0);
-  opacity: 1;
-  transition:
-    transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 380ms ease-out;
-  transition-delay: calc(var(--i) * 90ms);
-}
-
-/* Motion is opt-in: everything animated falls back to its final state. */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+  .rule-neon {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--neon), transparent);
+    opacity: 0.5;
   }
-  *,
-  *::before,
-  *::after {
+
+  /* Per-element brand accent, driven by a --accent custom property so the three
+     logo colours (teal, orange, yellow) can flow through the capability nodes,
+     stats and work index numbers. */
+  .node {
+    transition:
+      box-shadow 0.2s ease,
+      border-color 0.2s ease;
+  }
+  .node[data-active] {
+    border-color: var(--accent);
+    box-shadow:
+      0 0 24px color-mix(in srgb, var(--accent) 22%, transparent),
+      inset 0 0 24px color-mix(in srgb, var(--accent) 7%, transparent);
+  }
+  .accent-text {
+    color: var(--accent);
+  }
+  .accent-glow {
+    color: var(--accent);
+    text-shadow: 0 0 10px color-mix(in srgb, var(--accent) 60%, transparent);
+  }
+  .accent-lip {
+    background: var(--accent);
+    box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 55%, transparent);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Motion. Restrained and premium. Reveals (GSAP), calm pulse travel, blink.
+   --------------------------------------------------------------------------- */
+@keyframes status-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+.status-dot {
+  animation: status-blink 2s ease-in-out infinite;
+}
+
+@keyframes pulse-travel {
+  to { stroke-dashoffset: -240; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;

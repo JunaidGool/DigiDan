@@ -1,64 +1,47 @@
-import Link from "next/link";
-import { hero, credibility } from "@/content/hero";
-import { primaryCta, secondaryCta } from "@/content/site";
-import { leadershipIntro } from "@/content/leadership";
-import { HeroLogo } from "@/components/HeroLogo";
+import { hero, CONTACT_HREF } from "@/content/home";
+import { Reveal } from "@/components/Reveal";
+import { Hypercube } from "@/components/Hypercube";
 
+/**
+ * Hero (The Grid). Left: eyebrow, headline with a neon glow, the "built for the
+ * real world" tagline, one paragraph and two actions. Right: the WebGL
+ * hypercube. Columns stack below the 960px breakpoint.
+ */
 export function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      <div className="shell grid items-center gap-12 py-16 md:grid-cols-[55fr_45fr] md:py-24">
-        {/* Left: copy */}
+    <section className="relative pt-16">
+      <div className="shell grid items-center gap-10 pb-16 pt-12 wide:grid-cols-[1fr_minmax(0,30rem)] wide:pb-24 wide:pt-20">
         <div>
-          <span className="inline-flex rounded-full bg-teal-100 px-3 py-1 text-eyebrow font-medium uppercase tracking-wider text-teal-900">
-            {hero.badge}
-          </span>
-          <h1 className="mt-6 text-4xl leading-[1.08] md:text-[3.25rem]">
-            {hero.headline}
-          </h1>
-          <p className="mt-6 max-w-prose text-lg text-ink/80">{hero.subhead}</p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <Link
-              href={primaryCta.href}
-              className="inline-flex rounded-lg bg-ink px-6 py-3 font-medium text-paper transition-transform duration-150 ease-settle hover:-translate-y-0.5"
-            >
-              {primaryCta.label}
-            </Link>
-            <Link
-              href={secondaryCta.href}
-              className="inline-flex rounded-lg border border-ink/20 px-6 py-3 font-medium text-ink transition-colors hover:border-ink/40"
-            >
-              {secondaryCta.label}
-            </Link>
-          </div>
+          <Reveal as="p" className="label label-neon" delay={0}>
+            {hero.eyebrow}
+          </Reveal>
+          <Reveal delay={1}>
+            <p className="mt-6 font-mono text-xs uppercase tracking-[0.28em] text-dim">
+              {hero.legal}
+            </p>
+            <h1 className="glow-text mt-4 text-h1 font-light">{hero.h1}</h1>
+            <p className="glow-neon-text mt-3 font-display text-xl font-light tracking-[0.04em] wide:text-2xl">
+              {hero.tagline}
+            </p>
+          </Reveal>
+          <Reveal delay={2}>
+            <p className="mt-7 max-w-xl text-lg text-white/75">{hero.paragraph}</p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <a href={CONTACT_HREF} className="btn btn-action">
+                {hero.primary}
+              </a>
+              <a href="#capabilities" className="btn btn-ghost">
+                {hero.secondary}
+              </a>
+            </div>
+          </Reveal>
         </div>
 
-        {/* Right: the signature drift-and-click assembly (brief 5.2). */}
-        <div className="flex justify-center md:justify-end">
-          <HeroLogo size={280} />
+        {/* The core. */}
+        <div className="relative">
+          <Hypercube />
+          <p className="label label-neon mt-2 text-center">{hero.cubeCaption}</p>
         </div>
-      </div>
-
-      {/* Credibility strip (brief 5.2): text names only, no third-party logos */}
-      <div className="border-y border-line bg-paper-warm">
-        <div className="shell flex flex-col gap-4 py-6 md:flex-row md:items-center md:gap-8">
-          <span className="eyebrow shrink-0">{credibility.label}</span>
-          <ul className="flex flex-wrap gap-x-8 gap-y-2">
-            {credibility.items.map((item) => (
-              <li key={item.name} className="text-sm text-ink/75">
-                <span className="font-medium text-ink">{item.name}</span>{" "}
-                <span className="text-muted">{item.note}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      {/* Commitment line, directly under the strip (brief 5.2). */}
-      <div className="shell py-8 md:py-10">
-        <p className="max-w-prose text-lg text-ink/80 md:text-xl">
-          {leadershipIntro.commitment}
-        </p>
       </div>
     </section>
   );

@@ -1,12 +1,10 @@
-import { Hero } from "@/components/sections/Hero";
-import { Services } from "@/components/sections/Services";
-import { Approach } from "@/components/sections/Approach";
-import { Portfolio } from "@/components/sections/Portfolio";
-import { Stats } from "@/components/sections/Stats";
-import { Harness } from "@/components/sections/Harness";
-import { Leadership } from "@/components/sections/Leadership";
 import type { Metadata } from "next";
-import { site } from "@/content/site";
+import { Hero } from "@/components/sections/Hero";
+import { StatementBand } from "@/components/sections/StatementBand";
+import { Capabilities } from "@/components/sections/Capabilities";
+import { Overview } from "@/components/sections/Overview";
+import { Work } from "@/components/sections/Work";
+import { site } from "@/content/home";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -18,7 +16,6 @@ const orgSchema = {
   name: site.legalName,
   alternateName: site.name,
   url: site.url,
-  slogan: site.tagline,
   description: site.description,
   areaServed: "ZA",
   address: {
@@ -28,11 +25,11 @@ const orgSchema = {
   },
   knowsAbout: [
     "Fintech engineering",
-    "Custom software engineering",
-    "AI harness engineering",
-    "Systems and API integration",
+    "Payments and financial transaction systems",
+    "Custom software platforms",
     "nopCommerce",
-    "Cloud and resilience engineering",
+    "Systems and API integration",
+    "AI and automation",
   ],
 };
 
@@ -43,14 +40,12 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
       />
-      <main id="main">
+      <main id="top">
         <Hero />
-        <Services />
-        <Approach />
-        <Portfolio />
-        <Stats />
-        <Harness />
-        <Leadership />
+        <StatementBand />
+        <Capabilities />
+        <Overview />
+        <Work />
       </main>
     </>
   );
