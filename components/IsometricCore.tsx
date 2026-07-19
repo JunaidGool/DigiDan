@@ -4,41 +4,64 @@ import { useEffect, useRef } from "react";
 import type * as T3 from "three";
 
 /**
- * The Living Isometric Core: DigiDan's own building-block language rendered as a
- * real-time WebGL structure. A central core module with eight satellite modules
- * in the three brand colours, wired to the core by light-beams that carry
- * travelling pulses. On load the modules assemble from a scattered state; at
- * rest the whole rig floats and rotates and parallax-tilts toward the cursor.
+ * Live System Architecture: a real-time WebGL diagram of the kind of system
+ * DigiDan builds. Labelled module blocks (Client, API Gateway, Services, Ledger,
+ * Queue, AI) assemble on load and are wired together; glowing data packets flow
+ * along the wires in the direction requests travel, so the whole thing reads as
+ * a system actually running. Labels are HTML projected onto each 3D node so they
+ * stay crisp and legible while the rig parallax-tilts to the cursor.
  *
- * Everything is hand-built on three.js primitives — no loaders, no helpers.
- * three is imported dynamically inside the effect so it is code-split away from
- * first paint and never runs during SSR. Reduced motion renders one assembled,
- * still frame. The rig is decorative; the surrounding copy carries the meaning.
+ * Hand-built on three.js primitives — no loaders, no helpers. three is imported
+ * dynamically (code-split, no SSR). Reduced motion renders one assembled, still
+ * frame with no packet flow.
  */
 
 const TEAL = 0x2de1c6;
 const ORANGE = 0xf07e26;
 const YELLOW = 0xf5c518;
+const WHITE = 0xffffff;
+const HEX: Record<number, string> = {
+  [TEAL]: "#2DE1C6",
+  [ORANGE]: "#F07E26",
+  [YELLOW]: "#F5C518",
+  [WHITE]: "#FFFFFF",
+};
 
-// Satellite modules: target position, half-size and brand colour. The core is
-// added separately at the origin.
-const MODULES: { pos: [number, number, number]; s: number; color: number }[] = [
-  { pos: [2.4, 0.15, 0], s: 0.5, color: TEAL },
-  { pos: [-2.4, -0.15, 0], s: 0.5, color: ORANGE },
-  { pos: [0, 0.15, 2.4], s: 0.5, color: YELLOW },
-  { pos: [0, -0.15, -2.4], s: 0.5, color: TEAL },
-  { pos: [1.5, 1.7, 1.5], s: 0.42, color: ORANGE },
-  { pos: [-1.5, 1.7, -1.5], s: 0.42, color: YELLOW },
-  { pos: [1.5, -1.7, -1.5], s: 0.42, color: TEAL },
-  { pos: [-1.5, -1.7, 1.5], s: 0.42, color: ORANGE },
+type NodeDef = {
+  id: string;
+  label: string;
+  pos: [number, number, number];
+  s: number;
+  color: number;
+};
+
+// A legible left-to-right architecture laid out on the ground plane.
+const NODES: NodeDef[] = [
+  { id: "client", label: "Client", pos: [-4.6, 0, -0.4], s: 0.46, color: TEAL },
+  { id: "gateway", label: "API Gateway", pos: [-1.9, 0, 0.9], s: 0.5, color: ORANGE },
+  { id: "services", label: "Services", pos: [0.7, 0, -0.6], s: 0.82, color: WHITE },
+  { id: "ledger", label: "Ledger", pos: [3.4, 0, 1.0], s: 0.52, color: YELLOW },
+  { id: "queue", label: "Queue", pos: [3.2, 0, -2.1], s: 0.48, color: TEAL },
+  { id: "ai", label: "AI", pos: [0.5, 0, 2.5], s: 0.46, color: ORANGE },
+];
+
+// Directed wires: data travels from → to.
+const EDGES: { from: string; to: string; color: number }[] = [
+  { from: "client", to: "gateway", color: TEAL },
+  { from: "gateway", to: "services", color: ORANGE },
+  { from: "services", to: "ledger", color: YELLOW },
+  { from: "services", to: "queue", color: TEAL },
+  { from: "services", to: "ai", color: ORANGE },
 ];
 
 export function IsometricCore() {
   const mountRef = useRef<HTMLDivElement>(null);
+  const labelsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const mount = mountRef.current;
-    if (!mount) return;
+    const labelHost = labelsRef.current;
+    if (!mount || !labelHost) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     let disposed = false;
@@ -58,112 +81,125 @@ export function IsometricCore() {
       mount.appendChild(renderer.domElement);
 
       const scene = new THREE.Scene();
-
-      // Orthographic camera at an isometric vantage for true parallel projection.
-      const frustum = 5.5;
-      const aspect = W() / H();
-      const cam = new THREE.OrthographicCamera(
-        -frustum * aspect, frustum * aspect, frustum, -frustum, 0.1, 100
-      );
-      cam.position.set(6, 4.6, 6);
-      cam.lookAt(0, 0, 0);
-
-      const rig = new THREE.Group();
-      scene.add(rig);
-
-      type Block = {
-        group: T3.Group;
-        edges: T3.LineSegments;
-        faces: T3.Mesh;
-        target: T3.Vector3;
-        scatter: T3.Vector3;
-        bob: number;
-      };
-      const blocks: Block[] = [];
-
-      const makeBlock = (
-        pos: [number, number, number],
-        s: number,
-        color: number,
-        i: number
-      ): Block => {
-        const group = new THREE.Group();
-        const box = new THREE.BoxGeometry(s * 2, s * 2, s * 2);
-        const faces = new THREE.Mesh(
-          box,
-          new THREE.MeshBasicMaterial({
-            color,
-            transparent: true,
-            opacity: 0.08,
-            depthWrite: false,
-          })
-        );
-        const edges = new THREE.LineSegments(
-          new THREE.EdgesGeometry(box),
-          new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.95 })
-        );
-        group.add(faces, edges);
-        const target = new THREE.Vector3(...pos);
-        // Scatter outward from the target for the assembly-in animation.
-        const dir = target.clone().normalize();
-        const scatter = target.clone().addScaledVector(dir.lengthSq() ? dir : new THREE.Vector3(0, 1, 0), 5).add(
-          new THREE.Vector3(0, 3, 0)
-        );
-        group.position.copy(reduce ? target : scatter);
-        rig.add(group);
-        return { group, edges, faces, target, scatter, bob: i * 0.9 };
-      };
-
-      // Core (white, larger) then satellites.
-      const core = makeBlock([0, 0, 0], 0.85, 0xffffff, 0);
-      MODULES.forEach((m, i) => blocks.push(makeBlock(m.pos, m.s, m.color, i + 1)));
-
-      // Light beams + travelling pulses from the core to each satellite.
-      const pulses: { mesh: T3.Mesh; from: T3.Vector3; to: T3.Vector3; color: number }[] = [];
-      MODULES.forEach((m) => {
-        const to = new THREE.Vector3(...m.pos);
-        const geo = new THREE.BufferGeometry().setFromPoints([
-          new THREE.Vector3(0, 0, 0),
-          to,
-        ]);
-        const line = new THREE.Line(
-          geo,
-          new THREE.LineBasicMaterial({ color: m.color, transparent: true, opacity: 0.28 })
-        );
-        rig.add(line);
-
-        const pulse = new THREE.Mesh(
-          new THREE.SphereGeometry(0.075, 12, 12),
-          new THREE.MeshBasicMaterial({ color: m.color, transparent: true, opacity: 0.95 })
-        );
-        rig.add(pulse);
-        pulses.push({ mesh: pulse, from: new THREE.Vector3(0, 0, 0), to, color: m.color });
-      });
-
-      // Interaction + timing state.
-      const pointer = { x: 0, y: 0, tx: 0, ty: 0 };
-      const onPointer = (e: PointerEvent) => {
-        const r = mount.getBoundingClientRect();
-        pointer.tx = ((e.clientX - (r.left + r.width / 2)) / (r.width / 2)) || 0;
-        pointer.ty = ((e.clientY - (r.top + r.height / 2)) / (r.height / 2)) || 0;
-      };
-      if (!reduce) window.addEventListener("pointermove", onPointer, { passive: true });
-
-      let scrollFade = 1;
-      const onScroll = () => {
-        const r = mount.getBoundingClientRect();
-        scrollFade = Math.max(0, Math.min(1, 1 - -r.top / (r.height * 1.1)));
-      };
-      onScroll();
-      window.addEventListener("scroll", onScroll, { passive: true });
-
-      const onResize = () => {
+      // Pull the camera back on narrow screens so the whole system stays in view.
+      const frustumFor = () => (W() < 680 ? 6.6 : 4.2);
+      let frustum = frustumFor();
+      const applyCam = () => {
         const a = W() / H();
         cam.left = -frustum * a;
         cam.right = frustum * a;
         cam.top = frustum;
         cam.bottom = -frustum;
         cam.updateProjectionMatrix();
+      };
+      const cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 100);
+      cam.position.set(6, 5, 6);
+      cam.lookAt(0, 0, 0);
+      applyCam();
+
+      const rig = new THREE.Group();
+      scene.add(rig);
+
+      // --- Nodes -----------------------------------------------------------
+      type Node = {
+        def: NodeDef;
+        group: T3.Group;
+        edges: T3.LineSegments;
+        faces: T3.Mesh;
+        target: T3.Vector3;
+        labelEl: HTMLDivElement;
+      };
+      const nodes: Record<string, Node> = {};
+
+      NODES.forEach((def, i) => {
+        const group = new THREE.Group();
+        const box = new THREE.BoxGeometry(def.s * 2, def.s * 2, def.s * 2);
+        const faces = new THREE.Mesh(
+          box,
+          new THREE.MeshBasicMaterial({
+            color: def.color,
+            transparent: true,
+            opacity: 0.1,
+            depthWrite: false,
+          })
+        );
+        const edges = new THREE.LineSegments(
+          new THREE.EdgesGeometry(box),
+          new THREE.LineBasicMaterial({ color: def.color, transparent: true, opacity: 0.95 })
+        );
+        group.add(faces, edges);
+        const target = new THREE.Vector3(...def.pos);
+        group.position.set(target.x, reduce ? target.y : target.y - 3, target.z);
+        rig.add(group);
+
+        // Projected HTML label.
+        const el = document.createElement("div");
+        el.style.cssText =
+          "position:absolute;left:0;top:0;white-space:nowrap;display:flex;align-items:center;gap:6px;" +
+          "font-family:var(--font-mono),ui-monospace,monospace;font-size:11px;font-weight:500;" +
+          "letter-spacing:0.1em;text-transform:uppercase;color:#d3d7de;padding:3px 9px;border-radius:999px;" +
+          "border:1px solid rgba(255,255,255,0.12);background:rgba(8,9,13,0.66);will-change:transform;";
+        el.innerHTML =
+          `<span style="width:6px;height:6px;border-radius:999px;background:${HEX[def.color]}"></span>` +
+          def.label;
+        labelHost.appendChild(el);
+
+        nodes[def.id] = { def, group, edges, faces, target, labelEl: el };
+        void i;
+      });
+
+      // --- Edges + packets -------------------------------------------------
+      type Edge = {
+        line: T3.Line;
+        from: T3.Vector3;
+        to: T3.Vector3;
+        packets: T3.Mesh[];
+        color: number;
+      };
+      const edges: Edge[] = [];
+      EDGES.forEach((e) => {
+        const a = new THREE.Vector3(...nodes[e.from].def.pos);
+        const b = new THREE.Vector3(...nodes[e.to].def.pos);
+        const geo = new THREE.BufferGeometry().setFromPoints([a, b]);
+        const line = new THREE.Line(
+          geo,
+          new THREE.LineBasicMaterial({ color: e.color, transparent: true, opacity: 0 })
+        );
+        rig.add(line);
+
+        const packets: T3.Mesh[] = [];
+        const count = 2;
+        for (let i = 0; i < count; i++) {
+          const pk = new THREE.Mesh(
+            new THREE.BoxGeometry(0.16, 0.16, 0.16),
+            new THREE.MeshBasicMaterial({ color: e.color, transparent: true, opacity: 0 })
+          );
+          rig.add(pk);
+          packets.push(pk);
+        }
+        edges.push({ line, from: a, to: b, packets, color: e.color });
+      });
+
+      // --- Interaction -----------------------------------------------------
+      const pointer = { x: 0, y: 0, tx: 0, ty: 0 };
+      const onPointer = (ev: PointerEvent) => {
+        const r = mount.getBoundingClientRect();
+        pointer.tx = ((ev.clientX - (r.left + r.width / 2)) / (r.width / 2)) || 0;
+        pointer.ty = ((ev.clientY - (r.top + r.height / 2)) / (r.height / 2)) || 0;
+      };
+      if (!reduce) window.addEventListener("pointermove", onPointer, { passive: true });
+
+      let scrollFade = 1;
+      const onScroll = () => {
+        const r = mount.getBoundingClientRect();
+        scrollFade = Math.max(0, Math.min(1, 1 - -r.top / (r.height * 1.15)));
+      };
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      const onResize = () => {
+        frustum = frustumFor();
+        applyCam();
         renderer.setSize(W(), H());
       };
       window.addEventListener("resize", onResize);
@@ -178,44 +214,54 @@ export function IsometricCore() {
       );
       io.observe(mount);
 
+      // --- Render loop -----------------------------------------------------
       const clock = new THREE.Clock();
       let raf = 0;
-      const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
-      const allBlocks = [core, ...blocks];
+      const ease = (t: number) => 1 - Math.pow(1 - t, 3);
+      const tmp = new THREE.Vector3();
+      const nodeList = Object.values(nodes);
 
       const render = () => {
         const t = clock.getElapsedTime();
-        const assemble = reduce ? 1 : easeOut(Math.min(1, t / 1.7));
 
-        // Assemble + float each block; stagger by index.
-        allBlocks.forEach((b, i) => {
-          const local = reduce ? 1 : easeOut(Math.max(0, Math.min(1, (t - i * 0.08) / 1.3)));
-          b.group.position.lerpVectors(b.scatter, b.target, local);
-          if (!reduce) {
-            b.group.position.y += Math.sin(t * 1.1 + b.bob) * 0.05 * assemble;
-            b.group.rotation.y = Math.sin(t * 0.4 + b.bob) * 0.08;
-          }
-          const mat = b.faces.material as T3.MeshBasicMaterial;
-          const emat = b.edges.material as T3.LineBasicMaterial;
-          mat.opacity = 0.08 * local * scrollFade;
-          emat.opacity = 0.95 * local * scrollFade;
-        });
-
-        // Travelling pulses ride the beams, ping-ponging with a per-beam phase.
-        pulses.forEach((p, i) => {
-          const phase = (t * 0.55 + i * 0.17) % 1;
-          const k = phase < 0.5 ? phase * 2 : (1 - phase) * 2; // 0..1..0
-          p.mesh.position.lerpVectors(p.from, p.to, k * assemble);
-          const m = p.mesh.material as T3.MeshBasicMaterial;
-          m.opacity = (0.35 + 0.65 * Math.sin(phase * Math.PI)) * scrollFade * assemble;
-          p.mesh.scale.setScalar(0.7 + 0.6 * Math.sin(phase * Math.PI));
-        });
-
-        // Cursor parallax + slow idle spin.
+        // Gentle cursor tilt (no full spin, so the diagram stays readable).
         pointer.x += (pointer.tx - pointer.x) * 0.05;
         pointer.y += (pointer.ty - pointer.y) * 0.05;
-        rig.rotation.y = (reduce ? 0.5 : t * 0.12) + pointer.x * 0.4;
-        rig.rotation.x = -0.05 + pointer.y * 0.25;
+        rig.rotation.y = pointer.x * 0.3;
+        rig.rotation.x = pointer.y * 0.14;
+        rig.updateMatrixWorld();
+
+        // Assemble nodes (rise + scale in, staggered) and float gently.
+        nodeList.forEach((n, i) => {
+          const local = reduce ? 1 : ease(Math.max(0, Math.min(1, (t - i * 0.12) / 1.1)));
+          const y = n.target.y - (1 - local) * 3 + (reduce ? 0 : Math.sin(t * 1.1 + i) * 0.04 * local);
+          n.group.position.set(n.target.x, y, n.target.z);
+          n.group.scale.setScalar(local);
+          (n.faces.material as T3.MeshBasicMaterial).opacity = 0.1 * local * scrollFade;
+          (n.edges.material as T3.LineBasicMaterial).opacity = 0.95 * local * scrollFade;
+
+          // Project the label to screen, floating just above the block.
+          tmp.set(n.target.x, y + n.def.s + 0.55, n.target.z);
+          rig.localToWorld(tmp);
+          tmp.project(cam);
+          const sx = (tmp.x * 0.5 + 0.5) * W();
+          const sy = (-tmp.y * 0.5 + 0.5) * H();
+          n.labelEl.style.transform = `translate(-50%,-50%) translate(${sx}px,${sy}px)`;
+          n.labelEl.style.opacity = String(local * scrollFade);
+        });
+
+        // Wires fade in after their nodes; packets ride them once flowing.
+        const wireIn = reduce ? 1 : ease(Math.max(0, Math.min(1, (t - 0.9) / 0.8)));
+        edges.forEach((e, ei) => {
+          (e.line.material as T3.LineBasicMaterial).opacity = 0.24 * wireIn * scrollFade;
+          e.packets.forEach((pk, pi) => {
+            const phase = (t * 0.32 + pi * 0.5 + ei * 0.13) % 1;
+            pk.position.lerpVectors(e.from, e.to, phase);
+            const m = pk.material as T3.MeshBasicMaterial;
+            m.opacity = reduce ? 0 : Math.sin(phase * Math.PI) * wireIn * scrollFade;
+            pk.scale.setScalar(0.7 + 0.5 * Math.sin(phase * Math.PI));
+          });
+        });
 
         renderer.render(scene, cam);
       };
@@ -237,6 +283,7 @@ export function IsometricCore() {
         window.removeEventListener("pointermove", onPointer);
         window.removeEventListener("scroll", onScroll);
         window.removeEventListener("resize", onResize);
+        nodeList.forEach((n) => n.labelEl.remove());
         renderer.dispose();
         scene.traverse((o) => {
           const any = o as unknown as {
@@ -257,10 +304,9 @@ export function IsometricCore() {
   }, []);
 
   return (
-    <div
-      ref={mountRef}
-      aria-hidden="true"
-      className="relative h-[380px] w-full touch-none select-none wide:h-[560px]"
-    />
+    <div className="relative h-[440px] w-full touch-none select-none wide:h-[520px]">
+      <div ref={mountRef} aria-hidden="true" className="absolute inset-0" />
+      <div ref={labelsRef} aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden" />
+    </div>
   );
 }

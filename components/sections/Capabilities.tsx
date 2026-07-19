@@ -4,7 +4,6 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Card } from "@/components/ui/Card";
 import { Tilt } from "@/components/ui/Tilt";
-import { DecodeText } from "@/components/ui/DecodeText";
 import { Reveal } from "@/components/Reveal";
 import { IconLedger, IconPlatform, IconAI, Tick } from "@/components/ui/icons";
 import { accentAt } from "@/components/ui/brand";
@@ -40,11 +39,7 @@ export function Capabilities() {
       <Container>
         <Reveal className="max-w-3xl">
           <Eyebrow>{capabilities.label}</Eyebrow>
-          <DecodeText
-            as="h2"
-            text={capabilities.title}
-            className="mt-5 block text-h2 font-bold text-white"
-          />
+          <h2 className="mt-5 text-h2 font-bold text-white">{capabilities.title}</h2>
         </Reveal>
 
         <div className="mt-14 grid gap-6 wide:grid-cols-3">

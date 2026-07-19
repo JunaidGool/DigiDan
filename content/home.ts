@@ -34,7 +34,7 @@ export const hero = {
     "We build custom software, online platforms and practical AI systems. We design for the full environment your software runs in, not just the screens and code.",
   primary: "Start a project",
   secondary: "View capabilities",
-  cubeCaption: "THE DIGIDAN CORE",
+  cubeCaption: "A LIVE SYSTEM, ASSEMBLING",
 } as const;
 
 export const statement = {

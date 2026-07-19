@@ -5,7 +5,6 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Card } from "@/components/ui/Card";
 import { ProductMark } from "@/components/ui/ProductMark";
 import { Tilt } from "@/components/ui/Tilt";
-import { DecodeText } from "@/components/ui/DecodeText";
 import { Reveal } from "@/components/Reveal";
 
 /**
@@ -19,11 +18,7 @@ export function Work() {
       <Container>
         <Reveal className="max-w-3xl">
           <Eyebrow>{work.label}</Eyebrow>
-          <DecodeText
-            as="h2"
-            text={work.title}
-            className="mt-5 block text-h2 font-bold text-white"
-          />
+          <h2 className="mt-5 text-h2 font-bold text-white">{work.title}</h2>
         </Reveal>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 wide:grid-cols-3">
