@@ -3,6 +3,8 @@ import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Card } from "@/components/ui/Card";
+import { Tilt } from "@/components/ui/Tilt";
+import { DecodeText } from "@/components/ui/DecodeText";
 import { Reveal } from "@/components/Reveal";
 import { IconLedger, IconPlatform, IconAI, Tick } from "@/components/ui/icons";
 import { accentAt } from "@/components/ui/brand";
@@ -38,7 +40,11 @@ export function Capabilities() {
       <Container>
         <Reveal className="max-w-3xl">
           <Eyebrow>{capabilities.label}</Eyebrow>
-          <h2 className="mt-5 text-h2 font-bold text-white">{capabilities.title}</h2>
+          <DecodeText
+            as="h2"
+            text={capabilities.title}
+            className="mt-5 block text-h2 font-bold text-white"
+          />
         </Reveal>
 
         <div className="mt-14 grid gap-6 wide:grid-cols-3">
@@ -46,8 +52,9 @@ export function Capabilities() {
             const Icon = ICONS[i];
             const accent = accentAt(i); // teal / orange / yellow per the logo
             return (
-              <Reveal key={blade.index} delay={i}>
-                <Card className="group flex h-full flex-col overflow-hidden p-8 transition-[transform,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-white/20">
+              <Reveal key={blade.index} delay={i} className="h-full">
+                <Tilt className="h-full">
+                <Card className="group flex h-full flex-col overflow-hidden p-8 transition-[border-color] duration-300 ease-out hover:border-white/20">
                   {/* Brand accent bar in the card's logo colour. */}
                   <span
                     aria-hidden="true"
@@ -74,6 +81,7 @@ export function Capabilities() {
                     ))}
                   </ul>
                 </Card>
+                </Tilt>
               </Reveal>
             );
           })}

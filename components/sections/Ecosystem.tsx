@@ -2,6 +2,7 @@ import { ecosystem } from "@/content/home";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { DecodeText } from "@/components/ui/DecodeText";
 import { Reveal } from "@/components/Reveal";
 import { LogoMark } from "@/components/Logo";
 import { accentAt } from "@/components/ui/brand";
@@ -33,7 +34,11 @@ export function Ecosystem() {
       <Container>
         <Reveal className="mx-auto max-w-3xl text-center">
           <Eyebrow className="justify-center">{ecosystem.label}</Eyebrow>
-          <h2 className="mt-5 text-h2 font-bold text-white">{ecosystem.title}</h2>
+          <DecodeText
+            as="h2"
+            text={ecosystem.title}
+            className="mt-5 block text-h2 font-bold text-white"
+          />
         </Reveal>
 
         <Reveal delay={1} className="mt-14">

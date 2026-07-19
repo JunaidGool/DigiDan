@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { Arrow } from "./glyphs";
 import { Button } from "./Button";
 
 /**
@@ -73,7 +73,7 @@ export function Carousel({
           onClick={() => go(i - 1)}
           aria-label="Previous system"
         >
-          <ArrowLeft size={20} aria-hidden="true" />
+          <Arrow direction="left" size={20} />
         </Button>
 
         <div className="flex items-center gap-2.5" role="tablist" aria-label="Choose slide">
@@ -95,7 +95,7 @@ export function Carousel({
         </div>
 
         <Button variant="icon" onClick={() => go(i + 1)} aria-label="Next system">
-          <ArrowRight size={20} aria-hidden="true" />
+          <Arrow size={20} />
         </Button>
       </div>
     </div>
