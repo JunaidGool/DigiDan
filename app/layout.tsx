@@ -47,11 +47,17 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
-  colorScheme: "dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+    { media: "(prefers-color-scheme: light)", color: "#EEF5F2" },
+  ],
+  colorScheme: "dark light",
   width: "device-width",
   initialScale: 1,
 };
+
+// Applies the saved theme before first paint so there is no flash. Default dark.
+const themeScript = `(function(){try{var t=localStorage.getItem('digidan-theme');if(t!=='dark'&&t!=='light'&&t!=='brand')t='dark';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();`;
 
 export default function RootLayout({
   children,
@@ -61,9 +67,11 @@ export default function RootLayout({
   return (
     <html
       lang="en-ZA"
+      data-theme="dark"
       className={`${sans.variable} ${mono.variable}`}
     >
       <body>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <a href="#top" className="skip-link">
           Skip to content
         </a>

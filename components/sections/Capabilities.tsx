@@ -16,8 +16,13 @@ import { Reveal } from "@/components/Reveal";
  * screen-reader operable; the highways and core are decorative.
  */
 
-// Brand accents per node: teal (base), orange (tower), yellow (cube).
-const ACCENT = ["#2DE1C6", "#F07E26", "#F5C518"];
+// Brand accents per node: teal (base), orange (tower), yellow (cube). Theme
+// tokens so they hold contrast in dark, light and brand modes.
+const ACCENT = [
+  "var(--accent-teal)",
+  "var(--accent-orange)",
+  "var(--accent-yellow)",
+];
 
 export function Capabilities() {
   const [open, setOpen] = useState<number | null>(null);
@@ -52,20 +57,20 @@ export function Capabilities() {
                 <path
                   d={d}
                   fill="none"
-                  stroke={ACCENT[i]}
                   strokeWidth={active(i) ? 0.7 : 0.4}
                   strokeOpacity={active(i) ? 0.7 : 0.16}
                   vectorEffect="non-scaling-stroke"
+                  style={{ stroke: ACCENT[i] }}
                 />
                 {active(i) && (
                   <path
                     d={d}
                     fill="none"
-                    stroke={ACCENT[i]}
                     strokeWidth={1.4}
                     strokeLinecap="round"
                     vectorEffect="non-scaling-stroke"
                     style={{
+                      stroke: ACCENT[i],
                       strokeDasharray: "6 60",
                       animation: "pulse-travel 1.1s linear infinite",
                       filter: `drop-shadow(0 0 3px ${ACCENT[i]})`,

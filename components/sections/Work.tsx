@@ -4,11 +4,12 @@ import { useEffect, useRef } from "react";
 import { work } from "@/content/home";
 import { Reveal } from "@/components/Reveal";
 
-// Brand colours cycled across the projects (teal, orange, yellow).
+// Brand colours cycled across the projects (teal, orange, yellow). `v` is a
+// theme-aware token for DOM text; `rgb` stays brand-bright for the canvas wave.
 const BRAND = [
-  { hex: "#2DE1C6", rgb: "45,225,198" },
-  { hex: "#F07E26", rgb: "240,126,38" },
-  { hex: "#F5C518", rgb: "245,197,24" },
+  { v: "var(--accent-teal)", rgb: "45,225,198" },
+  { v: "var(--accent-orange)", rgb: "240,126,38" },
+  { v: "var(--accent-yellow)", rgb: "245,197,24" },
 ];
 const accentFor = (i: number) => BRAND[i % BRAND.length];
 
@@ -129,7 +130,7 @@ export function Work() {
                 >
                   <span
                     className="label accent-text"
-                    style={{ "--accent": accentFor(i).hex } as React.CSSProperties}
+                    style={{ "--accent": accentFor(i).v } as React.CSSProperties}
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>

@@ -21,16 +21,19 @@ const config: Config = {
       full: "9999px",
     },
     extend: {
+      // Colours are theme tokens: RGB channels live in CSS custom properties
+      // (set per data-theme) so a single toggle retints the whole site while
+      // Tailwind's /alpha modifiers keep working.
       colors: {
-        void: "#000000", // primary canvas
-        neon: "#2DE1C6", // identity emitter: brand teal pushed to neon
-        dim: "#45A08E", // dormant frameworks, sub-text (brand teal)
-        action: "#F07E26", // high-priority actions, conversion (brand orange)
-        spark: "#F5C518", // energy nodes and highlights (brand yellow)
-        white: "#FFFFFF",
+        void: "rgb(var(--c-bg) / <alpha-value>)", // themed page canvas
+        neon: "rgb(var(--c-neon) / <alpha-value>)", // identity emitter
+        dim: "rgb(var(--c-dim) / <alpha-value>)", // dormant / sub-text
+        action: "rgb(var(--c-action) / <alpha-value>)", // primary actions
+        spark: "rgb(var(--c-spark) / <alpha-value>)", // energy / highlights
+        white: "rgb(var(--c-text) / <alpha-value>)", // primary foreground
         panel: {
-          DEFAULT: "#04100E",
-          raised: "#07160F",
+          DEFAULT: "rgb(var(--c-surface) / <alpha-value>)",
+          raised: "rgb(var(--c-surface-2) / <alpha-value>)",
         },
       },
       fontFamily: {
@@ -52,10 +55,10 @@ const config: Config = {
         wide: "960px",
       },
       boxShadow: {
-        "glow-neon": "0 0 20px rgba(45,225,198,0.35)",
-        "glow-neon-lg": "0 0 40px rgba(45,225,198,0.28)",
-        "glow-action": "0 0 20px rgba(240,126,38,0.45)",
-        "glow-spark": "0 0 18px rgba(245,197,24,0.5)",
+        "glow-neon": "0 0 20px rgb(var(--c-neon) / 0.35)",
+        "glow-neon-lg": "0 0 40px rgb(var(--c-neon) / 0.28)",
+        "glow-action": "0 0 20px rgb(var(--c-action) / 0.45)",
+        "glow-spark": "0 0 18px rgb(var(--c-spark) / 0.5)",
       },
       transitionTimingFunction: {
         out: "cubic-bezier(0.22, 1, 0.36, 1)",
