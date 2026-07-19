@@ -1,5 +1,5 @@
 /**
- * Privacy notice — POPIA-aligned, grounded in what this website actually does
+ * Privacy notice, POPIA-aligned, grounded in what this website actually does
  * (contact form via Formspree, optional cookieless Plausible analytics, static
  * hosting). This is a DRAFT: everything in [square brackets] must be completed
  * by DigiDan, and the whole notice must be reviewed by a qualified advisor
@@ -11,7 +11,7 @@ export const privacyMeta = {
   lead: "This notice explains how DigiDan (Pty) Ltd collects, uses and protects personal information through this website, in line with South Africa's Protection of Personal Information Act (POPIA).",
   effectiveDate: "[ effective date ]",
   draftBanner:
-    "Draft — pending legal review. Every item in [brackets] must be completed by DigiDan, and this notice reviewed by a qualified advisor, before it is published.",
+    "Draft: pending legal review. Every item in [brackets] must be completed by DigiDan, and this notice reviewed by a qualified advisor, before it is published.",
 } as const;
 
 export type Block = { type: "p"; text: string } | { type: "ul"; items: string[] };
@@ -38,7 +38,7 @@ export const sections: Section[] = [
         type: "ul",
         items: [
           "Contact form: your name, email address, company (optional) and the content of your message.",
-          "Analytics (if enabled): a privacy-friendly, cookieless tool (Plausible) that records aggregate usage — pages visited, referrer, approximate country and device type — without cookies and without identifying you personally.",
+          "Analytics (if enabled): a privacy-friendly, cookieless tool (Plausible) that records aggregate usage, pages visited, referrer, approximate country and device type, without cookies and without identifying you personally.",
           "Technical logs: our hosting provider may automatically log standard request data (such as IP address and browser type) for security and reliability.",
         ],
       },
@@ -70,9 +70,9 @@ export const sections: Section[] = [
       {
         type: "ul",
         items: [
-          "[ Formspree ] — delivers contact-form submissions to us.",
-          "[ Plausible ] — cookieless website analytics (if enabled).",
-          "[ our hosting provider ] — serves the website.",
+          "[ Formspree ]: delivers contact-form submissions to us.",
+          "[ Plausible ]: cookieless website analytics (if enabled).",
+          "[ our hosting provider ]: serves the website.",
         ],
       },
       {
@@ -113,7 +113,7 @@ export const sections: Section[] = [
     blocks: [
       {
         type: "p",
-        text: "We apply the engineering and operational safeguards described on our Security page — including least-privilege access, encryption in transit, and audited handling of sensitive data.",
+        text: "We apply the engineering and operational safeguards described on our Security page, including least-privilege access, encryption in transit, and audited handling of sensitive data.",
       },
     ],
   },

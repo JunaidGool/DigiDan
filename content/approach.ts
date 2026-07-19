@@ -1,5 +1,5 @@
 /**
- * Delivery approach — "seven blocks, one system" (brief 5.4).
+ * Delivery approach: "seven blocks, one system" (brief 5.4).
  * Verbatim from profile section 9. Colour progresses teal -> amber -> coral
  * across the seven steps to echo the staircase illustration.
  */
@@ -66,5 +66,5 @@ export const steps: Step[] = [
 export const approachIntro = {
   eyebrow: "Approach",
   heading: "Seven blocks, one system.",
-  lead: "Clear problem definition, strong architecture, incremental delivery and evidence-led quality — the same method on every engagement.",
+  lead: "Clear problem definition, strong architecture, incremental delivery and evidence-led quality: the same method on every engagement.",
 } as const;

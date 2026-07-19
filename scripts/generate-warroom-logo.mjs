@@ -1,6 +1,6 @@
 // The War Room mark: an isometric pentagon war-table (5 advisors) with accent
 // seat-markers at each vertex and a glowing amber verdict monolith at centre.
-// Dark tactical palette, amber command accent — the War Room's own identity.
+// Dark tactical palette, amber command accent: the War Room's own identity.
 import { writeFileSync } from "node:fs";
 
 const S = 30, H = 30;

@@ -49,7 +49,7 @@ for (const [fg, bg, a, min, label] of CHECKS) {
   const pass = r >= min;
   if (!pass) fails++;
   console.log(
-    `${pass ? "PASS" : "FAIL"}  ${r.toFixed(2).padStart(5)} (need ${min})  ${fg}${a < 1 ? `/${a}` : ""} on ${bg}  — ${label}`
+    `${pass ? "PASS" : "FAIL"}  ${r.toFixed(2).padStart(5)} (need ${min})  ${fg}${a < 1 ? `/${a}` : ""} on ${bg}: ${label}`
   );
 }
 console.log(`\n${fails} failure(s).`);

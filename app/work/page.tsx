@@ -8,7 +8,7 @@ import { caseStudies } from "@/content/caseStudies";
 export const metadata: Metadata = {
   title: "Work",
   description:
-    "Selected DigiDan solutions and project experience — enterprise-scale delivery, product engineering and operational platforms.",
+    "Selected DigiDan work and project experience: enterprise-scale delivery, product engineering and operational platforms.",
   alternates: { canonical: "/work" },
 };
 

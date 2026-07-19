@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { hero, credibility } from "@/content/hero";
 import { primaryCta, secondaryCta } from "@/content/site";
+import { leadershipIntro } from "@/content/leadership";
 import { HeroLogo } from "@/components/HeroLogo";
 
 export function Hero() {
@@ -38,7 +39,7 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Credibility strip (brief 5.2) — text names only, no third-party logos */}
+      {/* Credibility strip (brief 5.2): text names only, no third-party logos */}
       <div className="border-y border-line bg-paper-warm">
         <div className="shell flex flex-col gap-4 py-6 md:flex-row md:items-center md:gap-8">
           <span className="eyebrow shrink-0">{credibility.label}</span>
@@ -51,6 +52,13 @@ export function Hero() {
             ))}
           </ul>
         </div>
+      </div>
+
+      {/* Commitment line, directly under the strip (brief 5.2). */}
+      <div className="shell py-8 md:py-10">
+        <p className="max-w-prose text-lg text-ink/80 md:text-xl">
+          {leadershipIntro.commitment}
+        </p>
       </div>
     </section>
   );

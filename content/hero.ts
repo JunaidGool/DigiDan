@@ -2,16 +2,16 @@
 
 export const hero = {
   badge: "South African software engineering partner",
-  headline: "Financial-grade software, built block by block.",
+  headline: "We build software businesses depend on.",
   subhead:
-    "Financial-grade systems, custom software, digital platforms, integrations and production-ready AI engineering — built for dependable real-world operation.",
+    "Banking systems, online stores, factory platforms, and the connections between them. We design for the day things go wrong, and we stay accountable after launch.",
 } as const;
 
 export type CredibilityItem = { name: string; note: string };
 
 /**
  * Named in text only. Samsung is delivered *through Cheil* (not a direct client)
- * and appears as "via Cheil" without the Samsung mark — trademark-safe framing
+ * and appears as "via Cheil" without the Samsung mark, trademark-safe framing
  * per the agreed build decisions.
  */
 export const credibility = {

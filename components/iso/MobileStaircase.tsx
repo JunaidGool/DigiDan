@@ -11,7 +11,7 @@ import {
 /**
  * Mobile variant of the delivery staircase (brief 5.4): a vertical stack of
  * isometric blocks that build top-down on scroll. Carries the step content
- * (title + description) so it is the accessible mobile view — the desktop
+ * (title + description) so it is the accessible mobile view. The desktop
  * horizontal staircase is decorative and hidden here.
  */
 

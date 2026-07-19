@@ -23,7 +23,7 @@ export function ContactForm() {
     const form = e.currentTarget;
     const data = new FormData(form);
 
-    // honeypot — bots fill hidden fields; humans don't
+    // honeypot: bots fill hidden fields; humans don't
     if ((data.get("_gotcha") as string)?.length) return;
 
     // basic resubmit guard (Formspree enforces real rate limiting server-side)
@@ -64,7 +64,7 @@ export function ContactForm() {
         role="status"
         className="rounded-tile border border-teal-500 bg-teal-100 p-6 text-teal-900"
       >
-        <p className="font-display text-lg font-medium">Thanks — message received.</p>
+        <p className="font-display text-lg font-medium">Thanks. Message received.</p>
         <p className="mt-1 text-sm">
           A senior engineer will get back to you. We read every message ourselves.
         </p>

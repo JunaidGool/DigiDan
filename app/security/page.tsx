@@ -12,7 +12,7 @@ import {
 export const metadata: Metadata = {
   title: "Security & data handling",
   description:
-    "How DigiDan handles security and data: privacy-conscious capture, tenant isolation, transaction integrity and auditability, resilient design, AI safety and flexible data residency — the engineering practices behind financial-grade systems.",
+    "How DigiDan handles security and data: privacy-conscious capture, tenant isolation, transaction integrity and auditability, resilient design, AI safety and flexible data residency: the engineering practices behind financial-grade systems.",
   alternates: { canonical: "/security" },
 };
 
@@ -51,7 +51,7 @@ export default function SecurityPage() {
         ))}
       </div>
 
-      {/* Honest scope note — practices, not certifications */}
+      {/* Honest scope note: practices, not certifications */}
       <div className="shell mt-10">
         <p className="max-w-prose text-sm text-muted">{securityNote}</p>
       </div>

@@ -1,5 +1,5 @@
 /**
- * Privacy-friendly analytics (Plausible) — cookieless, so no consent banner is
+ * Privacy-friendly analytics (Plausible): cookieless, so no consent banner is
  * required. Renders nothing unless NEXT_PUBLIC_PLAUSIBLE_DOMAIN is configured,
  * so local/dev and un-configured builds stay clean.
  */

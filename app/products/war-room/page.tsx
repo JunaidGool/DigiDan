@@ -16,10 +16,10 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: "The War Room",
   description:
-    "The War Room — a multi-model AI deliberation system by DigiDan. Five advisors on five models debate a hard question to a verdict that shows its work. A live showcase of DigiDan's AI harness engineering.",
+    "The War Room: a multi-model AI deliberation system by DigiDan. Five advisors on five models debate a hard question to a verdict that shows its work. A live showcase of DigiDan's AI harness engineering.",
   alternates: { canonical: "/products/war-room" },
   openGraph: {
-    title: `The War Room — ${site.name}`,
+    title: `The War Room: ${site.name}`,
     description:
       "Five AI advisors on five models debate a hard question to a verdict that shows its work.",
   },
@@ -94,7 +94,7 @@ export default function WarRoomPage() {
         <p className="wr-eyebrow">The panel</p>
         <h2 className="wr-title mt-4 text-2xl md:text-3xl">Five lenses, five labs</h2>
         <p className="mt-4 max-w-prose text-lg" style={{ color: DIM }}>
-          Each advisor is a distinct role on a model from a different lab —
+          Each advisor is a distinct role on a model from a different lab,
           spanning two regions, so their mistakes don&rsquo;t correlate.
         </p>
 
@@ -161,13 +161,13 @@ export default function WarRoomPage() {
             </ol>
             <p className="mt-8 max-w-prose text-sm" style={{ color: "#6b5f4d" }}>
               Questions that don&rsquo;t warrant a full debate take a
-              direct-answer side path — one strong model, no room convened.
+              direct-answer side path: one strong model, no room convened.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Harness mapping — the tie back to DigiDan */}
+      {/* Harness mapping: the tie back to DigiDan */}
       <section className="shell mt-24">
         <p className="wr-eyebrow">Why it&rsquo;s a harness showcase</p>
         <h2 className="mt-4 max-w-3xl text-2xl md:text-3xl" style={{ color: CREAM }}>

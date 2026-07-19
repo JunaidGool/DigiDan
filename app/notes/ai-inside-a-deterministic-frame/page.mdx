@@ -3,10 +3,10 @@ import { NoteHeader } from "@/components/NoteHeader";
 export const metadata = {
   title: "AI inside a deterministic frame",
   description:
-    "Why DigiDan treats language models as volatile components — and the deterministic rails (verification gates, governed context, evaluation, cost control, traceability, human approval) built around them before they touch anything that matters.",
+    "Why DigiDan treats language models as volatile components, and the deterministic rails (verification gates, governed context, evaluation, cost control, traceability, human approval) built around them before they touch anything that matters.",
   alternates: { canonical: "/notes/ai-inside-a-deterministic-frame" },
   openGraph: {
-    title: "AI inside a deterministic frame — DigiDan",
+    title: "AI inside a deterministic frame: DigiDan",
     description:
       "How we keep non-deterministic AI usable inside financial-grade systems.",
   },
@@ -14,21 +14,21 @@ export const metadata = {
 
 <NoteHeader slug="ai-inside-a-deterministic-frame" />
 
-Language models don't behave like the software we're used to. Give an ordinary function the same input and it returns the same output every time, and that determinism is the ground everything else stands on — transactions, audit trails, reconciliation, controlled recovery. A language model gives you a _plausible_ answer, and plausible is not the same as correct, safe, or repeatable. Ask twice and you may get two answers. In a marketing tool that's a curiosity. In a system that moves money, it's a liability.
+Language models don't behave like the software we're used to. Give an ordinary function the same input and it returns the same output every time, and that determinism is the ground everything else stands on: transactions, audit trails, reconciliation, controlled recovery. A language model gives you a _plausible_ answer, and plausible is not the same as correct, safe, or repeatable. Ask twice and you may get two answers. In a marketing tool that's a curiosity. In a system that moves money, it's a liability.
 
-The instinct on a lot of AI projects is to manage this by trusting the model _more_ — better prompts, a bigger model, more context — until it feels reliable enough. We think that's the wrong axis. A non-deterministic component doesn't become deterministic because it got larger. The reliability has to come from the software **around** the model, not from the model itself. So the first thing we change isn't the model. It's the model's job.
+The instinct on a lot of AI projects is to manage this by trusting the model _more_, better prompts, a bigger model, more context, until it feels reliable enough. We think that's the wrong axis. A non-deterministic component doesn't become deterministic because it got larger. The reliability has to come from the software **around** the model, not from the model itself. So the first thing we change isn't the model. It's the model's job.
 
 ## Change the job, not the model
 
-We treat a language model as a **volatile component** — capable, useful, and untrusted by default. Its job is to suggest, classify, summarise, extract, and accelerate. What it is not allowed to do is _decide_. Anything that affects a record, a balance, stock, or a customer outcome stays with deterministic rules and an authorised person.
+We treat a language model as a **volatile component**: capable, useful, and untrusted by default. Its job is to suggest, classify, summarise, extract, and accelerate. What it is not allowed to do is _decide_. Anything that affects a record, a balance, stock, or a customer outcome stays with deterministic rules and an authorised person.
 
-Once you accept that division, the model stops being an authority you have to somehow make trustworthy and becomes an input you have to validate — which is a problem software has known how to solve for decades. Everything below is the frame we build around the volatile component so it can operate inside an enterprise, and especially inside financial services.
+Once you accept that division, the model stops being an authority you have to somehow make trustworthy and becomes an input you have to validate, which is a problem software has known how to solve for decades. Everything below is the frame we build around the volatile component so it can operate inside an enterprise, and especially inside financial services.
 
 ## Nothing reaches the application unchecked
 
-The first rail is a **verification gate**. The model doesn't hand prose to application logic and hope; it returns structured output that has to pass a schema and a set of rules before any code acts on it. JSON Schema and Zod catch the malformed. A rule engine catches the well-formed-but-wrong — the value that parses cleanly but violates a business invariant. If the output doesn't pass, it never executes.
+The first rail is a **verification gate**. The model doesn't hand prose to application logic and hope; it returns structured output that has to pass a schema and a set of rules before any code acts on it. JSON Schema and Zod catch the malformed. A rule engine catches the well-formed-but-wrong: the value that parses cleanly but violates a business invariant. If the output doesn't pass, it never executes.
 
-This single move removes a whole category of failure. A hallucinated field, an out-of-range amount, an invented identifier — these stop being production incidents and become validation errors, handled the same way you'd handle any bad input.
+This single move removes a whole category of failure. A hallucinated field, an out-of-range amount, an invented identifier: these stop being production incidents and become validation errors, handled the same way you'd handle any bad input.
 
 ## Give it exactly what it needs, and no more
 
@@ -36,19 +36,19 @@ A model is only as good as what you put in front of it, and uncontrolled context
 
 ## Test it like the dependency it is
 
-A prompt is a dependency. A model version is a dependency. Change either and behaviour changes — sometimes in ways you won't notice until a customer does. We treat that like any other dependency change: it goes through evaluation before it ships. Scenario test decks exercise the behaviours that matter, and LLM-as-a-judge rigs score correctness and tool use at a scale human review can't reach. You wouldn't deploy a service without tests; a prompt change is a deploy.
+A prompt is a dependency. A model version is a dependency. Change either and behaviour changes, sometimes in ways you won't notice until a customer does. We treat that like any other dependency change: it goes through evaluation before it ships. Scenario test decks exercise the behaviours that matter, and LLM-as-a-judge rigs score correctness and tool use at a scale human review can't reach. You wouldn't deploy a service without tests; a prompt change is a deploy.
 
 ## Bound the failure modes unique to agents
 
-Autonomous components fail in ways ordinary code doesn't: they loop, they retry, they spend. So the frame includes **cost and loop control** — semantic caching so the same question isn't paid for twice, token budgets, and circuit breakers that halt a runaway state before it becomes a runaway bill. An agent that can't stop itself is a component you can't put in production.
+Autonomous components fail in ways ordinary code doesn't: they loop, they retry, they spend. So the frame includes **cost and loop control**: semantic caching so the same question isn't paid for twice, token budgets, and circuit breakers that halt a runaway state before it becomes a runaway bill. An agent that can't stop itself is a component you can't put in production.
 
 ## If you can't explain it, you can't operate it
 
-In a regulated environment, "the AI did it" is not an answer. Every model call is logged with its context, its tool calls, its cost and latency, and the decision path that led to it — the same traceability you'd expect of any distributed system. If you can't reconstruct _why_ the system produced an outcome, you can't audit it, debug it, or defend it. Traceability isn't something we bolt on at the end; it's a condition of the model being allowed in at all.
+In a regulated environment, "the AI did it" is not an answer. Every model call is logged with its context, its tool calls, its cost and latency, and the decision path that led to it, the same traceability you'd expect of any distributed system. If you can't reconstruct _why_ the system produced an outcome, you can't audit it, debug it, or defend it. Traceability isn't something we bolt on at the end; it's a condition of the model being allowed in at all.
 
 ## A worked example: The War Room
 
-Our own deliberation product, [The War Room](/products/war-room), is this frame made visible. A cheap, fast model — the Clerk — **gates** whether a question is even worth convening the panel, and frames it into a brief. Five advisors on five different models then argue it out in attributed rounds, but the loop is **bounded** by round caps and convergence detection so it can't run forever. An Arbiter **synthesises** a verdict, and every call along the way is **logged** with its tokens and latency, so the verdict can show its work. The intelligence is in the models; the trustworthiness is in the frame around them.
+Our own deliberation product, [The War Room](/products/war-room), is this frame made visible. A cheap, fast model, the Clerk, **gates** whether a question is even worth convening the panel, and frames it into a brief. Five advisors on five different models then argue it out in attributed rounds, but the loop is **bounded** by round caps and convergence detection so it can't run forever. An Arbiter **synthesises** a verdict, and every call along the way is **logged** with its tokens and latency, so the verdict can show its work. The intelligence is in the models; the trustworthiness is in the frame around them.
 
 ## The principle we don't move
 
@@ -56,4 +56,4 @@ All of this rolls up to one line we hold onto when a project gets ambitious:
 
 > AI may suggest, classify, summarise and accelerate work; deterministic business rules and authorised people remain responsible for official transactions and operational decisions.
 
-That isn't a limit on what AI can do. It's what makes it usable in the places that matter most — where being wrong occasionally isn't an option, and where the answer to "why did it do that?" has to be better than a shrug. The model brings the capability. The frame is what lets you ship it.
+That isn't a limit on what AI can do. It's what makes it usable in the places that matter most: where being wrong occasionally isn't an option, and where the answer to "why did it do that?" has to be better than a shrug. The model brings the capability. The frame is what lets you ship it.

@@ -1,5 +1,5 @@
 /**
- * The War Room — DigiDan product showcase.
+ * The War Room: DigiDan product showcase.
  * Every claim is sourced from the the_war_room repository docs (system overview,
  * members, deliberation pipeline). No invented capabilities, models or metrics.
  * Exact model versions are intentionally omitted (they change); labs are named
@@ -12,7 +12,7 @@ export const warRoom = {
   eyebrow: "Product · Harness showcase",
   title: "The War Room",
   tagline: "Five AI advisors. One hard question. A verdict that shows its work.",
-  lead: "The War Room turns a single hard decision into a structured, multi-model debate. Instead of asking one model for an answer, it convenes a panel of five advisors — each a distinct thinking lens on a distinct model from a distinct lab — has them argue it out in the open, and produces a verdict that reconstructs how the room got there.",
+  lead: "The War Room turns a single hard decision into a structured, multi-model debate. Instead of asking one model for an answer, it convenes a panel of five advisors, each a distinct thinking lens on a distinct model from a distinct lab, has them argue it out in the open, and produces a verdict that reconstructs how the room got there.",
   status: "In limited access.",
   cta: { label: "Request access", href: "/contact" },
 } as const;
@@ -22,7 +22,7 @@ export type Commitment = { title: string; body: string };
 export const commitments: Commitment[] = [
   {
     title: "Diversity by construction",
-    body: "Each advisor pairs a distinct thinking lens with a distinct model from a distinct lab — five labs across two regions, chosen for error decorrelation. Different training data means genuinely different blind spots, so agreement actually means something.",
+    body: "Each advisor pairs a distinct thinking lens with a distinct model from a distinct lab: five labs across two regions, chosen for error decorrelation. Different training data means genuinely different blind spots, so agreement actually means something.",
   },
   {
     title: "Attribution, not anonymity",
@@ -58,7 +58,7 @@ export type Stage = { n: number; name: string; body: string; family: Family };
 export const pipeline: Stage[] = [
   { n: 1, name: "Triage", body: "The Clerk gates whether the question is worthy of the room and frames it into a brief.", family: "teal" },
   { n: 2, name: "Opening", body: "All five advisors answer the framed brief in parallel.", family: "amber" },
-  { n: 3, name: "Debate", body: "Attributed rounds — advisors challenge each other by name until they converge or hit the round cap.", family: "amber" },
+  { n: 3, name: "Debate", body: "Attributed rounds: advisors challenge each other by name until they converge or hit the round cap.", family: "amber" },
   { n: 4, name: "Verdict", body: "The Arbiter synthesizes the positions into a verdict that shows its reasoning.", family: "coral" },
 ];
 

@@ -13,7 +13,7 @@ export const site = {
   domain: "digidan.co.za",
   location: "South Africa",
   description:
-    "Financial-grade systems, custom software, digital platforms, integrations and production-ready AI engineering — built for dependable real-world operation.",
+    "Financial-grade systems, custom software, digital platforms, integrations and production-ready AI engineering, built for dependable real-world operation.",
   keywords: [
     "software engineering South Africa",
     "fintech software development South Africa",
@@ -39,5 +39,5 @@ export const nav: NavItem[] = [
 // Footer-only utility links (kept out of the main nav).
 export const footerLinks: NavItem[] = [{ label: "Privacy", href: "/privacy" }];
 
-export const primaryCta = { label: "Start a build", href: "/contact" } as const;
+export const primaryCta = { label: "Talk to us", href: "/contact" } as const;
 export const secondaryCta = { label: "See our work", href: "/#work" } as const;

@@ -4,7 +4,7 @@ const F = boxFaces(0, 0, 0, 1, 1, 1);
 const VB = bounds([...F.top, ...F.left, ...F.right] as Pt[], 3).viewBox;
 
 /**
- * A single isometric cube — the "blocks this structure was built from" markers
+ * A single isometric cube: the "blocks this structure was built from" markers
  * on portfolio cards (brief 5.5), one per contributing service family.
  */
 export function IsoCube({ family, size = 20 }: { family: Family; size?: number }) {

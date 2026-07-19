@@ -6,7 +6,7 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Start a build with DigiDan — financial-grade software engineering in South Africa.",
+    "Start a build with DigiDan: financial-grade software engineering in South Africa.",
   alternates: { canonical: "/contact" },
 };
 
@@ -16,7 +16,7 @@ export default function ContactPage() {
       <PageHeader
         eyebrow="Contact"
         title="Have a system that needs building? Let's find the first block."
-        lead={`Tell us about the problem, the systems around it and what “done” looks like. A senior engineer will respond — not a sales funnel.`}
+        lead={`Tell us about the problem, the systems around it and what “done” looks like. A senior engineer will respond, not a sales funnel.`}
       />
 
       <div className="shell mt-12 grid gap-12 md:grid-cols-[1fr_320px]">

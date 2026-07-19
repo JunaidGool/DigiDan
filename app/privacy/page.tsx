@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <main id="main" className="mx-auto w-full max-w-[46rem] px-6 pb-16 pt-12 md:px-10 md:pt-16">
-      {/* Draft banner — this notice is not final until completed + legally reviewed. */}
+      {/* Draft banner: this notice is not final until completed + legally reviewed. */}
       <p
         role="note"
         className="rounded-tile border-l-4 border-coral-500 bg-coral-100 p-4 text-sm text-coral-900"

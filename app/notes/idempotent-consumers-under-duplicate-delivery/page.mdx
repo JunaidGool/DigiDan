@@ -3,12 +3,12 @@ import { NoteHeader } from "@/components/NoteHeader";
 export const metadata = {
   title: "Idempotent consumers under duplicate delivery",
   description:
-    "Exactly-once delivery doesn't exist. How DigiDan builds exactly-once effect into the consumer — idempotency keys, atomic dedup inside the ledger transaction, distributed locking, dead-lettering and reconciliation — for financial-grade event-driven systems.",
+    "Exactly-once delivery doesn't exist. How DigiDan builds exactly-once effect into the consumer: idempotency keys, atomic dedup inside the ledger transaction, distributed locking, dead-lettering and reconciliation, for financial-grade event-driven systems.",
   alternates: {
     canonical: "/notes/idempotent-consumers-under-duplicate-delivery",
   },
   openGraph: {
-    title: "Idempotent consumers under duplicate delivery — DigiDan",
+    title: "Idempotent consumers under duplicate delivery: DigiDan",
     description:
       "Move the exactly-once guarantee off the transport and into the consumer.",
   },
@@ -16,21 +16,21 @@ export const metadata = {
 
 <NoteHeader slug="idempotent-consumers-under-duplicate-delivery" />
 
-Somewhere in the marketing for every message broker is the phrase "exactly-once delivery." It's the feature everyone wants and almost nobody actually gets. Distributed systems run on unreliable networks, and an unreliable network forces a hard choice: deliver a message _at most_ once and risk losing it, or _at least_ once and risk sending it twice. For anything that matters — a payment, a debit order, a ledger entry — losing it is unacceptable, so you choose at-least-once. Which means: sooner or later, the same message arrives twice.
+Somewhere in the marketing for every message broker is the phrase "exactly-once delivery." It's the feature everyone wants and almost nobody actually gets. Distributed systems run on unreliable networks, and an unreliable network forces a hard choice: deliver a message _at most_ once and risk losing it, or _at least_ once and risk sending it twice. For anything that matters, a payment, a debit order, a ledger entry, losing it is unacceptable, so you choose at-least-once. Which means: sooner or later, the same message arrives twice.
 
-The redeliveries aren't exotic. A consumer processes a message and then crashes before it can acknowledge; the broker, having heard no ack, redelivers. A network blip makes the ack time out; redelivered. A consumer group rebalances mid-batch; redelivered. A producer retries a publish it wasn't sure had landed; now there are two. None of these are bugs — they're the system working as designed. In a payments flow, each one is a real person's money being moved twice.
+The redeliveries aren't exotic. A consumer processes a message and then crashes before it can acknowledge; the broker, having heard no ack, redelivers. A network blip makes the ack time out; redelivered. A consumer group rebalances mid-batch; redelivered. A producer retries a publish it wasn't sure had landed; now there are two. None of these are bugs. They're the system working as designed. In a payments flow, each one is a real person's money being moved twice.
 
 So we don't chase exactly-once _delivery_. We engineer exactly-once _effect_, and we move the guarantee off the transport and into the consumer, where we actually control it.
 
 ## Idempotency is the whole game
 
-An operation is idempotent if doing it twice produces the same result as doing it once. `Set the balance to R500` is idempotent — run it a hundred times and the balance is R500. `Subtract R100` is not — run it twice and you've taken R200. The moment a consumer's job is naturally idempotent, duplicate delivery stops being a correctness problem and becomes a performance footnote.
+An operation is idempotent if doing it twice produces the same result as doing it once. `Set the balance to R500` is idempotent. Run it a hundred times and the balance is R500. `Subtract R100` is not. Run it twice and you've taken R200. The moment a consumer's job is naturally idempotent, duplicate delivery stops being a correctness problem and becomes a performance footnote.
 
 Most real financial operations aren't naturally idempotent, so we make them idempotent. That comes down to a few disciplines.
 
 ## A stable key that comes from the business, not the broker
 
-A consumer first needs a reliable way to recognise a message it has already handled. The broker's own message id is the wrong tool — it can change on redelivery or republish, so the "same" event turns up wearing a different id. Instead the key comes from the _event_: a payment id, a transaction reference, or a deterministic hash of the fields that define the operation. The producer stamps this **idempotency key** onto the event, and the consumer keys every dedup decision off it. Same business event, same key, every time — no matter how often or how many ways it's delivered.
+A consumer first needs a reliable way to recognise a message it has already handled. The broker's own message id is the wrong tool. It can change on redelivery or republish, so the "same" event turns up wearing a different id. Instead the key comes from the _event_: a payment id, a transaction reference, or a deterministic hash of the fields that define the operation. The producer stamps this **idempotency key** onto the event, and the consumer keys every dedup decision off it. Same business event, same key, every time, no matter how often or how many ways it's delivered.
 
 ## The dedup check and the effect in one transaction
 
@@ -48,9 +48,9 @@ begin;
 commit;
 ```
 
-If the insert hits the unique constraint, this is a duplicate: the transaction becomes a no-op — or, better, returns the result you stored the first time. The database, which already gives you ACID guarantees for the ledger, becomes the thing that also gives you exactly-once. You're not inventing a distributed protocol; you're leaning on the strongest consistency boundary you already have.
+If the insert hits the unique constraint, this is a duplicate: the transaction becomes a no-op, or, better, returns the result you stored the first time. The database, which already gives you ACID guarantees for the ledger, becomes the thing that also gives you exactly-once. You're not inventing a distributed protocol; you're leaning on the strongest consistency boundary you already have.
 
-Where an operation spans more than one row or has to be serialised per entity — everything touching one account, say — a **distributed lock**, or a single-writer partition (keying the stream by account so one consumer owns it), keeps concurrent related events from interleaving.
+Where an operation spans more than one row or has to be serialised per entity, everything touching one account, say, a **distributed lock**, or a single-writer partition (keying the stream by account so one consumer owns it), keeps concurrent related events from interleaving.
 
 ## Store the outcome, not just the fact
 
@@ -58,9 +58,9 @@ For anything that answers a caller, record the _result_ of the first processing 
 
 ## Duplicates are not the only failure
 
-Idempotency solves redelivery. It does not solve **ordering** — a duplicate and an out-of-order message are different problems. If event B can overtake event A, you need sequence numbers, versioning, or operations designed to commute. Don't let idempotency lull you into ignoring it.
+Idempotency solves redelivery. It does not solve **ordering**. A duplicate and an out-of-order message are different problems. If event B can overtake event A, you need sequence numbers, versioning, or operations designed to commute. Don't let idempotency lull you into ignoring it.
 
-And some messages fail every time — malformed, or referencing something that no longer exists. A **poison message** must not retry forever and wedge the stream. After a bounded number of attempts it goes to a dead-letter queue, raises an alert, and the pipeline keeps moving. Retrying is not a strategy for a message that will never succeed.
+And some messages fail every time: malformed, or referencing something that no longer exists. A **poison message** must not retry forever and wedge the stream. After a bounded number of attempts it goes to a dead-letter queue, raises an alert, and the pipeline keeps moving. Retrying is not a strategy for a message that will never succeed.
 
 ## The ledger is the backstop
 
@@ -68,4 +68,4 @@ Everything above is the online path. The reason we can trust it in a financial s
 
 ## The honest posture
 
-"Exactly-once" is not a checkbox on a broker. It's a property you build in the consumer, by assuming the opposite — that every message will arrive at least twice, at the worst possible moment, in the wrong order. Idempotency is what makes that assumption boring. In a system that moves money, boring is the entire goal.
+"Exactly-once" is not a checkbox on a broker. It's a property you build in the consumer, by assuming the opposite: that every message will arrive at least twice, at the worst possible moment, in the wrong order. Idempotency is what makes that assumption boring. In a system that moves money, boring is the entire goal.

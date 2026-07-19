@@ -7,7 +7,7 @@ import { PIECES, VB } from "./Logo";
 /**
  * The signature hero animation (brief 5.2 / 6): the three blocks start scattered,
  * dotted integration connectors draw between them, then the pieces click together
- * and the mark settles. Once settled it's interactive — the pieces lean toward
+ * and the mark settles. Once settled it's interactive: the pieces lean toward
  * the cursor (per-piece parallax depth) and a click/tap replays the assembly.
  *
  * Progressive enhancement: the default render is the assembled mark (no-JS and
@@ -17,12 +17,12 @@ import { PIECES, VB } from "./Logo";
 
 type Phase = "idle" | "scattered" | "assembled";
 const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
-// per-piece parallax depth — the tower leans most, the base least (feels 3D)
+// per-piece parallax depth: the tower leans most, the base least (feels 3D)
 const DEPTH: Record<string, number> = { teal: 4, coral: 6, amber: 9 };
 
 export function HeroLogo({
   size = 280,
-  title = "DigiDan — modular blocks assembled into one system",
+  title = "DigiDan: modular blocks assembled into one system",
 }: {
   size?: number;
   title?: string;
@@ -104,7 +104,7 @@ export function HeroLogo({
       className={settled ? "motion-safe:cursor-pointer motion-safe:animate-ambient-float" : undefined}
     >
       <title>{settled ? "Click to reassemble" : title}</title>
-      {/* integration connectors — draw in while scattered, fade as pieces meet */}
+      {/* integration connectors: draw in while scattered, fade as pieces meet */}
       {PIECES.filter((p) => p.name !== "teal").map((p) => {
         const home = centroid(boxFaces(...p.box).top);
         const away: Pt = [home[0] + p.explode[0], home[1] + p.explode[1]];

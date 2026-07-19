@@ -35,12 +35,12 @@ export const leadershipIntro = {
   eyebrow: "About",
   heading: "Senior engineers, hands on the build.",
   commitment:
-    "Build the right system, make its behaviour understandable, design for failure as well as success, and remain accountable for the quality of the result.",
+    "Build the right system, make its behaviour understandable, design for failure as well as success, and remain accountable for the result.",
 } as const;
 
 export const aboutIntro = {
   overview:
-    "DigiDan (Pty) Ltd is a South African software engineering and digital solutions company combining more than 20 years of software development leadership with over eight years of enterprise banking and retail automation engineering. We consider the people, hardware, networks, data, business rules, transaction consistency, audit requirements and failure conditions around the software — not only the screens and code.",
+    "DigiDan (Pty) Ltd is a South African software engineering and digital-product company combining more than 20 years of software development leadership with over eight years of enterprise banking and retail automation engineering. We consider the people, hardware, networks, data, business rules, transaction consistency, audit requirements and failure conditions around the software, not only the screens and code.",
   why: "DigiDan brings senior hands-on engineering, enterprise architecture experience and a practical understanding of how software behaves outside the development environment. We are equally comfortable designing a new platform, integrating complex existing systems, automating high-volume delivery or supporting a critical operational estate.",
 } as const;
 

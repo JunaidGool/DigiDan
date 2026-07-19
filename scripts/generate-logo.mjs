@@ -1,7 +1,7 @@
 // Generates the DigiDan isometric block mark as inline SVG.
 // Three separable cuboid pieces (teal foundation, coral + amber towers)
 // that read as modular components assembled into one solid structure.
-// Flat fills only, three-face convention, no gradients — per brand rules.
+// Flat fills only, three-face convention, no gradients. Per brand rules.
 import { writeFileSync } from "node:fs";
 
 // --- isometric projection ---------------------------------------------------
@@ -12,7 +12,7 @@ const H = 34; // pixel height of one z-unit (cubic)
 const iso = (x, y, z) => [(x - y) * TW, (x + y) * TH - z * H];
 
 // --- brand block palettes (top=light, right=mid, left=dark) -----------------
-// dark faces are flat, brand-derived shades — no gradients.
+// dark faces are flat, brand-derived shades. No gradients.
 const BLOCKS = {
   teal: { light: "#5DCAA5", mid: "#1D9E75", dark: "#147A5A" },
   coral: { light: "#F0997B", mid: "#D85A30", dark: "#A8431F" },

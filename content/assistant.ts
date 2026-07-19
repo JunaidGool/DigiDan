@@ -1,5 +1,5 @@
 /**
- * The DigiDan guide — a deterministic, content-driven conversation tree.
+ * The DigiDan guide: a deterministic, content-driven conversation tree.
  * No LLM: every response is authored and traceable to the Company Profile,
  * so the guide can never invent a client, a capability, or a price. Editing
  * the guide means editing this file.
@@ -20,7 +20,7 @@ export type Node = {
 export const assistant = {
   launcherLabel: "Ask the guide",
   title: "DigiDan guide",
-  // Shown once, under the header — sets expectations honestly.
+  // Shown once, under the header. Sets expectations honestly.
   disclosure:
     "A guided assistant, not a person. I point you to the right work and hand anything specific to an engineer.",
   handoff: { label: "Talk to an engineer", href: "/contact" },
@@ -30,7 +30,7 @@ export const assistant = {
 export const nodes: Record<string, Node> = {
   welcome: {
     id: "welcome",
-    message: "Hi — I'm the DigiDan guide. What are you working on?",
+    message: "Hi, I'm the DigiDan guide. What are you working on?",
     choices: [
       { label: "Fintech / banking software", goto: "fintech" },
       { label: "E-commerce / nopCommerce", goto: "ecommerce" },
@@ -44,7 +44,7 @@ export const nodes: Record<string, Node> = {
   fintech: {
     id: "fintech",
     message:
-      "Financial-grade is our core. We build terminal-to-backend transaction flows — authorisation, clearing, reversals and reconciliation — with ISO 8583 / ISO 20022 messaging, self-service and edge/kiosk orchestration, and event-driven architectures under strict transaction consistency.",
+      "Financial-grade is our core. We build terminal-to-backend transaction flows, authorisation, clearing, reversals and reconciliation, with ISO 8583 / ISO 20022 messaging, self-service and edge/kiosk orchestration, and event-driven architectures under strict transaction consistency.",
     choices: [
       { label: "See release-assurance work", href: "/work/deployseal" },
       { label: "Security & data handling", href: "/security" },
@@ -77,7 +77,7 @@ export const nodes: Record<string, Node> = {
   warroom: {
     id: "warroom",
     message:
-      "The War Room is our multi-model deliberation product: five AI advisors, each on a different model from a different lab, debate a hard question to a verdict that shows its work. It's a live showcase of how we keep AI inside a deterministic frame — and it's in limited access right now.",
+      "The War Room is our multi-model deliberation product: five AI advisors, each on a different model from a different lab, debate a hard question to a verdict that shows its work. It's a live showcase of how we keep AI inside a deterministic frame, and it's in limited access right now.",
     choices: [
       { label: "Open The War Room", href: "/products/war-room" },
       { label: "Request access", href: "/contact" },
@@ -107,7 +107,7 @@ export const nodes: Record<string, Node> = {
   },
   explore: {
     id: "explore",
-    message: "Take a look around — here's the fastest way in.",
+    message: "Take a look around. Here's the fastest way in.",
     choices: [
       { label: "Our work", href: "/work" },
       { label: "The War Room", goto: "warroom" },

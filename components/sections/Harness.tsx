@@ -36,7 +36,7 @@ export function Harness() {
             href="/products/war-room"
             className="group mt-6 inline-flex items-center gap-2 font-medium text-teal-900 underline underline-offset-4 hover:text-teal-500"
           >
-            See the harness running — The War Room
+            See the harness running: The War Room
             <ArrowRight
               size={16}
               className="transition-transform group-hover:translate-x-0.5"

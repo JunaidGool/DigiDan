@@ -1,6 +1,6 @@
 /**
  * Proof-in-numbers strip. Every figure is real and traceable to the Company
- * Profile — no invented metrics. Samsung figures are from the 2026 campaign
+ * Profile: no invented metrics. Samsung figures are from the 2026 campaign
  * workspace delivered via Cheil (profile section 5).
  */
 

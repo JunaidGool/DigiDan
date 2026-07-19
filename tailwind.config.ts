@@ -3,7 +3,7 @@ import type { Config } from "tailwindcss";
 /**
  * Palette derived from the DigiDan logo (brief section 3.1).
  * Rule enforced by usage, not by the config: colour lives in blocks, tiles,
- * badges and illustration — never in backgrounds behind body copy.
+ * badges and illustration, never in backgrounds behind body copy.
  */
 const config: Config = {
   content: [

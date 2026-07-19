@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  /* Palette tokens (brief 3.1) — mirrored here for hand-authored SVG + raw CSS. */
+  /* Palette tokens (brief 3.1): mirrored here for hand-authored SVG + raw CSS. */
   --teal-100: #e1f5ee;
   --teal-300: #5dcaa5;
   --teal-500: #1d9e75;
@@ -151,7 +151,7 @@
   background: var(--wr-panel);
   border: 1px solid var(--wr-border);
 }
-/* Corner-bracket framing — the War Room's panel motif. */
+/* Corner-bracket framing: the War Room's panel motif. */
 .wr-frame {
   position: relative;
 }

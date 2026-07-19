@@ -11,12 +11,12 @@ import {
 } from "@/lib/iso";
 
 /**
- * DigiDan isometric block mark — three separable pieces (teal foundation,
+ * DigiDan isometric block mark: three separable pieces (teal foundation,
  * amber tower, coral cube) that assemble into one solid structure.
  * Geometry comes from lib/iso so every block on the site shares one projection.
  *
  * `exploded` pulls the pieces apart along their assembly vectors and draws the
- * dotted integration connectors — this is the start state of the hero animation
+ * dotted integration connectors. This is the start state of the hero animation
  * (Phase 3 tweens between exploded and assembled).
  */
 
@@ -74,7 +74,7 @@ export function LogoMark({
       role="img"
       aria-label={title}
     >
-      {/* integration connectors — drawn from each moving piece back to home */}
+      {/* integration connectors: drawn from each moving piece back to home */}
       {exploded &&
         PIECES.filter((p) => p.name !== "teal").map((p) => {
           const home = centroid(boxFaces(...p.box).top);

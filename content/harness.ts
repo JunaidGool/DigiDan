@@ -1,5 +1,5 @@
 /**
- * AI harness — "volatile blocks in a rigid frame" (brief 5.6).
+ * AI harness: "volatile blocks in a rigid frame" (brief 5.6).
  * Condensed from profile section 7. This is DigiDan's stated differentiator.
  */
 
@@ -7,7 +7,7 @@ export const harness = {
   eyebrow: "AI engineering",
   headline: "AI that suggests. Systems that decide.",
   lead: "We treat non-deterministic language models as volatile system components that must operate inside deterministic software boundaries.",
-  // The rigid frame around the volatile AI block — labelled gate edges.
+  // The rigid frame around the volatile AI block: labelled gate edges.
   gates: [
     "Schema validation",
     "Automated evaluation",
@@ -23,6 +23,6 @@ export const harness = {
   principle: {
     label: "Practical AI principle",
     quote:
-      "AI may suggest, classify, summarise and accelerate work; deterministic business rules and authorised people remain responsible for official transactions and operational decisions.",
+      "AI may suggest, classify, summarise, and speed up work. Deterministic rules and authorised people stay responsible for transactions and operational decisions.",
   },
 } as const;

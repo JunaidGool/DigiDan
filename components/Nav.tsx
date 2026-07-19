@@ -83,7 +83,7 @@ export function Nav() {
         </div>
       </header>
 
-      {/* Full-screen mobile sheet — rendered OUTSIDE the backdrop-blurred header
+      {/* Full-screen mobile sheet: rendered OUTSIDE the backdrop-blurred header
           so `fixed` resolves against the viewport, not the header box. */}
       {open && (
         <div

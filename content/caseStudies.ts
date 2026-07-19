@@ -1,5 +1,5 @@
 /**
- * Full case-study content — the single source of truth for both the homepage
+ * Full case-study content: the single source of truth for both the homepage
  * portfolio cards and the /work/[slug] pages. Every fact is traceable to the
  * Company Profile (section 5, plus architecture notes). No invented metrics.
  * Order per brief: DeploySeal, Samsung CRM, TrimBase, Brand Name Marketing.
@@ -27,7 +27,7 @@ export const caseStudies: CaseStudy[] = [
     name: "DeploySeal",
     kicker: "DigiDan product engineering",
     cardOutcome:
-      "Turns informal launch approvals into structured, evidence-backed go/no-go sign-off.",
+      "Replaces informal launch approvals with recorded, evidence-backed sign-off.",
     summary:
       "DeploySeal replaces informal launch approvals with a structured, evidence-backed sign-off process for websites, e-commerce platforms and customer-facing software changes. It connects launch owners, testers, resolvers and decision-makers around one question: is this change ready to go live?",
     blocks: ["coral", "teal", "amber"],
@@ -63,14 +63,14 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     metaDescription:
-      "DeploySeal — a structured, evidence-backed launch sign-off and release-assurance platform by DigiDan.",
+      "DeploySeal: a structured, evidence-backed launch sign-off and release-assurance platform by DigiDan.",
   },
   {
     slug: "samsung-crm",
     name: "Samsung CRM and digital campaign engineering",
     kicker: "Delivery through Cheil",
     cardOutcome:
-      "High-volume, email-safe regional campaign delivery with an automated validation harness.",
+      "168 campaigns and 11,672 assets delivered in a year, checked by automated validation before every handover.",
     summary:
       "DigiDan supports Samsung CRM and digital campaign delivery through Cheil, combining responsive email engineering, regional campaign production, asset management, packaging and automated quality validation.",
     blocks: ["coral", "amber"],
@@ -98,14 +98,14 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     metaDescription:
-      "Samsung CRM and digital campaign engineering delivered through Cheil — high-volume, email-safe campaign production with automated quality validation.",
+      "Samsung CRM and digital campaign engineering delivered through Cheil. High-volume, email-safe campaign production with automated quality validation.",
   },
   {
     slug: "trimbase",
     name: "TrimBase",
     kicker: "Client: FG Uniforms, Cape Town",
     cardOutcome:
-      "Converts cut sheets and BOMs into clear trim requirements, shortages and production readiness.",
+      "Runs a garment factory's trim planning, stock, and purchasing, even when the internet drops.",
     summary:
       "TrimBase is a hybrid local-first operations platform for garment trim planning, production readiness, stock control, purchasing, receiving and CMT trim-pack management. It converts cut sheets and bills of materials into clear trim requirements, shortages, order needs and production-readiness information.",
     blocks: ["teal", "coral", "amber"],
@@ -129,7 +129,7 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         title: "Integration readiness",
-        body: "Structured import/export patterns for Sage/Pastel item, BOM, supplier and stock information — without making accounting-system availability a blocker.",
+        body: "Structured import/export patterns for Sage/Pastel item, BOM, supplier and stock information, without making accounting-system availability a blocker.",
       },
       {
         title: "Intelligent roadmap",
@@ -137,14 +137,14 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     metaDescription:
-      "TrimBase — a hybrid local-first garment manufacturing operations platform built for FG Uniforms by DigiDan.",
+      "TrimBase: a hybrid local-first garment manufacturing operations platform built for FG Uniforms by DigiDan.",
   },
   {
     slug: "brand-name-marketing",
     name: "Brand Name Marketing and Creative Brands",
     kicker: "Retained development, solution delivery and operational support",
     cardOutcome:
-      "Continuing commerce, data and operational engineering across a business-critical digital estate.",
+      "Keeps a multi-store e-commerce operation running, from supplier feeds to uptime monitoring.",
     summary:
       "DigiDan provides continuing development and support across the Brand Name Marketing and Creative Brands digital environment. The engagement connects custom software, managed nopCommerce platforms, supplier data, catalogue operations, commercial rules, monitoring, automation and day-to-day problem solving.",
     blocks: ["coral", "amber", "teal"],
@@ -180,7 +180,7 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     metaDescription:
-      "Brand Name Marketing and Creative Brands — retained commerce, data and operational engineering by DigiDan.",
+      "Brand Name Marketing and Creative Brands: retained commerce, data and operational engineering by DigiDan.",
   },
 ];
 

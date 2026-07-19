@@ -7,7 +7,7 @@ import { notes, notesIntro } from "@/content/notes";
 export const metadata: Metadata = {
   title: "Field notes",
   description:
-    "Short, evergreen engineering notes from DigiDan — on financial-grade systems, AI harness engineering, integration and resilience.",
+    "Short, evergreen engineering notes from DigiDan: on financial-grade systems, AI harness engineering, integration and resilience.",
   alternates: { canonical: "/notes" },
 };
 

@@ -1,5 +1,5 @@
 /**
- * Homepage portfolio cards — "completed structures" (brief 5.5).
+ * Homepage portfolio cards: "completed structures" (brief 5.5).
  * Derived from the case-study content so names, order and stacks never drift.
  */
 

@@ -1,5 +1,5 @@
 /**
- * Services — "pick your blocks" (brief 5.3).
+ * Services: "pick your blocks" (brief 5.3).
  * Six tiles grouped under the three brand families.
  * Titles/descriptions and detail bullets sourced from profile sections 3 & 4.
  */
@@ -98,5 +98,5 @@ export const services: Service[] = [
 
 export const servicesIntro = {
   eyebrow: "Services",
-  lead: "Composable engineering blocks — combined into the system your operation actually needs.",
+  lead: "Composable engineering blocks, combined into the system your operation actually needs.",
 } as const;
