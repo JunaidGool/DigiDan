@@ -1,30 +1,53 @@
 import { LogoMark, Wordmark } from "./Logo";
-import { footer, CONTACT_HREF } from "@/content/home";
+import { Container } from "./ui/Container";
+import { Button } from "./ui/Button";
+import { nav, footer, site, hero, CONTACT_HREF } from "@/content/home";
 
 /**
- * Footer (The Grid): a neon light rule seals the base of the page, with the
- * mark, wordmark, address lines and the action Contact action.
+ * Footer: a hairline rule seals the page, then a two-part row. Left: the mark,
+ * wordmark, a short line about the company and the legal identity. Right: the
+ * primary navigation and the contact action.
  */
 export function Footer() {
   return (
-    <footer className="relative">
-      <div className="shell">
-        <div className="rule-neon" />
-        <div className="flex flex-col gap-10 py-14 md:flex-row md:items-end md:justify-between">
+    <footer className="border-t border-line bg-night">
+      <Container className="py-16">
+        <div className="grid gap-12 wide:grid-cols-[1.4fr_1fr]">
           <div>
-            <span className="flex items-center gap-3 text-neon">
-              <LogoMark size={30} title="DigiDan" />
+            <span className="flex items-center gap-2.5 text-white">
+              <LogoMark size={32} tone="brand" title="DigiDan" />
               <Wordmark className="text-base text-white" />
             </span>
-            <p className="label mt-6">{footer.legalName}</p>
-            <p className="label mt-2">{footer.location}</p>
+            <p className="mt-5 text-lg font-semibold text-white">{hero.tagline}</p>
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-ash">
+              {site.description}
+            </p>
+            <Button href={CONTACT_HREF} className="mt-8" withArrow>
+              {footer.contact}
+            </Button>
           </div>
 
-          <a href={CONTACT_HREF} className="btn btn-action self-start md:self-auto">
-            {footer.contact} <span aria-hidden="true">▸</span>
-          </a>
+          <nav aria-label="Footer" className="flex flex-col gap-3 wide:items-end">
+            <p className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-fog">
+              Explore
+            </p>
+            {nav.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-sm text-ash transition-colors hover:text-white"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
         </div>
-      </div>
+
+        <div className="mt-14 flex flex-col gap-2 border-t border-line pt-8 text-[0.62rem] uppercase tracking-[0.2em] text-fog wide:flex-row wide:items-center wide:justify-between">
+          <span>{footer.legalName}</span>
+          <span>{footer.location}</span>
+        </div>
+      </Container>
     </footer>
   );
 }

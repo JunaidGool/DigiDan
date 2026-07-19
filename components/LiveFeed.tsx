@@ -8,8 +8,8 @@ const KEEP = 6;
 
 /**
  * A decorative live diagnostic feed: pseudo build/compiler lines stream in to
- * keep the terminal looking actively alive. Reduced motion shows a static
- * snapshot with no streaming. The feed is aria-hidden.
+ * keep the telemetry panel looking actively alive. Reduced motion shows a
+ * static snapshot with no streaming. The feed is aria-hidden.
  */
 export function LiveFeed() {
   const [lines, setLines] = useState<string[]>(() => POOL.slice(0, KEEP));
@@ -30,21 +30,23 @@ export function LiveFeed() {
   return (
     <div
       aria-hidden="true"
-      className="min-w-0 border border-neon/25 bg-void/70 p-5 font-mono text-[0.7rem] leading-relaxed text-neon/85"
+      className="min-w-0 rounded-lg border border-line bg-ink/70 p-5 font-mono text-[0.7rem] leading-relaxed text-orange-light/90"
     >
       <div className="mb-3 flex items-center gap-2">
-        <span className="status-dot h-2 w-2 rounded-full bg-neon shadow-glow-neon" />
-        <span className="label label-neon text-[0.55rem]">diagnostic feed</span>
+        <span className="h-2 w-2 animate-blink rounded-full bg-orange" />
+        <span className="text-[0.58rem] uppercase tracking-[0.2em] text-fog">
+          diagnostic feed
+        </span>
       </div>
       <div className="min-w-0 space-y-1">
         {lines.map((l, i) => (
           <div key={`${l}-${i}`} className="truncate">
-            <span className="text-dim">&gt;</span> {l}
+            <span className="text-fog">&gt;</span> {l}
           </div>
         ))}
         <div className="text-white/80">
-          <span className="text-dim">&gt;</span>{" "}
-          <span className="status-dot">_</span>
+          <span className="text-fog">&gt;</span>{" "}
+          <span className="animate-blink">_</span>
         </div>
       </div>
     </div>

@@ -41,7 +41,7 @@ export const statement = {
   label: "WHAT WE DO",
   // The first sentence is rendered bold.
   lead: "We connect the whole system.",
-  rest: "From payment systems and factory floors to cloud services and online stores. Your software has to work with everything around it, so that is how we build it.",
+  rest: "From payment systems to cloud services and online stores. Your software has to work with everything around it, so that is how we build it.",
 } as const;
 
 export const capabilities = {
@@ -156,4 +156,71 @@ export const footer = {
   legalName: "DIGIDAN (PTY) LTD",
   location: "SOUTH AFRICA | DIGIDAN.CO.ZA",
   contact: "Contact us",
+} as const;
+
+/**
+ * Trust bar. Real engagements retained by the partners, shown as wordmarks. The
+ * label stays honest: these are teams the founders have delivered for.
+ */
+export const trust = {
+  label: "BUILT BY ENGINEERS TRUSTED ON WORK THAT SHIPS",
+  logos: ["Samsung", "Cheil", "BNM", "nopCommerce"],
+} as const;
+
+/**
+ * Hero showcase. Each capability is shown as a live console readout inside the
+ * gradient panel, paged by the carousel. Content is pulled from the capability
+ * blades so there is a single source of truth.
+ */
+export const showcase = {
+  label: "INSIDE THE SYSTEM",
+  slides: capabilities.blades.map((b) => ({
+    title: b.title,
+    index: b.index,
+    console: b.console,
+  })),
+} as const;
+
+/**
+ * Per-capability highlight phrase. Each string is an exact substring of the
+ * matching blade's card copy, wrapped in the accent at render time. Styling
+ * only: the approved words are unchanged.
+ */
+export const capabilityHighlights = [
+  "handle money safely",
+  "modernise the systems your business already relies on",
+  "human approval where it matters",
+] as const;
+
+/**
+ * Ecosystem graph. Illustrates the statement: the DigiDan core in the middle,
+ * with the real-world systems it connects arranged around it. Node labels are
+ * the same systems named in the approved statement copy.
+ */
+export const ecosystem = {
+  label: "ONE CONNECTED SYSTEM",
+  title: "Your software has to work with everything around it.",
+  core: "DIGIDAN CORE",
+  nodes: [
+    "Payment systems",
+    "Cloud services",
+    "Online stores",
+    "APIs and data feeds",
+    "Legacy systems",
+  ],
+} as const;
+
+/**
+ * Closing call to action. British English, no em dashes, in the DigiDan voice.
+ */
+export const cta = {
+  label: "START HERE",
+  title: "Let us build the system your business depends on.",
+  paragraph:
+    "Tell us what you are trying to run in the real world. We design for all of it: the people, the hardware, the data and what happens when something fails.",
+  primary: "Start a project",
+  secondary: "View capabilities",
+  emailPlaceholder: "Enter your work email",
+  emailAction: "Talk to us",
+  emailNote: "We only use your address to reply to you. Nothing else.",
 } as const;
