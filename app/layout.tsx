@@ -4,6 +4,7 @@ import { site } from "@/content/home";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Analytics } from "@/components/Analytics";
+import { Cursor } from "@/components/ui/Cursor";
 import "./globals.css";
 
 // Manrope: a clean geometric grotesque for display and body, echoing the CoLab
@@ -65,6 +66,7 @@ export default function RootLayout({
         <a href="#top" className="skip-link">
           Skip to content
         </a>
+        <Cursor />
         <Nav />
         {children}
         <Footer />

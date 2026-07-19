@@ -1,5 +1,34 @@
+"use client";
+
+import { useRef } from "react";
 import { clsx } from "clsx";
 import { Arrow } from "./glyphs";
+
+/**
+ * Magnetic pull: while the cursor is over the control, the element eases toward
+ * it and lifts slightly, snapping back on leave. Fine-pointer + motion-safe
+ * only; otherwise the handlers are no-ops and CSS hover takes over.
+ */
+function useMagnetic(strength = 0.35) {
+  const ref = useRef<HTMLElement>(null);
+  const allow = () =>
+    typeof window !== "undefined" &&
+    window.matchMedia("(pointer: fine)").matches &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const onPointerMove = (e: React.PointerEvent) => {
+    const el = ref.current;
+    if (!el || !allow()) return;
+    const r = el.getBoundingClientRect();
+    const dx = e.clientX - (r.left + r.width / 2);
+    const dy = e.clientY - (r.top + r.height / 2);
+    el.style.transform = `translate(${dx * strength}px, ${dy * strength - 2}px)`;
+  };
+  const onPointerLeave = () => {
+    if (ref.current) ref.current.style.transform = "";
+  };
+  return { ref, onPointerMove, onPointerLeave };
+}
 
 /**
  * Button: the DigiDan action primitive, built entirely by hand (no library).
@@ -107,11 +136,20 @@ export function Button(props: AsLink | AsButton) {
     className
   );
 
+  const mag = useMagnetic(variant === "icon" ? 0.25 : 0.35);
+
   if ("href" in props && props.href !== undefined) {
     const { href, ...anchorRest } =
       rest as React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string };
     return (
-      <a href={href} className={cls} {...anchorRest}>
+      <a
+        href={href}
+        className={cls}
+        {...anchorRest}
+        ref={mag.ref as React.Ref<HTMLAnchorElement>}
+        onPointerMove={mag.onPointerMove}
+        onPointerLeave={mag.onPointerLeave}
+      >
         <Inner variant={variant} withArrow={withArrow}>
           {children}
         </Inner>
@@ -123,6 +161,9 @@ export function Button(props: AsLink | AsButton) {
     <button
       className={cls}
       {...(rest as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+      ref={mag.ref as React.Ref<HTMLButtonElement>}
+      onPointerMove={mag.onPointerMove}
+      onPointerLeave={mag.onPointerLeave}
     >
       <Inner variant={variant} withArrow={withArrow}>
         {children}

@@ -4,6 +4,8 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Card } from "@/components/ui/Card";
 import { ProductMark } from "@/components/ui/ProductMark";
+import { Tilt } from "@/components/ui/Tilt";
+import { DecodeText } from "@/components/ui/DecodeText";
 import { Reveal } from "@/components/Reveal";
 
 /**
@@ -17,12 +19,17 @@ export function Work() {
       <Container>
         <Reveal className="max-w-3xl">
           <Eyebrow>{work.label}</Eyebrow>
-          <h2 className="mt-5 text-h2 font-bold text-white">{work.title}</h2>
+          <DecodeText
+            as="h2"
+            text={work.title}
+            className="mt-5 block text-h2 font-bold text-white"
+          />
         </Reveal>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 wide:grid-cols-3">
           {work.items.map((name, i) => (
-            <Reveal key={name} delay={i % 3}>
+            <Reveal key={name} delay={i % 3} className="h-full">
+              <Tilt className="h-full">
               <Card interactive className="flex h-full flex-col gap-6 p-7">
                 <div className="flex items-start justify-between">
                   <span className="flex h-12 w-12 items-center justify-center rounded-lg border border-line bg-raised">
@@ -40,6 +47,7 @@ export function Work() {
                   <p className="mt-2 text-xl font-bold text-white">{name}</p>
                 </div>
               </Card>
+              </Tilt>
             </Reveal>
           ))}
         </div>
