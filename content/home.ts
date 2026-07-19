@@ -27,8 +27,9 @@ export const nav = [
 
 export const hero = {
   eyebrow: "SOUTH AFRICAN SOFTWARE ENGINEERING PARTNER",
-  h1: "Software strong enough to depend on. Built for the real world.",
-  subline: "DigiDan (Pty) Ltd",
+  legal: "DIGIDAN (PTY) LTD",
+  h1: "Software strong enough to depend on.",
+  tagline: "Built for the real world.",
   paragraph:
     "We build custom software, online platforms and practical AI systems. We design for the full environment your software runs in, not just the screens and code.",
   primary: "Start a project",
@@ -45,7 +46,9 @@ export const statement = {
 
 export const capabilities = {
   title: "What we build",
-  label: "THREE AREAS. TAP ONE TO OPEN IT.",
+  label: "THREE NODES. TAP ONE TO OPEN IT.",
+  core: "SYSTEM CORE",
+  coreSub: "ROUTER",
   blades: [
     {
       index: "MOD.01",
@@ -124,6 +127,19 @@ export const overview = {
       { key: "IMAGE.ASSETS", value: "11,672", count: 11672 },
       { key: "DEPLOY.MODE", value: "LOCAL-FIRST / HYBRID / CLOUD" },
       { key: "UPTIME.PHILOSOPHY", value: "DESIGN FOR FAILURE ✓" },
+    ],
+    // Seed lines for the live diagnostic feed (decorative compiler simulation).
+    feed: [
+      "build: compiling modules ................ done",
+      "ledger: reconciliation pass ............. ok",
+      "iso8583: message parsed ................. 0x1100",
+      "kafka: consumer group balanced .......... 12 part",
+      "harness: output verified ................ pass",
+      "deploy: local-first sync ................ ok",
+      "otel: trace exported .................... 204",
+      "circuit-breaker: armed .................. nominal",
+      "nopcommerce: cache warmed ............... 707",
+      "vector: index refreshed ................. 11672",
     ],
   },
 } as const;

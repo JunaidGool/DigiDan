@@ -2,25 +2,28 @@ import { LogoMark, Wordmark } from "./Logo";
 import { footer, CONTACT_HREF } from "@/content/home";
 
 /**
- * Footer (spec 3.7): the engine room. Amber seam on top, obsidian body.
- * Mini mark, wordmark, address lines, one Contact us button.
+ * Footer (The Grid): a cyan light rule seals the base of the page, with the
+ * mark, wordmark, address lines and the amber Contact action.
  */
 export function Footer() {
   return (
-    <footer className="seam-top bg-obsidian">
-      <div className="shell flex flex-col gap-10 py-14 md:flex-row md:items-end md:justify-between">
-        <div>
-          <span className="flex items-center gap-3 text-amber-d">
-            <LogoMark size={30} variant="outline" title="DigiDan" />
-            <Wordmark className="text-base text-platinum" />
-          </span>
-          <p className="label label-d mt-6">{footer.legalName}</p>
-          <p className="label label-d mt-2">{footer.location}</p>
-        </div>
+    <footer className="relative">
+      <div className="shell">
+        <div className="rule-cyan" />
+        <div className="flex flex-col gap-10 py-14 md:flex-row md:items-end md:justify-between">
+          <div>
+            <span className="flex items-center gap-3 text-cyan">
+              <LogoMark size={30} title="DigiDan" />
+              <Wordmark className="text-base text-white" />
+            </span>
+            <p className="label mt-6">{footer.legalName}</p>
+            <p className="label mt-2">{footer.location}</p>
+          </div>
 
-        <a href={CONTACT_HREF} className="btn btn-amber-d self-start md:self-auto">
-          {footer.contact} <span aria-hidden="true">▸</span>
-        </a>
+          <a href={CONTACT_HREF} className="btn btn-amber self-start md:self-auto">
+            {footer.contact} <span aria-hidden="true">▸</span>
+          </a>
+        </div>
       </div>
     </footer>
   );

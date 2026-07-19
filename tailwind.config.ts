@@ -1,10 +1,10 @@
 import type { Config } from "tailwindcss";
 
 /**
- * DigiDan design system (spec v1.0, section 2).
- * The clean lab (light) over the engine room (dark), joined by an amber weld
- * seam. Every colour and size on the site comes from these tokens. No Tailwind
- * default colours, no rounded corners, no gradients.
+ * DigiDan design system: "The Grid" (Tron-infused high-performance frontend).
+ * A dark, light-emitting canvas. Structure is drawn with cyan light tracks;
+ * amber is reserved for high-priority actions. Every colour comes from these
+ * tokens. No default Tailwind colours.
  */
 const config: Config = {
   content: [
@@ -13,37 +13,23 @@ const config: Config = {
     "./content/**/*.{ts,tsx}",
   ],
   theme: {
-    // Square everything: the site has no rounded corners anywhere (spec 1).
     borderRadius: {
       none: "0",
       DEFAULT: "0",
-      full: "9999px", // reserved for the pulsing LIVE dot only
+      sm: "2px",
+      full: "9999px", // reserved for status dots and nodes
     },
     extend: {
       colors: {
-        paper: "#F1F2F0", // lab background
-        ink: "#141717", // text on paper
-        obsidian: "#1A1E1E", // engine room background (lightened from #0E1111)
-        platinum: "#EAEAEA", // text on obsidian
-        console: "#0A0D0D", // console blocks only
-        slate: {
-          l: "#66716F", // muted text on paper
-          d: "#7A8B8B", // muted text on obsidian
-        },
-        amber: {
-          l: "#A9851E", // accent on paper (darkened for contrast)
-          d: "#D4AF37", // accent on obsidian
-        },
-        seam: "#C9A227", // weld lines and primary buttons
-        line: {
-          l: "rgba(20,23,23,.16)", // hairlines on paper
-          d: "rgba(122,139,139,.28)", // hairlines on obsidian
-        },
-        // Logo brand colours: used ONLY inside the logo mark, never as UI colour.
-        brand: {
-          teal: "#45A08E",
-          orange: "#F07E26",
-          yellow: "#F5C518",
+        void: "#000000", // primary canvas
+        cyan: "#00E5FF", // identity: borders, wireframes, circuits
+        teal: "#00838F", // dormant frameworks, sub-text
+        amber: "#FF9100", // high-priority actions, conversion, warnings
+        white: "#FFFFFF", // primary typography
+        // Dark glass surfaces layered over the void.
+        panel: {
+          DEFAULT: "#05090B",
+          raised: "#080D10",
         },
       },
       fontFamily: {
@@ -52,22 +38,24 @@ const config: Config = {
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       fontSize: {
-        h1: ["clamp(2.6rem, 5.4vw, 4.6rem)", { lineHeight: "1.06" }],
-        h2: ["clamp(1.5rem, 2.6vw, 2.2rem)", { lineHeight: "1.15" }],
-        statement: ["clamp(1.15rem, 2vw, 1.6rem)", { lineHeight: "1.5" }],
-        label: ["0.66rem", { lineHeight: "1", letterSpacing: "0.24em" }],
+        h1: ["clamp(2.5rem, 5.2vw, 4.4rem)", { lineHeight: "1.05" }],
+        h2: ["clamp(1.4rem, 2.6vw, 2.1rem)", { lineHeight: "1.15" }],
+        statement: ["clamp(1.1rem, 2vw, 1.55rem)", { lineHeight: "1.5" }],
+        label: ["0.66rem", { lineHeight: "1", letterSpacing: "0.26em" }],
       },
       maxWidth: {
         shell: "1440px",
         statement: "52rem",
       },
       screens: {
-        // Spec breakpoint (section 2.3): below it, columns stack and the hero
-        // grid violation is disabled.
         wide: "960px",
       },
+      boxShadow: {
+        "glow-cyan": "0 0 20px rgba(0,229,255,0.35)",
+        "glow-cyan-lg": "0 0 40px rgba(0,229,255,0.28)",
+        "glow-amber": "0 0 20px rgba(255,145,0,0.45)",
+      },
       transitionTimingFunction: {
-        // ease-out cubic for the telemetry count-up and reveals.
         out: "cubic-bezier(0.22, 1, 0.36, 1)",
       },
     },

@@ -1,14 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, Inter, Roboto_Mono } from "next/font/google";
+import { Orbitron, Inter, JetBrains_Mono } from "next/font/google";
 import { site } from "@/content/home";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Analytics } from "@/components/Analytics";
 import "./globals.css";
 
-const display = Space_Grotesk({
+const display = Orbitron({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["400", "500", "700"],
   variable: "--font-display",
   display: "swap",
 });
@@ -20,9 +20,9 @@ const body = Inter({
   display: "swap",
 });
 
-const mono = Roboto_Mono({
+const mono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["300", "400"],
+  weight: ["300", "400", "500"],
   variable: "--font-mono",
   display: "swap",
 });
@@ -52,8 +52,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#1A1E1E",
-  colorScheme: "light",
+  themeColor: "#000000",
+  colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
 };
