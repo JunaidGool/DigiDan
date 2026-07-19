@@ -54,9 +54,9 @@ export function Services() {
                 <summary className="flex cursor-pointer list-none flex-col gap-3 p-6 [&::-webkit-details-marker]:hidden">
                   <Icon className={f.text} size={26} strokeWidth={1.75} aria-hidden />
                   <h3 className={`text-xl ${f.text}`}>{s.title}</h3>
-                  <p className={`text-sm ${f.text} opacity-80`}>{s.summary}</p>
+                  <p className={`text-sm ${f.text}`}>{s.summary}</p>
                 </summary>
-                <ul className={`space-y-2 px-6 pb-6 text-sm ${f.text} opacity-90`}>
+                <ul className={`space-y-2 px-6 pb-6 text-sm ${f.text}`}>
                   {s.detail.map((d) => (
                     <li key={d} className="flex gap-2">
                       <span aria-hidden>·</span>

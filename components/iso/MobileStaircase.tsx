@@ -15,11 +15,8 @@ import {
  * horizontal staircase is decorative and hidden here.
  */
 
-const NUMBER_COLOR: Record<Family, string> = {
-  teal: "#085041",
-  coral: "#712B13",
-  amber: "#633806",
-};
+// Warm-brown ink on every light top face (brief 4.1): clears AA on all families.
+const NUMBER_INK = "#3B2D20";
 
 const F = boxFaces(0, 0, 0, 1, 1, 1);
 const VB = bounds([...F.top, ...F.left, ...F.right] as Pt[], 3).viewBox;
@@ -46,8 +43,8 @@ function StepCube({ family, n }: { family: Family; n: number }) {
         textAnchor="middle"
         fontFamily="var(--font-display)"
         fontSize={13}
-        fontWeight={500}
-        fill={NUMBER_COLOR[family]}
+        fontWeight={600}
+        fill={NUMBER_INK}
       >
         {n}
       </text>

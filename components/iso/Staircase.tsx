@@ -16,11 +16,9 @@ import {
  * step is its own <g data-step> with the number on its top face.
  */
 
-const NUMBER_COLOR: Record<Family, string> = {
-  teal: "#085041",
-  coral: "#712B13",
-  amber: "#633806",
-};
+// Warm-brown ink on every light top face: reads as engraved and clears WCAG AA
+// large-text contrast on all four families (brief 4.1 / 8.2).
+const NUMBER_INK = "#3B2D20";
 
 type Item = { n: number; family: Family };
 
@@ -66,8 +64,8 @@ export function Staircase({ steps }: { steps: Item[] }) {
               textAnchor="middle"
               fontFamily="var(--font-display)"
               fontSize={20}
-              fontWeight={500}
-              fill={NUMBER_COLOR[s.family]}
+              fontWeight={600}
+              fill={NUMBER_INK}
             >
               {s.n}
             </text>

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import { Fraunces, Archivo, JetBrains_Mono } from "next/font/google";
 import { site } from "@/content/site";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
@@ -7,16 +7,19 @@ import { Analytics } from "@/components/Analytics";
 import { Assistant } from "@/components/Assistant";
 import "./globals.css";
 
-const display = Space_Grotesk({
+// Display: Fraunces (brief 4.3), high optical size, weights 600 and 700.
+const display = Fraunces({
   subsets: ["latin"],
-  weight: ["500", "700"],
+  weight: ["600", "700"],
+  style: ["normal", "italic"],
   variable: "--font-display",
   display: "swap",
 });
 
-const body = Inter({
+// Body and UI: Archivo (brief 4.3), weights 400 to 600.
+const body = Archivo({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600"],
   variable: "--font-body",
   display: "swap",
 });
@@ -62,7 +65,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FAF9F6",
+  themeColor: "#F6EDD8",
   width: "device-width",
   initialScale: 1,
 };

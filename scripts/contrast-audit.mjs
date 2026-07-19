@@ -2,11 +2,15 @@
 // including opacity-reduced text (blended over its background first).
 // AA: normal text >= 4.5, large text (>=24px, or >=18.66px bold) >= 3.0.
 
+// Seventies palette (brief 4.1). Kept in lockstep with tailwind.config.ts and
+// globals.css :root. `paper` = cream canvas, `paper-warm` = sand band.
 const C = {
-  "teal-100": "#E1F5EE", "teal-300": "#5DCAA5", "teal-500": "#1D9E75", "teal-900": "#085041",
-  "coral-100": "#FAECE7", "coral-300": "#F0997B", "coral-500": "#D85A30", "coral-900": "#712B13",
-  "amber-100": "#FAEEDA", "amber-200": "#FAC775", "amber-400": "#EF9F27", "amber-900": "#633806",
-  ink: "#26261F", paper: "#FFFFFF", "paper-warm": "#FAF9F6", line: "#E5E3DC", muted: "#726F63",
+  "teal-100": "#D6E9E1", "teal-300": "#8FCBB4", "teal-500": "#14705C", "teal-900": "#0B4A3B",
+  "coral-100": "#F6E0D2", "coral-300": "#E89B6E", "coral-500": "#C4531D", "coral-900": "#9C3F14",
+  "amber-100": "#F7EACB", "amber-200": "#F2C36B", "amber-400": "#E3A21A", "amber-900": "#8A5E08",
+  "olive-100": "#E4E8CF", "olive-300": "#9FAF62", "olive-500": "#6B7A34", "olive-900": "#3F4A1C",
+  ink: "#3B2D20", brown: "#6E5638", faint: "#A18B60",
+  paper: "#F6EDD8", "paper-warm": "#EFE1C2", line: "#E1CFA9", muted: "#6E5638",
 };
 
 const hex = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
@@ -25,21 +29,25 @@ const CHECKS = [
   ["ink", "paper", 0.7, 4.5, "ink/70 mono stack 12px"],
   ["muted", "paper", 1, 4.5, "muted eyebrow/labels"],
   ["muted", "paper-warm", 1, 4.5, "muted on warm"],
-  ["teal-900", "teal-100", 1, 4.5, "teal tile title"],
-  ["teal-900", "teal-100", 0.8, 4.5, "teal tile summary/80"],
-  ["teal-900", "teal-100", 0.9, 4.5, "teal detail/90"],
-  ["coral-900", "coral-100", 1, 4.5, "coral tile title"],
-  ["coral-900", "coral-100", 0.8, 4.5, "coral tile summary/80"],
-  ["coral-900", "coral-100", 0.9, 4.5, "coral detail/90"],
-  ["amber-900", "amber-100", 1, 4.5, "amber tile title"],
-  ["amber-900", "amber-100", 0.8, 4.5, "amber tile summary/80"],
-  ["amber-900", "amber-100", 0.9, 4.5, "amber detail/90"],
-  ["paper", "ink", 1, 4.5, "button text on ink"],
-  ["teal-900", "paper", 1, 4.5, "teal-900 inline links"],
-  ["teal-900", "teal-300", 1, 3.0, "staircase number on teal top face (large)"],
-  ["coral-900", "coral-300", 1, 3.0, "staircase number on coral top face (large)"],
-  ["amber-900", "amber-200", 1, 3.0, "staircase number on amber top face (large)"],
-  ["coral-900", "paper", 1, 4.5, "required asterisk"],
+  // Tinted service tiles: same-family dark text at full opacity on the 100 tint.
+  ["teal-900", "teal-100", 1, 4.5, "teal tile title + body"],
+  ["coral-900", "coral-100", 1, 4.5, "orange tile title + body"],
+  ["amber-900", "amber-100", 1, 4.5, "gold tile title + body"],
+  ["olive-900", "olive-100", 1, 4.5, "olive tile title + body"],
+  ["paper", "ink", 1, 4.5, "cream text on ink buttons/footer"],
+  ["teal-900", "paper", 1, 4.5, "teal-900 inline links on cream"],
+  ["coral-900", "paper", 1, 4.5, "orange-d eyebrow + required asterisk on cream"],
+  // Colour-band text rules (brief 4.1): teal band carries cream text; the gold
+  // band carries ink (never cream, never gold-d which is too low); the orange
+  // closing band carries only the large Fraunces display line in cream.
+  ["paper", "teal-500", 1, 4.5, "cream text on deep-teal band"],
+  ["ink", "amber-400", 1, 4.5, "ink text on harvest-gold band"],
+  ["paper", "coral-500", 1, 3.0, "cream large display line on burnt-orange band"],
+  // Staircase numbers: warm-brown ink on each light top face (large text).
+  ["ink", "teal-300", 1, 3.0, "step number on teal top face (large)"],
+  ["ink", "coral-300", 1, 3.0, "step number on orange top face (large)"],
+  ["ink", "amber-200", 1, 3.0, "step number on gold top face (large)"],
+  ["ink", "olive-300", 1, 3.0, "step number on olive top face (large)"],
 ];
 
 let fails = 0;

@@ -3,29 +3,38 @@
 @tailwind utilities;
 
 :root {
-  /* Palette tokens (brief 3.1): mirrored here for hand-authored SVG + raw CSS. */
-  --teal-100: #e1f5ee;
-  --teal-300: #5dcaa5;
-  --teal-500: #1d9e75;
-  --teal-900: #085041;
-  --coral-100: #faece7;
-  --coral-300: #f0997b;
-  --coral-500: #d85a30;
-  --coral-900: #712b13;
-  --amber-100: #faeeda;
-  --amber-200: #fac775;
-  --amber-400: #ef9f27;
-  --amber-900: #633806;
-  --ink: #26261f;
-  --paper: #ffffff;
-  --paper-warm: #faf9f6;
-  --line: #e5e3dc;
-  --muted: #726f63;
+  /* Seventies palette (brief 4.1): mirrored here for hand-authored SVG + raw CSS. */
+  --teal-100: #d6e9e1;
+  --teal-300: #8fcbb4;
+  --teal-500: #14705c;
+  --teal-900: #0b4a3b;
+  --coral-100: #f6e0d2;
+  --coral-300: #e89b6e;
+  --coral-500: #c4531d;
+  --coral-900: #9c3f14;
+  --amber-100: #f7eacb;
+  --amber-200: #f2c36b;
+  --amber-400: #e3a21a;
+  --amber-900: #8a5e08;
+  --olive-100: #e4e8cf;
+  --olive-300: #9faf62;
+  --olive-500: #6b7a34;
+  --olive-900: #3f4a1c;
+  --ink: #3b2d20;
+  --brown: #6e5638;
+  --faint: #a18b60;
+  --cream: #f6edd8;
+  --sand: #efe1c2;
+  --paper: #f6edd8;
+  --paper-warm: #efe1c2;
+  --line: #e1cfa9;
+  --muted: #6e5638;
 
   /* Derived flat "dark face" tones for isometric block illustration. */
-  --teal-face-dark: #147a5a;
-  --coral-face-dark: #a8431f;
-  --amber-face-dark: #c67c10;
+  --teal-face-dark: #0b4a3b;
+  --coral-face-dark: #9c3f14;
+  --amber-face-dark: #8a5e08;
+  --olive-face-dark: #4e5a22;
 }
 
 @layer base {
@@ -47,24 +56,24 @@
   h2,
   h3,
   h4 {
-    font-family: var(--font-display), system-ui, sans-serif;
-    font-weight: 500;
+    font-family: var(--font-display), Georgia, serif;
+    font-weight: 600;
     line-height: 1.1;
     letter-spacing: -0.01em;
     color: var(--ink);
     text-wrap: balance;
   }
 
-  /* Visible keyboard focus (WCAG 2.1 AA). */
+  /* Visible keyboard focus: 3px burnt-orange outline (brief 8.2). */
   :focus-visible {
-    outline: 2px solid var(--teal-500);
+    outline: 3px solid var(--coral-500);
     outline-offset: 3px;
     border-radius: 2px;
   }
 
   ::selection {
-    background: var(--teal-100);
-    color: var(--teal-900);
+    background: var(--amber-200);
+    color: var(--ink);
   }
 }
 
@@ -83,12 +92,12 @@
   }
 
   .eyebrow {
-    font-family: var(--font-display), system-ui, sans-serif;
-    font-size: theme("fontSize.eyebrow[0]");
+    font-family: var(--font-body), system-ui, sans-serif;
+    font-size: 0.8125rem; /* 13px (brief 4.3) */
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    font-weight: 500;
-    color: var(--muted);
+    font-weight: 600;
+    color: var(--coral-900);
   }
 
   /* Skip-to-content link for keyboard/screen-reader users. */

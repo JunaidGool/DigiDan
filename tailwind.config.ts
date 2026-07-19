@@ -1,9 +1,13 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Palette derived from the DigiDan logo (brief section 3.1).
- * Rule enforced by usage, not by the config: colour lives in blocks, tiles,
- * badges and illustration, never in backgrounds behind body copy.
+ * Seventies supergraphic palette (brief section 4.1). Cream canvas, warm-brown
+ * ink, and four block families in burnt orange, harvest gold, deep teal and
+ * avocado olive. No pure white and no neutral grey anywhere.
+ *
+ * Family names (teal / coral / amber) are historical class aliases; their
+ * values now carry the brief's burnt-orange (coral) and harvest-gold (amber)
+ * roles. `paper` aliases the cream canvas; `paper.warm` the sand band.
  */
 const config: Config = {
   content: [
@@ -14,31 +18,46 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Deep teal (brief: teal #14705C, teal-l #8FCBB4, teal-d #0B4A3B).
         teal: {
-          100: "#E1F5EE",
-          300: "#5DCAA5",
-          500: "#1D9E75",
-          900: "#085041",
+          100: "#D6E9E1",
+          300: "#8FCBB4",
+          500: "#14705C",
+          900: "#0B4A3B",
         },
+        // Burnt orange (brief: orange #C4531D, orange-l #E89B6E, orange-d #9C3F14).
         coral: {
-          100: "#FAECE7",
-          300: "#F0997B",
-          500: "#D85A30",
-          900: "#712B13",
+          100: "#F6E0D2",
+          300: "#E89B6E",
+          500: "#C4531D",
+          900: "#9C3F14",
         },
+        // Harvest gold (brief: gold #E3A21A, gold-l #F2C36B, gold-d #8A5E08).
         amber: {
-          100: "#FAEEDA",
-          200: "#FAC775",
-          400: "#EF9F27",
-          900: "#633806",
+          100: "#F7EACB",
+          200: "#F2C36B",
+          400: "#E3A21A",
+          900: "#8A5E08",
         },
-        ink: "#26261F",
+        // Avocado olive (brief: olive #6B7A34, olive-l #9FAF62).
+        olive: {
+          100: "#E4E8CF",
+          300: "#9FAF62",
+          500: "#6B7A34",
+          900: "#3F4A1C",
+        },
+        ink: "#3B2D20",
+        brown: "#6E5638",
+        faint: "#A18B60",
+        // `paper` = cream canvas; `paper.warm` = sand band (brief 4.1).
+        cream: "#F6EDD8",
+        sand: "#EFE1C2",
         paper: {
-          DEFAULT: "#FFFFFF",
-          warm: "#FAF9F6",
+          DEFAULT: "#F6EDD8",
+          warm: "#EFE1C2",
         },
-        line: "#E5E3DC",
-        muted: "#726F63",
+        line: "#E1CFA9",
+        muted: "#6E5638",
       },
       fontFamily: {
         display: ["var(--font-display)", "system-ui", "sans-serif"],

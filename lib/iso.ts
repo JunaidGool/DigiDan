@@ -17,11 +17,12 @@ export const iso = (x: number, y: number, z: number): Pt => [
   (x + y) * TH - z * H,
 ];
 
-// top = light face, right (x=x1) = mid, left (y=y1) = derived flat dark face.
+// Seventies block families (brief 4.1): three faces per block, same family.
+// top = light face, right (x=x1) = mid, left (y=y1) = flat dark face.
 export const BLOCK_FILLS: Record<Family, { light: string; mid: string; dark: string }> = {
-  teal: { light: "#5DCAA5", mid: "#1D9E75", dark: "#147A5A" },
-  coral: { light: "#F0997B", mid: "#D85A30", dark: "#A8431F" },
-  amber: { light: "#FAC775", mid: "#EF9F27", dark: "#C67C10" },
+  teal: { light: "#8FCBB4", mid: "#14705C", dark: "#0B4A3B" },
+  coral: { light: "#E89B6E", mid: "#C4531D", dark: "#9C3F14" },
+  amber: { light: "#F2C36B", mid: "#E3A21A", dark: "#8A5E08" },
 };
 
 export function boxFaces(
