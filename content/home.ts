@@ -27,7 +27,7 @@ export const nav = [
 
 export const hero = {
   eyebrow: "SOUTH AFRICAN SOFTWARE ENGINEERING PARTNER",
-  h1: "Software strong enough to run a bank. Built for the real world.",
+  h1: "Software strong enough to depend on. Built for the real world.",
   subline: "DigiDan (Pty) Ltd",
   paragraph:
     "We build custom software, online platforms and practical AI systems. We design for the full environment your software runs in, not just the screens and code.",
@@ -40,7 +40,7 @@ export const statement = {
   label: "WHAT WE DO",
   // The first sentence is rendered bold.
   lead: "We connect the whole system.",
-  rest: "From banking channels and in-store devices to factory floors, cloud services and online stores. Your software has to work with everything around it, so that is how we build it.",
+  rest: "From payment systems and factory floors to cloud services and online stores. Your software has to work with everything around it, so that is how we build it.",
 } as const;
 
 export const capabilities = {
@@ -50,12 +50,12 @@ export const capabilities = {
     {
       index: "MOD.01",
       title: "Fintech Engineering",
-      card: "Banking systems, payments and self-service devices. Built to handle money safely, with a full record of every step.",
+      card: "Payments and financial transaction systems. Built to handle money safely, with a full record of every step.",
       bullets: [
-        "Self-service banking kiosks and device control",
         "Payment flows aligned to ISO 8583 and ISO 20022",
         "High-volume messaging with Kafka and RabbitMQ",
         "Reliable ledgers with a full audit trail and replay",
+        "Every transaction processed once, even under duplicate delivery",
         "Careful card-data handling in line with PCI-DSS",
       ],
       console: [
@@ -111,7 +111,7 @@ export const overview = {
   label: "COMPANY OVERVIEW",
   numbers: [
     { value: 20, suffix: "+", caption: "Years software leadership" },
-    { value: 8, suffix: "+", caption: "Years banking engineering" },
+    { value: 8, suffix: "+", caption: "Years financial systems engineering" },
   ],
   paragraph:
     "DigiDan is led by Danyal Motan and Junaid Gool as equal partners. We think about the whole system: the people, the hardware, the networks, the data, the business rules, and what happens when something fails. That is how we build software that holds up in the real world.",

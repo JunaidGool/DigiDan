@@ -27,7 +27,7 @@ const mono = Roboto_Mono({
   display: "swap",
 });
 
-const title = "DigiDan: software strong enough to run a bank";
+const title = "DigiDan: software strong enough to depend on";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0E1111",
+  themeColor: "#1A1E1E",
   colorScheme: "light",
   width: "device-width",
   initialScale: 1,

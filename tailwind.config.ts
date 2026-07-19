@@ -23,7 +23,7 @@ const config: Config = {
       colors: {
         paper: "#F1F2F0", // lab background
         ink: "#141717", // text on paper
-        obsidian: "#0E1111", // engine room background
+        obsidian: "#1A1E1E", // engine room background (lightened from #0E1111)
         platinum: "#EAEAEA", // text on obsidian
         console: "#0A0D0D", // console blocks only
         slate: {

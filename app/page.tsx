@@ -25,7 +25,7 @@ const orgSchema = {
   },
   knowsAbout: [
     "Fintech engineering",
-    "Payments and self-service devices",
+    "Payments and financial transaction systems",
     "Custom software platforms",
     "nopCommerce",
     "Systems and API integration",
