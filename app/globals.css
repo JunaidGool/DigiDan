@@ -3,316 +3,149 @@
 @tailwind utilities;
 
 /* ---------------------------------------------------------------------------
-   DigiDan "The Grid": a neon interface with three themes, all drawn from the
-   DigiDan colour family. Colours are RGB channel triples in custom properties
-   so a single [data-theme] switch retints the whole site. Dark is the default.
+   DigiDan interface. A single dark, premium theme in the CoLab language,
+   rebuilt around the DigiDan brand: near-black canvas, high-contrast white
+   headings, an orange signature accent and one warm gradient. Everything is
+   hand-built here and in components/ui; nothing is pulled from a UI library.
    --------------------------------------------------------------------------- */
-:root,
-[data-theme="dark"] {
-  --c-bg: 0 0 0; /* void */
-  --c-surface: 4 16 14;
-  --c-surface-2: 7 22 15;
-  --c-text: 255 255 255;
-  --c-neon: 45 225 198; /* neon teal identity */
-  --c-dim: 69 160 142; /* brand teal, muted */
-  --c-action: 240 126 38; /* brand orange */
-  --c-spark: 245 197 24; /* brand yellow */
-  --accent-teal: #2de1c6;
-  --accent-orange: #f07e26;
-  --accent-yellow: #f5c518;
-  color-scheme: dark;
-}
 
-/* Light: a clean, brand-tinted light canvas. Accents are darkened so they hold
-   contrast on white. */
-[data-theme="light"] {
-  --c-bg: 238 245 242;
-  --c-surface: 255 255 255;
-  --c-surface-2: 244 249 247;
-  --c-text: 10 30 26;
-  --c-neon: 17 122 104; /* deep teal for lines and labels on light */
-  --c-dim: 74 110 102;
-  --c-action: 194 87 15;
-  --c-spark: 138 106 0;
-  --accent-teal: #147a68;
-  --accent-orange: #c2570f;
-  --accent-yellow: #8a6a00;
-  color-scheme: light;
-}
-
-/* Brand: a mixture of only the DigiDan colours. Deep teal canvas, cream text,
-   teal/orange/yellow accents. */
-[data-theme="brand"] {
-  --c-bg: 8 38 33;
-  --c-surface: 11 48 42;
-  --c-surface-2: 14 58 50;
-  --c-text: 240 247 244;
-  --c-neon: 45 225 198;
-  --c-dim: 122 178 165;
-  --c-action: 240 126 38;
-  --c-spark: 245 197 24;
-  --accent-teal: #2de1c6;
-  --accent-orange: #f9932f;
-  --accent-yellow: #f5c518;
-  color-scheme: dark;
-}
-
-/* Convenience vars derived from the channel tokens (resolve per active theme). */
 :root {
-  --void: rgb(var(--c-bg));
-  --panel: rgb(var(--c-surface));
-  --panel-raised: rgb(var(--c-surface-2));
-  --white: rgb(var(--c-text));
-  --neon: rgb(var(--c-neon));
-  --dim: rgb(var(--c-dim));
-  --action: rgb(var(--c-action));
-  --spark: rgb(var(--c-spark));
-  --line: rgb(var(--c-neon) / 0.16);
-  --line-soft: rgb(var(--c-neon) / 0.08);
+  --bg: #050609;
+  --accent: 240 126 38; /* orange, RGB channels for /alpha use */
+  color-scheme: dark;
 }
 
 @layer base {
   html {
-    background-color: var(--void);
+    background-color: var(--bg);
     scroll-behavior: smooth;
     overflow-x: clip;
-    max-width: 100%;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
-    background-color: var(--void);
-    color: var(--white);
+    background-color: var(--bg);
+    color: #ffffff;
     font-family: var(--font-sans), system-ui, sans-serif;
     font-weight: 400;
     font-size: 1rem;
-    line-height: 1.65;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    position: relative;
-    width: 100%;
-    max-width: 100%;
     overflow-x: clip;
-    transition:
-      background-color 0.3s ease,
-      color 0.3s ease;
   }
 
-  /* The Grid floor: a faint neon perspective grid fixed behind everything. */
+  /* Two fixed, very soft warm glows anchor the page without a busy background. */
   body::before {
     content: "";
     position: fixed;
     inset: 0;
-    z-index: -2;
-    background:
-      linear-gradient(to right, var(--line-soft) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--line-soft) 1px, transparent 1px);
-    background-size: 64px 64px;
-    mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, #000 30%, transparent 80%);
-    -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, #000 30%, transparent 80%);
-    pointer-events: none;
-  }
-  /* Edge vignette that darkens (or lightens) toward the theme background. */
-  body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
     z-index: -1;
-    background: radial-gradient(
-      ellipse 120% 80% at 50% 0%,
-      transparent 55%,
-      rgb(var(--c-bg) / 0.85) 100%
-    );
     pointer-events: none;
+    background:
+      radial-gradient(60% 42% at 82% -4%, rgba(240, 126, 38, 0.14) 0%, transparent 60%),
+      radial-gradient(55% 40% at 6% 8%, rgba(90, 46, 82, 0.16) 0%, transparent 60%);
   }
 
-  /* Swiss headings: crisp, tightly tracked, flat. No glow. */
   h1,
   h2,
   h3,
   h4 {
     font-family: var(--font-sans), system-ui, sans-serif;
     font-weight: 600;
-    letter-spacing: -0.014em;
-    line-height: 1.1;
-    color: var(--white);
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    color: #ffffff;
     text-wrap: balance;
   }
 
   :focus-visible {
-    outline: 1px solid var(--neon);
+    outline: 2px solid rgb(var(--accent));
     outline-offset: 3px;
+    border-radius: 3px;
   }
 
   ::selection {
-    background: rgb(var(--c-neon) / 0.25);
-    color: var(--white);
+    background: rgba(240, 126, 38, 0.28);
+    color: #ffffff;
   }
 }
 
 @layer components {
+  /* Centred content shell with responsive gutters. */
   .shell {
     width: 100%;
     max-width: theme("maxWidth.shell");
     margin-inline: auto;
-    padding-inline: 1.5rem;
+    padding-inline: 1.25rem;
   }
-  @media (min-width: 960px) {
+  @media (min-width: 900px) {
     .shell {
-      padding-inline: 3rem;
+      padding-inline: 2.5rem;
     }
   }
 
-  .section {
-    padding-block: 4.5rem;
-  }
-  @media (min-width: 960px) {
-    .section {
-      padding-block: 7rem;
-    }
-  }
-
-  /* Text is razor-sharp and flat. Neon is reserved for thin borders, grid
-     lines, data paths and small indicators, never a text glow. */
-  .glow-text {
-    color: var(--white);
-  }
-  .glow-neon-text {
-    color: var(--neon);
-  }
-  .glow-action-text {
-    color: var(--action);
-  }
-
-  .label {
-    font-family: var(--font-mono), ui-monospace, monospace;
-    font-weight: 400;
-    font-size: 0.66rem;
-    text-transform: uppercase;
-    letter-spacing: 0.26em;
-    color: var(--dim);
-  }
-  .label-neon {
-    color: var(--neon);
-  }
-
-  .glass {
-    background:
-      linear-gradient(180deg, rgb(var(--c-neon) / 0.05) 0%, rgb(var(--c-neon) / 0) 40%),
-      var(--panel);
-    border: 1px solid var(--line);
-  }
-  .glass-lit {
-    border-color: rgb(var(--c-neon) / 0.55);
-    box-shadow:
-      0 0 24px rgb(var(--c-neon) / 0.18),
-      inset 0 0 24px rgb(var(--c-neon) / 0.06);
-  }
-
-  .btn {
+  /* Small uppercase eyebrow / kicker. */
+  .kicker {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
     gap: 0.55rem;
     font-family: var(--font-mono), ui-monospace, monospace;
-    font-weight: 400;
     font-size: 0.7rem;
-    letter-spacing: 0.2em;
+    font-weight: 500;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    padding: 0.85rem 1.5rem;
-    border: 1px solid transparent;
-    transition:
-      background-color 180ms ease,
-      color 180ms ease,
-      border-color 180ms ease,
-      box-shadow 180ms ease;
+    color: #6b7080;
   }
-  .btn-action {
-    background: rgb(var(--c-action) / 0.12);
-    color: var(--action);
-    border-color: var(--action);
+
+  /* Warm gradient text for a single emphasised word. */
+  .text-ember {
+    background: linear-gradient(92deg, #ff9c52, #f07e26);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
-  .btn-action:hover {
-    background: var(--action);
-    color: rgb(var(--c-bg));
-    box-shadow: 0 0 24px rgb(var(--c-action) / 0.5);
-  }
-  .btn-ghost {
-    background: rgb(var(--c-neon) / 0.04);
-    color: var(--neon);
-    border-color: var(--line);
-  }
-  .btn-ghost:hover {
-    border-color: var(--neon);
-    box-shadow: 0 0 20px rgb(var(--c-neon) / 0.3);
+
+  /* Hairline divider that fades at both ends. */
+  .rule {
+    height: 1px;
+    border: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.12),
+      transparent
+    );
   }
 
   .skip-link {
     position: absolute;
     left: 1rem;
-    top: -3.5rem;
+    top: -4rem;
     z-index: 100;
-    background: var(--panel-raised);
-    color: var(--neon);
-    border: 1px solid var(--neon);
-    padding: 0.5rem 1rem;
-    font-family: var(--font-mono), ui-monospace, monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+    background: #191b24;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 9999px;
+    padding: 0.6rem 1.1rem;
+    font-size: 0.8rem;
     transition: top 150ms ease-out;
   }
   .skip-link:focus {
     top: 1rem;
   }
-
-  .rule-neon {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--neon), transparent);
-    opacity: 0.5;
-  }
-
-  /* Per-element brand accent, driven by a --accent custom property. */
-  .node {
-    transition:
-      box-shadow 0.2s ease,
-      border-color 0.2s ease;
-  }
-  .node[data-active] {
-    border-color: var(--accent);
-    box-shadow:
-      0 0 24px color-mix(in srgb, var(--accent) 22%, transparent),
-      inset 0 0 24px color-mix(in srgb, var(--accent) 7%, transparent);
-  }
-  .accent-text {
-    color: var(--accent);
-  }
-  .accent-glow {
-    color: var(--accent);
-  }
-  .accent-lip {
-    background: var(--accent);
-    box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 55%, transparent);
-  }
 }
 
 /* ---------------------------------------------------------------------------
-   Motion. Restrained and premium. Reveals (GSAP), calm pulse travel, blink.
+   Motion. Restrained. Honour the reduced-motion preference everywhere.
    --------------------------------------------------------------------------- */
-@keyframes status-blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.25; }
-}
-.status-dot {
-  animation: status-blink 2s ease-in-out infinite;
-}
-
-@keyframes pulse-travel {
-  to { stroke-dashoffset: -240; }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;

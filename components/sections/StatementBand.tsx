@@ -1,28 +1,26 @@
 import { statement } from "@/content/home";
+import { Section } from "@/components/ui/Section";
+import { Container } from "@/components/ui/Container";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/Reveal";
 
 /**
- * Statement band (The Grid): one bright statement on the void, framed top and
- * bottom by neon light rules. Capped at 52rem for a controlled measure.
+ * Statement band: one large, plain-spoken claim set in the big display voice,
+ * the lead sentence in white and the rest carried down in muted grey, echoing
+ * the CoLab problem-statement headlines.
  */
 export function StatementBand() {
   return (
-    <section className="relative">
-      <div className="shell">
-        <div className="rule-neon" />
-        <div className="py-16 wide:py-24">
-          <Reveal className="max-w-statement">
-            <p className="label label-neon">{statement.label}</p>
-            <p className="mt-8 text-statement text-white/85">
-              <strong className="glow-text font-normal text-white">
-                {statement.lead}
-              </strong>{" "}
-              {statement.rest}
-            </p>
-          </Reveal>
-        </div>
-        <div className="rule-neon" />
-      </div>
-    </section>
+    <Section>
+      <Container>
+        <Reveal className="max-w-4xl">
+          <Eyebrow>{statement.label}</Eyebrow>
+          <p className="mt-8 text-h2 font-semibold leading-tight">
+            <span className="text-white">{statement.lead}</span>{" "}
+            <span className="text-fog">{statement.rest}</span>
+          </p>
+        </Reveal>
+      </Container>
+    </Section>
   );
 }

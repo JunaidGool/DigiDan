@@ -1,11 +1,16 @@
 # DigiDan website
 
 Marketing site for **DigiDan (Pty) Ltd**: digidan.co.za. Next.js (App Router)
-static export, Tailwind, hand-authored isometric SVG. Theme: modular "building
-blocks". It also hosts the **War Room** product showcase, which carries its own
-dark tactical "situation-room" identity. All copy lives in typed content files
-and is traceable to the Company Profile (and, for War Room, the `the_war_room`
-repository docs). No invented clients, capabilities or metrics.
+static export, Tailwind, and a hand-built component toolkit.
+
+**Design language.** A single dark, premium interface in the spirit of a modern
+product-led SaaS site: a near-black canvas, big bold display headings, rounded
+dark surfaces, one warm signature gradient and **DigiDan orange** as the only
+bright accent. Nothing is pulled from a UI component library — every button,
+card, carousel and icon is built in `components/ui`.
+
+All copy lives in a typed content file (`content/home.ts`) and is used verbatim.
+No invented clients, capabilities or metrics.
 
 ## Run
 
@@ -33,35 +38,43 @@ Copy `.env.example` to `.env.local` and set:
 
 | Variable | Purpose |
 |---|---|
-| `NEXT_PUBLIC_FORMSPREE_ENDPOINT` | Contact-form POST target (Formspree). Until set, the form shows a "not configured" notice. |
 | `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` | Enables cookieless Plausible analytics. Leave empty to load no analytics. |
+
+## Design system
+
+Tokens live in `tailwind.config.ts` (colours, radii, type scale, the `ember`
+gradient, motion) and `app/globals.css` (base canvas, the `.shell` container,
+`.kicker`, `.text-ember`, focus and reduced-motion rules).
+
+The custom toolkit in `components/ui/`:
+
+- `Button.tsx` — primary / secondary / ghost / round-icon variants, with a CSS
+  sheen sweep on the primary. Renders as `<a>` or `<button>`.
+- `Card.tsx` — the rounded dark surface, with an optional interactive lift.
+- `Carousel.tsx` — hand-built slide switcher (dots, round controls, keyboard,
+  swipe). Powers the hero showcase.
+- `Section.tsx`, `Container.tsx`, `Eyebrow.tsx` — layout + heading primitives.
+- `icons.tsx` — the hexagon line-icons drawn from scratch for each capability.
 
 ## Content
 
-Everything editable lives in `/content/*.ts`:
+Everything editable lives in `content/home.ts`: `site`, `nav`, `hero`,
+`statement`, `capabilities`, `overview`, `work`, `trust`, `showcase`,
+`capabilityHighlights`, `cta` and `footer`. Highlight phrases are exact
+substrings of the approved copy, wrapped in the accent at render time only.
 
-- `site`, `hero`, `services`, `approach`, `harness`, `leadership`: homepage + About/Approach copy.
-- `caseStudies`: the single source of truth for `/work`; the homepage portfolio cards derive from it.
-- `stats`: the "By the numbers" strip (real, sourced figures only).
-- `assistant`: the guide's conversation tree (see below).
-- `warRoom`: the War Room showcase content, sourced from the product repo.
+## Sections
 
-Named referees are **not** published (consent / POPIA); share them privately on
-request. The three client engagements still appear via the case studies.
+`app/page.tsx` composes the homepage:
 
-## Notable features
-
-- **Interactive hero** (`components/HeroLogo.tsx`): the block mark assembles on
-  load, then leans toward the cursor and replays on click. Reduced-motion safe.
-- **Delivery staircase**: isometric blocks that drop in on scroll (desktop) or
-  build top-down as a vertical stack (mobile). See `components/iso/`.
-- **The guide** (`components/Assistant.tsx`): a deterministic, no-LLM assistant
-  (bottom-right launcher). Fully accessible dialog; flows live in `content/assistant.ts`.
-- **Stat strip** (`components/sections/Stats.tsx`): count-up on scroll; SSR shows
-  final numbers so no-JS/reduced-motion are unaffected.
-- **War Room theme**: the `/products/war-room` page uses a dark HUD theme scoped
-  entirely under the `.wr` class in `app/globals.css`, so it never touches the
-  DigiDan light theme.
+- `Hero` — headline, lead, actions, and the gradient showcase carousel of live
+  console readouts.
+- `TrustBar` — client wordmarks.
+- `StatementBand` — the "what we do" statement.
+- `Capabilities` — three capability cards with custom hexagon icons.
+- `Overview` — company indicators (count-up) and a live telemetry panel.
+- `Work` — the live products.
+- `CTA` — the closing gradient conversion band.
 
 All motion is behind `prefers-reduced-motion` and progressively enhanced (the
 server-rendered state is always the final, usable one).
@@ -71,21 +84,10 @@ server-rendered state is always the final, usable one).
 Static export → host anywhere that serves static files. Vercel or Cloudflare
 Pages recommended; build command `npm run build`, output directory `out`.
 
-## Regenerating assets
-
-```bash
-npm run gen:logo                      # DigiDan block mark SVG
-node scripts/generate-warroom-logo.mjs # War Room pentagon-table mark
-node scripts/generate-og.mjs          # then render + crop to public/og.png (see script)
-node scripts/contrast-audit.mjs       # WCAG AA contrast check of the palette
-```
-
 ## Structure
 
-- `app/`: routes: home, `/work`, `/work/[slug]`, `/approach`, `/about`,
-  `/contact`, `/products/war-room`; plus `sitemap.ts`, `robots.ts`, `icon.svg`.
-- `components/`: Nav, Footer, Logo, HeroLogo, Assistant, WarRoomLogo, Reveal,
-  `sections/`, and `iso/` (shared block illustrations).
-- `lib/iso.ts`: shared isometric projection used by every block graphic.
-- `content/`: typed copy and data.
-- `scripts/`: asset generators + the contrast audit.
+- `app/`: `layout.tsx`, `page.tsx`, `globals.css`, `sitemap.ts`, `robots.ts`, `icon.svg`.
+- `components/`: `Nav`, `Footer`, `Logo`, `Reveal`, `CountUp`, `LiveFeed`,
+  `Analytics`, `sections/`, and the `ui/` toolkit.
+- `content/home.ts`: typed copy and data.
+- `scripts/`: asset generators (logo, OG image) + the contrast audit.

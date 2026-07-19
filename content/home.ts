@@ -157,3 +157,49 @@ export const footer = {
   location: "SOUTH AFRICA | DIGIDAN.CO.ZA",
   contact: "Contact us",
 } as const;
+
+/**
+ * Trust bar. Real engagements retained by the partners, shown as wordmarks. The
+ * label stays honest: these are teams the founders have delivered for.
+ */
+export const trust = {
+  label: "BUILT BY ENGINEERS TRUSTED ON WORK THAT SHIPS",
+  logos: ["Samsung", "Cheil", "BNM", "nopCommerce"],
+} as const;
+
+/**
+ * Hero showcase. Each capability is shown as a live console readout inside the
+ * gradient panel, paged by the carousel. Content is pulled from the capability
+ * blades so there is a single source of truth.
+ */
+export const showcase = {
+  label: "INSIDE THE SYSTEM",
+  slides: capabilities.blades.map((b) => ({
+    title: b.title,
+    index: b.index,
+    console: b.console,
+  })),
+} as const;
+
+/**
+ * Per-capability highlight phrase. Each string is an exact substring of the
+ * matching blade's card copy, wrapped in the accent at render time. Styling
+ * only: the approved words are unchanged.
+ */
+export const capabilityHighlights = [
+  "handle money safely",
+  "modernise the systems your business already relies on",
+  "human approval where it matters",
+] as const;
+
+/**
+ * Closing call to action. British English, no em dashes, in the DigiDan voice.
+ */
+export const cta = {
+  label: "START HERE",
+  title: "Let us build the system your business depends on.",
+  paragraph:
+    "Tell us what you are trying to run in the real world. We design for all of it: the people, the hardware, the data and what happens when something fails.",
+  primary: "Start a project",
+  secondary: "View capabilities",
+} as const;

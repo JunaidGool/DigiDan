@@ -1,16 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Manrope, JetBrains_Mono } from "next/font/google";
 import { site } from "@/content/home";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Analytics } from "@/components/Analytics";
 import "./globals.css";
 
-// Swiss, enterprise-grade typography: Inter for display and body, a neutral
-// mono for data and system labels. No stylised sci-fi faces.
-const sans = Inter({
+// Manrope: a clean geometric grotesque for display and body, echoing the CoLab
+// wordmark's even, modern letterforms. JetBrains Mono carries the console and
+// technical readouts.
+const sans = Manrope({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-sans",
   display: "swap",
 });
@@ -47,17 +48,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#000000" },
-    { media: "(prefers-color-scheme: light)", color: "#EEF5F2" },
-  ],
-  colorScheme: "dark light",
+  themeColor: "#050609",
+  colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
 };
-
-// Applies the saved theme before first paint so there is no flash. Default dark.
-const themeScript = `(function(){try{var t=localStorage.getItem('digidan-theme');if(t!=='dark'&&t!=='light'&&t!=='brand')t='dark';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();`;
 
 export default function RootLayout({
   children,
@@ -65,13 +60,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en-ZA"
-      data-theme="dark"
-      className={`${sans.variable} ${mono.variable}`}
-    >
+    <html lang="en-ZA" className={`${sans.variable} ${mono.variable}`}>
       <body>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <a href="#top" className="skip-link">
           Skip to content
         </a>
