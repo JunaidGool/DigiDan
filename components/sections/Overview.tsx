@@ -3,11 +3,14 @@ import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
 import { LiveFeed } from "@/components/LiveFeed";
 
+// Brand colours for the two stat bricks (teal, yellow).
+const BRICK_ACCENT = ["#2DE1C6", "#F5C518"];
+
 /**
  * Telemetry & Capabilities Hub (The Grid). Left: the company overview with two
- * key indicators encased in glass display bricks with illuminated top lips, and
- * the partner paragraph. Right: the telemetry instrument with count-up values
- * and a live diagnostic feed.
+ * key indicators encased in glass display bricks with illuminated top lips in
+ * the brand colours, and the partner paragraph. Right: the telemetry instrument
+ * with count-up values and a live diagnostic feed.
  */
 export function Overview() {
   const { label, numbers, paragraph, telemetry } = overview;
@@ -20,16 +23,22 @@ export function Overview() {
           <p className="label label-neon">{label}</p>
 
           <div className="mt-8 grid grid-cols-2 gap-5">
-            {numbers.map((n) => (
-              <div key={n.caption} className="glass relative overflow-hidden p-6">
-                {/* Illuminated top lip. */}
+            {numbers.map((n, i) => (
+              <div
+                key={n.caption}
+                className="glass relative overflow-hidden p-6"
+                style={
+                  { "--accent": BRICK_ACCENT[i] } as React.CSSProperties
+                }
+              >
+                {/* Illuminated top lip in the brick's brand colour. */}
                 <span
                   aria-hidden="true"
-                  className="absolute inset-x-0 top-0 h-px bg-neon shadow-glow-neon"
+                  className="accent-lip absolute inset-x-0 top-0 h-px"
                 />
                 <p className="font-mono text-4xl font-medium text-white wide:text-5xl">
                   <CountUp value={n.value} />
-                  <span className="glow-action-text">{n.suffix}</span>
+                  <span className="accent-glow">{n.suffix}</span>
                 </p>
                 <p className="label mt-3">{n.caption}</p>
               </div>

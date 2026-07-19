@@ -5,27 +5,30 @@ import { capabilities } from "@/content/home";
 import { Reveal } from "@/components/Reveal";
 
 /**
- * What We Build (The Grid): a connected node system. Three dark-glass capability
- * panels are mapped around a central System Core router. Hovering (or opening) a
- * panel lights the data highway that connects it to the core, with a pulse
- * travelling along the wire. Clicking a panel opens its detail: plain-English
+ * What We Build (The Grid): a connected node system in the brand palette. The
+ * three capability panels carry the three DigiDan logo colours (teal base,
+ * orange tower, yellow cube), mapped around a central System Core router.
+ * Hovering or opening a panel lights its data highway in that colour, with a
+ * pulse travelling to the core. Clicking a panel opens its detail: plain-English
  * bullets and a live console readout.
  *
  * Panels are buttons with aria-expanded, so the whole system is keyboard and
  * screen-reader operable; the highways and core are decorative.
  */
+
+// Brand accents per node: teal (base), orange (tower), yellow (cube).
+const ACCENT = ["#2DE1C6", "#F07E26", "#F5C518"];
+
 export function Capabilities() {
   const [open, setOpen] = useState<number | null>(null);
   const [hover, setHover] = useState<number | null>(null);
   const active = (i: number) => hover === i || open === i;
 
-  // index -> grid placement (Fintech left, Software below core, AI right)
   const place = [
     "wide:col-start-1 wide:row-start-1",
     "wide:col-start-2 wide:row-start-2",
     "wide:col-start-3 wide:row-start-1",
   ];
-  // index -> highway path in the stretched 100x60 overlay
   const wire = ["M16.6 15 L50 15", "M50 45 L50 15", "M83.4 15 L50 15"];
 
   return (
@@ -37,7 +40,7 @@ export function Capabilities() {
         </Reveal>
 
         <div className="relative mt-14 grid gap-5 wide:grid-cols-3 wide:grid-rows-[auto_auto]">
-          {/* Data highways. */}
+          {/* Data highways, each in its node's brand colour. */}
           <svg
             className="pointer-events-none absolute inset-0 hidden h-full w-full wide:block"
             viewBox="0 0 100 60"
@@ -49,23 +52,23 @@ export function Capabilities() {
                 <path
                   d={d}
                   fill="none"
-                  stroke="#2DE1C6"
+                  stroke={ACCENT[i]}
                   strokeWidth={active(i) ? 0.7 : 0.4}
-                  strokeOpacity={active(i) ? 0.65 : 0.16}
+                  strokeOpacity={active(i) ? 0.7 : 0.16}
                   vectorEffect="non-scaling-stroke"
                 />
                 {active(i) && (
                   <path
                     d={d}
                     fill="none"
-                    stroke="#2DE1C6"
+                    stroke={ACCENT[i]}
                     strokeWidth={1.4}
                     strokeLinecap="round"
                     vectorEffect="non-scaling-stroke"
                     style={{
                       strokeDasharray: "6 60",
                       animation: "pulse-travel 1.1s linear infinite",
-                      filter: "drop-shadow(0 0 3px #2DE1C6)",
+                      filter: `drop-shadow(0 0 3px ${ACCENT[i]})`,
                     }}
                   />
                 )}
@@ -96,15 +99,15 @@ export function Capabilities() {
                 onMouseLeave={() => setHover((h) => (h === i ? null : h))}
                 onFocus={() => setHover(i)}
                 onBlur={() => setHover((h) => (h === i ? null : h))}
-                className={`glass relative z-10 flex flex-col p-7 text-left transition-shadow duration-200 ${place[i]} ${
-                  active(i) ? "glass-lit" : ""
-                }`}
+                data-active={active(i) ? "" : undefined}
+                style={{ "--accent": ACCENT[i] } as React.CSSProperties}
+                className={`glass node relative z-10 flex flex-col p-7 text-left ${place[i]}`}
               >
                 <span className="flex items-center justify-between">
-                  <span className="label label-neon">{blade.index}</span>
+                  <span className="label accent-text">{blade.index}</span>
                   <span
                     aria-hidden="true"
-                    className="font-mono text-lg leading-none text-action"
+                    className="accent-text font-mono text-lg leading-none"
                   >
                     {isOpen ? "−" : "+"}
                   </span>
@@ -118,17 +121,21 @@ export function Capabilities() {
           })}
         </div>
 
-        {/* Detail panel: one open at a time. */}
+        {/* Detail panel: one open at a time, accented in the node's colour. */}
         <div
           id="capability-panel"
           className="overflow-hidden transition-[max-height] duration-500 ease-out"
           style={{ maxHeight: open === null ? 0 : "46rem" }}
         >
           {open !== null && (
-            <div className="glass glass-lit mt-5 grid gap-10 p-8 wide:grid-cols-2 wide:p-10">
+            <div
+              className="glass node mt-5 grid gap-10 p-8 wide:grid-cols-2 wide:p-10"
+              data-active=""
+              style={{ "--accent": ACCENT[open] } as React.CSSProperties}
+            >
               <div>
-                <p className="label label-neon">{capabilities.blades[open].index}</p>
-                <h3 className="glow-text mt-3 font-display text-lg font-normal text-white">
+                <p className="label accent-text">{capabilities.blades[open].index}</p>
+                <h3 className="accent-glow mt-3 font-display text-lg font-normal">
                   {capabilities.blades[open].title}
                 </h3>
                 <ul className="mt-6 space-y-3">
@@ -136,7 +143,7 @@ export function Capabilities() {
                     <li key={b} className="flex items-start gap-3 text-sm text-white/80">
                       <span
                         aria-hidden="true"
-                        className="mt-[0.5em] h-1.5 w-1.5 shrink-0 rotate-45 bg-neon shadow-glow-neon"
+                        className="accent-lip mt-[0.5em] h-1.5 w-1.5 shrink-0 rotate-45"
                       />
                       <span>{b}</span>
                     </li>
@@ -146,13 +153,16 @@ export function Capabilities() {
 
               <div
                 aria-hidden="true"
-                className="self-start border border-neon/25 bg-void/70 p-6"
+                className="self-start border bg-void/70 p-6"
+                style={{
+                  borderColor: "color-mix(in srgb, var(--accent) 30%, transparent)",
+                }}
               >
                 <div className="flex items-center gap-2">
-                  <span className="status-dot h-2 w-2 rounded-full bg-neon shadow-glow-neon" />
-                  <span className="label label-neon text-[0.58rem]">console</span>
+                  <span className="accent-lip status-dot h-2 w-2 rounded-full" />
+                  <span className="label accent-text text-[0.58rem]">console</span>
                 </div>
-                <pre className="mt-4 whitespace-pre-wrap font-mono text-xs leading-relaxed text-neon/90">
+                <pre className="accent-text mt-4 whitespace-pre-wrap font-mono text-xs leading-relaxed opacity-90">
                   {capabilities.blades[open].console.join("\n")}
                 </pre>
               </div>

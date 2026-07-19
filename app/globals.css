@@ -219,6 +219,32 @@
     background: linear-gradient(90deg, transparent, var(--neon), transparent);
     opacity: 0.5;
   }
+
+  /* Per-element brand accent, driven by a --accent custom property so the three
+     logo colours (teal, orange, yellow) can flow through the capability nodes,
+     stats and work index numbers. */
+  .node {
+    transition:
+      box-shadow 0.2s ease,
+      border-color 0.2s ease;
+  }
+  .node[data-active] {
+    border-color: var(--accent);
+    box-shadow:
+      0 0 24px color-mix(in srgb, var(--accent) 22%, transparent),
+      inset 0 0 24px color-mix(in srgb, var(--accent) 7%, transparent);
+  }
+  .accent-text {
+    color: var(--accent);
+  }
+  .accent-glow {
+    color: var(--accent);
+    text-shadow: 0 0 10px color-mix(in srgb, var(--accent) 60%, transparent);
+  }
+  .accent-lip {
+    background: var(--accent);
+    box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 55%, transparent);
+  }
 }
 
 /* ---------------------------------------------------------------------------

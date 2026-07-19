@@ -4,10 +4,19 @@ import { useEffect, useRef } from "react";
 import { work } from "@/content/home";
 import { Reveal } from "@/components/Reveal";
 
+// Brand colours cycled across the projects (teal, orange, yellow).
+const BRAND = [
+  { hex: "#2DE1C6", rgb: "45,225,198" },
+  { hex: "#F07E26", rgb: "240,126,38" },
+  { hex: "#F5C518", rgb: "245,197,24" },
+];
+const accentFor = (i: number) => BRAND[i % BRAND.length];
+
 /**
  * Things We Have Built (The Grid): the project names sit above a dynamic sine
  * wave built from glowing data dots on a canvas. Hovering a project pinches the
- * wave toward that point, creating a splash of light beneath it.
+ * wave toward that point, creating a splash of light in that project's brand
+ * colour beneath it.
  *
  * Reduced motion draws a single calm wave with no animation or pointer response.
  * The canvas is decorative and aria-hidden.
@@ -15,7 +24,7 @@ import { Reveal } from "@/components/Reveal";
 export function Work() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
-  const pinch = useRef({ x: 0.5, s: 0, tx: 0.5, ts: 0 });
+  const pinch = useRef({ x: 0.5, s: 0, tx: 0.5, ts: 0, col: "45,225,198" });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -58,11 +67,12 @@ export function Work() {
         const y = h * 0.5 + wave - env * (h * 0.22);
         const bright = 0.32 + env * 0.68;
         const size = 1.6 + env * 2.8;
+        const col = env > 0.35 ? p.col : "45,225,198";
         ctx.beginPath();
         ctx.arc(x, y, size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${env > 0.4 ? "255,255,255" : "45,225,198"},${bright})`;
+        ctx.fillStyle = `rgba(${col},${bright})`;
         ctx.shadowBlur = 8 + env * 16;
-        ctx.shadowColor = "rgba(45,225,198,0.8)";
+        ctx.shadowColor = `rgba(${col},0.8)`;
         ctx.fill();
       }
       ctx.shadowBlur = 0;
@@ -86,6 +96,7 @@ export function Work() {
   const enter = (i: number) => {
     pinch.current.tx = (i + 0.5) / work.items.length;
     pinch.current.ts = 1;
+    pinch.current.col = accentFor(i).rgb;
   };
   const leave = () => {
     pinch.current.ts = 0;
@@ -116,7 +127,10 @@ export function Work() {
                   onBlur={leave}
                   className="flex h-full flex-col gap-3 bg-panel/50 px-6 py-9 backdrop-blur-[2px] transition-colors hover:bg-panel-raised/70 focus-visible:bg-panel-raised/70"
                 >
-                  <span className="label label-neon">
+                  <span
+                    className="label accent-text"
+                    style={{ "--accent": accentFor(i).hex } as React.CSSProperties}
+                  >
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="font-display text-lg font-normal text-white">
