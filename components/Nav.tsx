@@ -110,7 +110,7 @@ export function Nav() {
               </a>
             ))}
             <div className="mt-8">
-              <ThemeToggle />
+              <ThemeToggle withLabels />
             </div>
             <a
               href={CONTACT_HREF}
