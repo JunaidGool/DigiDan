@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { LogoMark, Wordmark } from "./Logo";
+import { ThemeToggle } from "./ThemeToggle";
 import { nav, footer, CONTACT_HREF } from "@/content/home";
 
 /**
@@ -43,7 +44,7 @@ export function Nav() {
             <Wordmark className="text-[0.95rem] text-white" />
           </a>
 
-          <nav aria-label="Primary" className="hidden items-center gap-8 wide:flex">
+          <nav aria-label="Primary" className="hidden items-center gap-6 wide:flex">
             {nav.map((item) => (
               <a
                 key={item.href}
@@ -53,6 +54,7 @@ export function Nav() {
                 {item.label}
               </a>
             ))}
+            <ThemeToggle />
             <a href={CONTACT_HREF} className="btn btn-action">
               {footer.contact}
             </a>
@@ -107,10 +109,13 @@ export function Nav() {
                 {item.label}
               </a>
             ))}
+            <div className="mt-8">
+              <ThemeToggle />
+            </div>
             <a
               href={CONTACT_HREF}
               onClick={() => setOpen(false)}
-              className="btn btn-action mt-8 w-full"
+              className="btn btn-action mt-4 w-full"
             >
               {footer.contact}
             </a>

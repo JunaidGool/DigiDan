@@ -3,8 +3,8 @@ import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
 import { LiveFeed } from "@/components/LiveFeed";
 
-// Brand colours for the two stat bricks (teal, yellow).
-const BRICK_ACCENT = ["#2DE1C6", "#F5C518"];
+// Brand colours for the two stat bricks (teal, yellow), theme-aware.
+const BRICK_ACCENT = ["var(--accent-teal)", "var(--accent-yellow)"];
 
 /**
  * Telemetry & Capabilities Hub (The Grid). Left: the company overview with two

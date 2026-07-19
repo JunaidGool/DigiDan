@@ -6,15 +6,14 @@ import { LogoMark } from "./Logo";
 
 /**
  * The DigiDan core: the tri-colour DigiDan logo held static and upright inside a
- * larger glowing wireframe building block. The block is a WebGL cube drawn from
+ * larger wireframe building block. The block is a WebGL cube drawn from crisp
  * neon-teal light tracks with brand-yellow corner nodes; it rotates slowly and
  * tilts toward the cursor while the logo at its centre stays fixed, crisp and
- * never distorted.
+ * never distorted. The canvas is transparent, so it sits cleanly on any theme.
  *
- * three.js and its post-processing addons are imported dynamically inside the
- * effect, so nothing runs during SSR and the heavy 3D bundle is code-split away
- * from first paint. Reduced-motion renders a single static frame. The block is
- * decorative; the logo carries the accessible label.
+ * three.js is imported dynamically inside the effect, so nothing runs during SSR
+ * and the 3D bundle is code-split away from first paint. Reduced-motion renders
+ * a single static frame. The block is decorative; the logo carries the label.
  */
 export function Hypercube() {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -29,15 +28,6 @@ export function Hypercube() {
 
     (async () => {
       const THREE = await import("three");
-      const { EffectComposer } = await import(
-        "three/addons/postprocessing/EffectComposer.js"
-      );
-      const { RenderPass } = await import(
-        "three/addons/postprocessing/RenderPass.js"
-      );
-      const { UnrealBloomPass } = await import(
-        "three/addons/postprocessing/UnrealBloomPass.js"
-      );
       if (disposed || !mount) return;
 
       const width = mount.clientWidth || 420;
@@ -91,14 +81,6 @@ export function Hypercube() {
 
       block.rotation.set(-0.5, 0.7, 0);
 
-      // Bloom for the neon-gas illumination.
-      const composer = new EffectComposer(renderer);
-      composer.setSize(width, height);
-      composer.addPass(new RenderPass(scene, camera));
-      composer.addPass(
-        new UnrealBloomPass(new THREE.Vector2(width, height), 0.85, 0.5, 0.0)
-      );
-
       // Cursor tilt.
       const target = { x: 0, y: 0 };
       const onPointer = (e: PointerEvent) => {
@@ -114,7 +96,6 @@ export function Hypercube() {
         const w = mount.clientWidth || width;
         const h = mount.clientHeight || height;
         renderer.setSize(w, h);
-        composer.setSize(w, h);
         camera.aspect = w / h;
         camera.updateProjectionMatrix();
       };
@@ -140,7 +121,7 @@ export function Hypercube() {
         block.rotation.z += (target.x * 0.22 - block.rotation.z) * 0.04;
         const pulse = 0.75 + Math.sin(t * 2.2) * 0.25;
         (nodes.material as T3.PointsMaterial).size = 0.13 + pulse * 0.05;
-        composer.render();
+        renderer.render(scene, camera);
       };
 
       const loop = () => {
@@ -160,7 +141,6 @@ export function Hypercube() {
         io.disconnect();
         window.removeEventListener("resize", onResize);
         window.removeEventListener("pointermove", onPointer);
-        composer.dispose();
         renderer.dispose();
         scene.traverse((obj) => {
           const any = obj as unknown as {
