@@ -5,21 +5,27 @@ import { useEffect, useRef, useState } from "react";
 type State = "idle" | "armed" | "in";
 
 /**
- * Scroll-reveal wrapper. Exposes its state as `data-reveal` for CSS to key off.
+ * Scroll-reveal wrapper (spec 4: fade up 22px, 0.8s, staggered by 0.12s, once).
  * Progressive enhancement: default (no JS) stays "idle" = final visible state,
  * so content is never stuck hidden. JS arms it (hidden) then reveals on
- * intersection. Reduced motion skips straight to visible with no animation.
+ * intersection. Reduced motion is handled in CSS (forced to final state).
+ *
+ * `delay` is a stagger index: element N fades in N * 0.12s after it enters.
  */
 export function Reveal({
   children,
   className,
-  threshold = 0.3,
+  as: Tag = "div",
+  delay = 0,
+  threshold = 0.2,
 }: {
   children: React.ReactNode;
   className?: string;
+  as?: React.ElementType;
+  delay?: number;
   threshold?: number;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLElement>(null);
   const [state, setState] = useState<State>("idle");
 
   useEffect(() => {
@@ -44,8 +50,13 @@ export function Reveal({
   }, [threshold]);
 
   return (
-    <div ref={ref} data-reveal={state} className={className}>
+    <Tag
+      ref={ref}
+      data-reveal={state}
+      className={className}
+      style={{ "--reveal-delay": delay } as React.CSSProperties}
+    >
       {children}
-    </div>
+    </Tag>
   );
 }

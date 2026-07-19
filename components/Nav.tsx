@@ -1,23 +1,21 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import { nav } from "@/content/site";
-import { LogoLockup } from "./Logo";
+import { LogoMark, Wordmark } from "./Logo";
+import { nav, footer, CONTACT_HREF } from "@/content/home";
 
+/**
+ * Nav (spec 3.1): the engine-room strip. Fixed, obsidian at 90% with blur,
+ * bottom edge a 2px amber seam. Left: amber-outline mini mark plus the `d g d n`
+ * wordmark. Right: three mono links plus a Contact us amber button. Below the
+ * 960px breakpoint the non-essential links hide behind a sheet.
+ */
 export function Nav() {
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
   const toggleRef = useRef<HTMLButtonElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
 
-  const strip = (s: string) => s.replace(/\/$/, "");
-  const isActive = (href: string) =>
-    href.startsWith("/") && !href.includes("#") && strip(pathname ?? "") === strip(href);
-
-  // Lock body scroll, close on Escape, and manage focus while the sheet is open.
   useEffect(() => {
     if (!open) return;
     document.body.style.overflow = "hidden";
@@ -33,114 +31,99 @@ export function Nav() {
     };
   }, [open]);
 
-  const links = nav.filter((i) => !i.accent);
-  const cta = nav.find((i) => i.accent);
-
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-line bg-paper/95 backdrop-blur-sm">
+      <header className="seam-bottom fixed inset-x-0 top-0 z-50 bg-obsidian/90 backdrop-blur-md">
         <div className="shell flex h-16 items-center justify-between">
-          <Link href="/" aria-label="DigiDan home" className="shrink-0">
-            <LogoLockup />
-          </Link>
+          <a
+            href="#top"
+            aria-label="DigiDan home"
+            className="flex shrink-0 items-center gap-3 text-amber-d"
+          >
+            <LogoMark size={26} variant="outline" title="DigiDan" />
+            <Wordmark className="text-[0.95rem] text-platinum" />
+          </a>
 
-          {/* Desktop nav */}
-          <nav aria-label="Primary" className="hidden items-center gap-5 lg:gap-7 md:flex">
-            {nav.map((item) =>
-              item.accent ? (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="rounded-lg bg-ink px-4 py-2 text-sm font-medium text-paper transition-transform duration-150 ease-settle hover:-translate-y-0.5"
-                >
-                  {item.label}
-                </Link>
-              ) : (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  aria-current={isActive(item.href) ? "page" : undefined}
-                  className="text-sm text-ink/80 transition-colors hover:text-ink aria-[current=page]:text-ink aria-[current=page]:underline aria-[current=page]:underline-offset-4"
-                >
-                  {item.label}
-                </Link>
-              )
-            )}
+          {/* Desktop links */}
+          <nav
+            aria-label="Primary"
+            className="hidden items-center gap-8 wide:flex"
+          >
+            {nav.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="label label-d transition-colors hover:text-amber-d"
+              >
+                {item.label}
+              </a>
+            ))}
+            <a href={CONTACT_HREF} className="btn btn-amber-d">
+              {footer.contact}
+            </a>
           </nav>
 
           {/* Mobile toggle */}
           <button
             ref={toggleRef}
             type="button"
-            className="-mr-1 p-1 md:hidden"
+            className="-mr-1 p-1 text-platinum wide:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label="Open menu"
             onClick={() => setOpen(true)}
           >
-            <Menu size={24} />
+            <Menu size={22} />
           </button>
         </div>
       </header>
 
-      {/* Full-screen mobile sheet: rendered OUTSIDE the backdrop-blurred header
-          so `fixed` resolves against the viewport, not the header box. */}
+      {/* Full-screen mobile sheet (engine room). */}
       {open && (
         <div
           id="mobile-menu"
           role="dialog"
           aria-modal="true"
           aria-label="Menu"
-          className="fixed inset-0 z-[60] flex flex-col bg-paper md:hidden"
+          className="fixed inset-0 z-[60] flex flex-col bg-obsidian wide:hidden"
         >
-          <div className="shell flex h-16 shrink-0 items-center justify-between border-b border-line">
-            <LogoLockup />
+          <div className="seam-bottom shell flex h-16 shrink-0 items-center justify-between">
+            <span className="flex items-center gap-3 text-amber-d">
+              <LogoMark size={26} variant="outline" title="DigiDan" />
+              <Wordmark className="text-[0.95rem] text-platinum" />
+            </span>
             <button
               ref={closeRef}
               type="button"
-              className="-mr-1 p-1"
+              className="-mr-1 p-1 text-platinum"
               aria-label="Close menu"
               onClick={() => setOpen(false)}
             >
-              <X size={24} />
+              <X size={22} />
             </button>
           </div>
 
           <nav
             aria-label="Mobile"
-            className="shell flex flex-1 flex-col overflow-y-auto py-4"
+            className="shell flex flex-1 flex-col gap-2 py-8"
           >
-            {links.map((item) => (
-              <Link
+            {nav.map((item) => (
+              <a
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                aria-current={isActive(item.href) ? "page" : undefined}
-                className="flex items-center justify-between border-b border-line py-4 font-display text-2xl text-ink aria-[current=page]:text-teal-900"
+                className="border-b border-line-d py-4 font-display text-2xl tracking-[0.03em] text-platinum"
               >
                 {item.label}
-                {isActive(item.href) && (
-                  <span className="h-2.5 w-2.5 rotate-45 bg-teal-500" aria-hidden />
-                )}
-              </Link>
+              </a>
             ))}
-
-            {cta && (
-              <Link
-                href={cta.href}
-                onClick={() => setOpen(false)}
-                className="mt-8 inline-flex justify-center rounded-lg bg-ink px-5 py-4 text-lg font-medium text-paper"
-              >
-                {cta.label}
-              </Link>
-            )}
-
-            {/* quiet disassembled-blocks motif */}
-            <div className="mt-auto flex gap-1.5 pt-10" aria-hidden="true">
-              <span className="h-3 w-3 rotate-45 bg-teal-300" />
-              <span className="h-3 w-3 rotate-45 bg-coral-300" />
-              <span className="h-3 w-3 rotate-45 bg-amber-200" />
-            </div>
+            <a
+              href={CONTACT_HREF}
+              onClick={() => setOpen(false)}
+              className="btn btn-amber-d mt-8 w-full"
+            >
+              {footer.contact}
+            </a>
           </nav>
         </div>
       )}
