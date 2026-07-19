@@ -19,7 +19,7 @@ export function Overview() {
     <section id="overview" className="section">
       <div className="shell grid gap-12 wide:grid-cols-2 wide:gap-16">
         {/* Left. */}
-        <Reveal>
+        <Reveal className="min-w-0">
           <p className="label label-neon">{label}</p>
 
           <div className="mt-8 grid grid-cols-2 gap-5">
@@ -45,11 +45,13 @@ export function Overview() {
             ))}
           </div>
 
-          <p className="mt-9 max-w-xl text-lg text-white/75">{paragraph}</p>
+          <p className="mt-9 max-w-xl text-lg leading-relaxed text-white/80">
+            {paragraph}
+          </p>
         </Reveal>
 
         {/* Right: telemetry instrument. */}
-        <Reveal delay={1}>
+        <Reveal delay={1} className="min-w-0">
           <div className="glass glass-lit">
             <div className="flex items-center justify-between border-b border-neon/20 px-6 py-4">
               <span className="label label-neon">{telemetry.title}</span>
@@ -62,12 +64,12 @@ export function Overview() {
               {telemetry.rows.map((row) => (
                 <div
                   key={row.key}
-                  className="flex items-baseline justify-between gap-6 px-6 py-3.5"
+                  className="flex items-baseline justify-between gap-4 px-6 py-3.5"
                 >
-                  <dt className="font-mono text-[0.62rem] uppercase tracking-[0.18em] text-dim">
+                  <dt className="shrink-0 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-dim">
                     {row.key}
                   </dt>
-                  <dd className="text-right font-mono text-xs tracking-[0.06em] text-white">
+                  <dd className="min-w-0 break-words text-right font-mono text-xs tracking-[0.06em] text-white">
                     {"count" in row && typeof row.count === "number" ? (
                       <CountUp value={row.count} />
                     ) : (

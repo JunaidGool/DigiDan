@@ -74,11 +74,11 @@ export const capabilities = {
       title: "Software Platforms",
       card: "Custom software, online stores and system connections. We also modernise the systems your business already relies on.",
       bullets: [
-        "Custom software products, built to order",
+        "Custom software products, built to scale",
         "Online stores on nopCommerce, set up and extended",
-        "Connecting systems through APIs and data feeds",
-        "Upgrading older systems without breaking them",
-        "Ongoing support after launch, not just delivery",
+        "Systems integration through APIs and data feeds",
+        "Legacy system modernisation and migration",
+        "Release assurance and retained support after launch",
       ],
       console: [
         "$ platform.status --all",
@@ -123,10 +123,12 @@ export const overview = {
     rows: [
       { key: "ENGAGEMENTS.RETAINED", value: "SAMSUNG / CHEIL / BNM" },
       { key: "CAMPAIGNS.2026", value: "168", count: 168 },
-      { key: "HTML.ASSETS", value: "707", count: 707 },
-      { key: "IMAGE.ASSETS", value: "11,672", count: 11672 },
+      { key: "ARCHITECTURE", value: "EVENT-DRIVEN" },
+      { key: "COMPLIANCE", value: "PCI-DSS AWARE" },
+      { key: "MODERNISATION", value: "LEGACY MIGRATION" },
       { key: "DEPLOY.MODE", value: "LOCAL-FIRST / HYBRID / CLOUD" },
-      { key: "UPTIME.PHILOSOPHY", value: "DESIGN FOR FAILURE ✓" },
+      { key: "GOVERNANCE", value: "HUMAN-IN-THE-LOOP" },
+      { key: "RESILIENCE", value: "DESIGN FOR FAILURE" },
     ],
     // Seed lines for the live diagnostic feed (decorative compiler simulation).
     feed: [

@@ -1,28 +1,23 @@
 import type { Metadata, Viewport } from "next";
-import { Orbitron, Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import { site } from "@/content/home";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Analytics } from "@/components/Analytics";
 import "./globals.css";
 
-const display = Orbitron({
+// Swiss, enterprise-grade typography: Inter for display and body, a neutral
+// mono for data and system labels. No stylised sci-fi faces.
+const sans = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const body = Inter({
-  subsets: ["latin"],
-  weight: ["300", "400"],
-  variable: "--font-body",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-sans",
   display: "swap",
 });
 
 const mono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["400", "500"],
   variable: "--font-mono",
   display: "swap",
 });
@@ -66,7 +61,7 @@ export default function RootLayout({
   return (
     <html
       lang="en-ZA"
-      className={`${display.variable} ${body.variable} ${mono.variable}`}
+      className={`${sans.variable} ${mono.variable}`}
     >
       <body>
         <a href="#top" className="skip-link">

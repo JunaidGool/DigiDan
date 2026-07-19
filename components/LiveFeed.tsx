@@ -30,13 +30,13 @@ export function LiveFeed() {
   return (
     <div
       aria-hidden="true"
-      className="border border-neon/25 bg-void/70 p-5 font-mono text-[0.7rem] leading-relaxed text-neon/85"
+      className="min-w-0 border border-neon/25 bg-void/70 p-5 font-mono text-[0.7rem] leading-relaxed text-neon/85"
     >
       <div className="mb-3 flex items-center gap-2">
         <span className="status-dot h-2 w-2 rounded-full bg-neon shadow-glow-neon" />
         <span className="label label-neon text-[0.55rem]">diagnostic feed</span>
       </div>
-      <div className="space-y-1">
+      <div className="min-w-0 space-y-1">
         {lines.map((l, i) => (
           <div key={`${l}-${i}`} className="truncate">
             <span className="text-dim">&gt;</span> {l}

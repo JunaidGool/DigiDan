@@ -135,7 +135,7 @@ export function Capabilities() {
             >
               <div>
                 <p className="label accent-text">{capabilities.blades[open].index}</p>
-                <h3 className="accent-glow mt-3 font-display text-lg font-normal">
+                <h3 className="mt-3 text-lg font-semibold text-white">
                   {capabilities.blades[open].title}
                 </h3>
                 <ul className="mt-6 space-y-3">
