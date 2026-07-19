@@ -2,17 +2,19 @@
 
 import { useEffect, useRef } from "react";
 import type * as T3 from "three";
+import { LogoMark } from "./Logo";
 
 /**
- * The hero hypercube: a WebGL representation of the DigiDan core, drawn strictly
- * from neon-teal light tracks with pulsing internal energy nodes. It tilts subtly
- * toward the cursor and idles with a slow rotation. UnrealBloom gives the lines
- * their neon-gas glow.
+ * The DigiDan core: the tri-colour DigiDan logo held static and upright inside a
+ * larger glowing wireframe building block. The block is a WebGL cube drawn from
+ * neon-teal light tracks with brand-yellow corner nodes; it rotates slowly and
+ * tilts toward the cursor while the logo at its centre stays fixed, crisp and
+ * never distorted.
  *
  * three.js and its post-processing addons are imported dynamically inside the
  * effect, so nothing runs during SSR and the heavy 3D bundle is code-split away
- * from first paint. Reduced-motion renders a single static frame. The canvas is
- * decorative and hidden from assistive tech.
+ * from first paint. Reduced-motion renders a single static frame. The block is
+ * decorative; the logo carries the accessible label.
  */
 export function Hypercube() {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -41,10 +43,7 @@ export function Hypercube() {
       const width = mount.clientWidth || 420;
       const height = mount.clientHeight || 420;
 
-      const renderer = new THREE.WebGLRenderer({
-        alpha: true,
-        antialias: true,
-      });
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.setSize(width, height);
       renderer.setClearColor(0x000000, 0);
@@ -52,53 +51,33 @@ export function Hypercube() {
 
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
-      camera.position.set(0, 0, 7.2);
+      camera.position.set(0, 0, 8);
 
-      // Brand tri-colour: neon-teal light tracks, yellow energy nodes, orange core.
-      const NEON = new THREE.Color(0x2de1c6);
-      const SPARK = new THREE.Color(0xf5c518);
-      const ACTION = new THREE.Color(0xf07e26);
+      const NEON = new THREE.Color(0x2de1c6); // brand teal light tracks
+      const SPARK = new THREE.Color(0xf5c518); // brand yellow corner nodes
 
-      // The core group: an outer cube, an inner cube and energy nodes.
-      const core = new THREE.Group();
-      scene.add(core);
+      // The building block: one larger wireframe cube that frames the logo.
+      const block = new THREE.Group();
+      scene.add(block);
 
-      const outer = new THREE.LineSegments(
-        new THREE.EdgesGeometry(new THREE.BoxGeometry(2.6, 2.6, 2.6)),
+      const SIZE = 2.8;
+      const edges = new THREE.LineSegments(
+        new THREE.EdgesGeometry(new THREE.BoxGeometry(SIZE, SIZE, SIZE)),
         new THREE.LineBasicMaterial({ color: NEON, transparent: true, opacity: 0.9 })
       );
-      core.add(outer);
+      block.add(edges);
 
-      const inner = new THREE.LineSegments(
-        new THREE.EdgesGeometry(new THREE.BoxGeometry(1.25, 1.25, 1.25)),
-        new THREE.LineBasicMaterial({ color: NEON, transparent: true, opacity: 0.65 })
-      );
-      core.add(inner);
-
-      // Spokes from centre to the eight outer corners (the router feel).
-      const c = 1.3;
+      // Brand-yellow energy nodes at the eight corners of the block.
+      const c = SIZE / 2;
       const corners = [
         [c, c, c], [c, c, -c], [c, -c, c], [c, -c, -c],
         [-c, c, c], [-c, c, -c], [-c, -c, c], [-c, -c, -c],
-      ];
-      const spokePts: number[] = [];
-      for (const [x, y, z] of corners) spokePts.push(0, 0, 0, x, y, z);
-      const spokes = new THREE.LineSegments(
+      ].flat();
+      const nodes = new THREE.Points(
         new THREE.BufferGeometry().setAttribute(
           "position",
-          new THREE.Float32BufferAttribute(spokePts, 3)
+          new THREE.Float32BufferAttribute(corners, 3)
         ),
-        new THREE.LineBasicMaterial({ color: NEON, transparent: true, opacity: 0.22 })
-      );
-      core.add(spokes);
-
-      // Energy nodes: corners in brand yellow, centre in brand orange.
-      const nodeGeo = new THREE.BufferGeometry().setAttribute(
-        "position",
-        new THREE.Float32BufferAttribute(corners.flat(), 3)
-      );
-      const nodes = new THREE.Points(
-        nodeGeo,
         new THREE.PointsMaterial({
           color: SPARK,
           size: 0.16,
@@ -108,37 +87,17 @@ export function Hypercube() {
           depthWrite: false,
         })
       );
-      core.add(nodes);
+      block.add(nodes);
 
-      const centreNode = new THREE.Points(
-        new THREE.BufferGeometry().setAttribute(
-          "position",
-          new THREE.Float32BufferAttribute([0, 0, 0], 3)
-        ),
-        new THREE.PointsMaterial({
-          color: ACTION,
-          size: 0.34,
-          transparent: true,
-          opacity: 1,
-          blending: THREE.AdditiveBlending,
-          depthWrite: false,
-        })
-      );
-      core.add(centreNode);
-
-      core.rotation.set(-0.5, 0.7, 0);
+      block.rotation.set(-0.5, 0.7, 0);
 
       // Bloom for the neon-gas illumination.
       const composer = new EffectComposer(renderer);
       composer.setSize(width, height);
       composer.addPass(new RenderPass(scene, camera));
-      const bloom = new UnrealBloomPass(
-        new THREE.Vector2(width, height),
-        0.9, // strength
-        0.5, // radius
-        0.0 // threshold
+      composer.addPass(
+        new UnrealBloomPass(new THREE.Vector2(width, height), 0.85, 0.5, 0.0)
       );
-      composer.addPass(bloom);
 
       // Cursor tilt.
       const target = { x: 0, y: 0 };
@@ -161,7 +120,6 @@ export function Hypercube() {
       };
       window.addEventListener("resize", onResize);
 
-      // Pause rendering when the canvas is offscreen.
       let visible = true;
       const io = new IntersectionObserver(
         ([entry]) => {
@@ -177,15 +135,11 @@ export function Hypercube() {
 
       const render = () => {
         const t = clock.getElapsedTime();
-        // Idle rotation plus eased cursor tilt.
-        core.rotation.y += 0.0022;
-        core.rotation.x += (-0.5 + target.y * 0.4 - core.rotation.x) * 0.04;
-        core.rotation.z += (target.x * 0.25 - core.rotation.z) * 0.04;
-        // Pulse the energy nodes.
+        block.rotation.y += 0.0022;
+        block.rotation.x += (-0.5 + target.y * 0.4 - block.rotation.x) * 0.04;
+        block.rotation.z += (target.x * 0.22 - block.rotation.z) * 0.04;
         const pulse = 0.75 + Math.sin(t * 2.2) * 0.25;
         (nodes.material as T3.PointsMaterial).size = 0.13 + pulse * 0.05;
-        (centreNode.material as T3.PointsMaterial).opacity = 0.6 + pulse * 0.4;
-        (inner.material as T3.LineBasicMaterial).opacity = 0.45 + pulse * 0.3;
         composer.render();
       };
 
@@ -198,11 +152,8 @@ export function Hypercube() {
         raf = requestAnimationFrame(loop);
       };
 
-      if (reduce) {
-        render(); // single static frame
-      } else {
-        loop();
-      }
+      if (reduce) render();
+      else loop();
 
       cleanup = () => {
         cancelAnimationFrame(raf);
@@ -232,10 +183,14 @@ export function Hypercube() {
   }, []);
 
   return (
-    <div
-      ref={mountRef}
-      aria-hidden="true"
-      className="h-[340px] w-full wide:h-[460px]"
-    />
+    <div ref={mountRef} className="relative h-[340px] w-full wide:h-[460px]">
+      {/* The DigiDan logo, held static and upright inside the block. */}
+      <div className="pointer-events-none absolute inset-0 grid place-items-center">
+        <LogoMark
+          className="h-auto w-[34%] max-w-[170px]"
+          title="The DigiDan core"
+        />
+      </div>
+    </div>
   );
 }
