@@ -41,7 +41,7 @@ export const statement = {
   label: "WHAT WE DO",
   // The first sentence is rendered bold.
   lead: "We connect the whole system.",
-  rest: "From payment systems and factory floors to cloud services and online stores. Your software has to work with everything around it, so that is how we build it.",
+  rest: "From payment systems to cloud services and online stores. Your software has to work with everything around it, so that is how we build it.",
 } as const;
 
 export const capabilities = {
@@ -203,7 +203,6 @@ export const ecosystem = {
   core: "DIGIDAN CORE",
   nodes: [
     "Payment systems",
-    "Factory floors",
     "Cloud services",
     "Online stores",
     "APIs and data feeds",
