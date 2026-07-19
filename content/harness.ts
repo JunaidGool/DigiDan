@@ -4,7 +4,7 @@
  */
 
 export const harness = {
-  eyebrow: "AI engineering",
+  eyebrow: "AI, held to account",
   headline: "AI that suggests. Systems that decide.",
   lead: "We treat non-deterministic language models as volatile system components that must operate inside deterministic software boundaries.",
   // The rigid frame around the volatile AI block: labelled gate edges.

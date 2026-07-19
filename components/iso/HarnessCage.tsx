@@ -7,8 +7,8 @@ import { IsoBlock } from "./IsoBlock";
  * which pulses gently. Drawn back-to-front for correct isometric occlusion.
  */
 
-const INK = { light: "#3A3A31", mid: "#26261F", dark: "#17170F" };
-const TEAL_DEEP = { light: "#0C6B54", mid: "#085041", dark: "#05352A" };
+const INK = { light: "#4A3A2A", mid: "#3B2D20", dark: "#241A11" };
+const TEAL_DEEP = { light: "#14705C", mid: "#0B4A3B", dark: "#062E24" };
 
 const BASE: Box = [0, 0, 0, 3, 3, 0.4];
 const AI: Box = [1.05, 1.05, 0.4, 1.95, 1.95, 1.6];

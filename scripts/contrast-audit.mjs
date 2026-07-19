@@ -10,7 +10,8 @@ const C = {
   "amber-100": "#F7EACB", "amber-200": "#F2C36B", "amber-400": "#E3A21A", "amber-900": "#8A5E08",
   "olive-100": "#E4E8CF", "olive-300": "#9FAF62", "olive-500": "#6B7A34", "olive-900": "#3F4A1C",
   ink: "#3B2D20", brown: "#6E5638", faint: "#A18B60",
-  paper: "#F6EDD8", "paper-warm": "#EFE1C2", line: "#E1CFA9", muted: "#6E5638",
+  paper: "#F6EDD8", cream: "#F6EDD8", sand: "#EFE1C2", "coral-600": "#A8431C",
+  "paper-warm": "#EFE1C2", line: "#E1CFA9", muted: "#6E5638",
 };
 
 const hex = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
@@ -35,13 +36,25 @@ const CHECKS = [
   ["amber-900", "amber-100", 1, 4.5, "gold tile title + body"],
   ["olive-900", "olive-100", 1, 4.5, "olive tile title + body"],
   ["paper", "ink", 1, 4.5, "cream text on ink buttons/footer"],
+  ["paper", "ink", 0.8, 4.5, "cream/80 footer meta on ink"],
+  ["paper", "ink", 0.7, 4.5, "cream/70 footer description on ink"],
   ["teal-900", "paper", 1, 4.5, "teal-900 inline links on cream"],
   ["coral-900", "paper", 1, 4.5, "orange-d eyebrow + required asterisk on cream"],
+  ["coral-900", "paper-warm", 1, 4.5, "orange-d eyebrow on sand band"],
+  ["paper", "coral-600", 1, 4.5, "cream label on orange-fill button"],
+  ["coral-900", "paper", 1, 4.5, "orange text on cream pill (closing button)"],
   // Colour-band text rules (brief 4.1): teal band carries cream text; the gold
   // band carries ink (never cream, never gold-d which is too low); the orange
   // closing band carries only the large Fraunces display line in cream.
   ["paper", "teal-500", 1, 4.5, "cream text on deep-teal band"],
-  ["ink", "amber-400", 1, 4.5, "ink text on harvest-gold band"],
+  ["paper", "teal-500", 0.9, 4.5, "cream/90 body on deep-teal band"],
+  ["teal-100", "teal-500", 1, 4.5, "pale-teal eyebrow on deep-teal band"],
+  ["paper", "teal-900", 1, 4.5, "cream text in teal-900 panel/chips"],
+  ["amber-200", "teal-900", 1, 4.5, "gold-l principle label in teal-900 panel"],
+  ["ink", "amber-400", 1, 4.5, "ink heading/eyebrow on harvest-gold band"],
+  ["ink", "amber-400", 0.9, 4.5, "ink/90 eyebrow on gold band"],
+  ["ink", "cream", 1, 4.5, "ink text on cream service tiles"],
+  ["ink", "cream", 0.8, 4.5, "ink/80 tile body on cream tiles"],
   ["paper", "coral-500", 1, 3.0, "cream large display line on burnt-orange band"],
   // Staircase numbers: warm-brown ink on each light top face (large text).
   ["ink", "teal-300", 1, 3.0, "step number on teal top face (large)"],

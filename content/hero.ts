@@ -7,18 +7,12 @@ export const hero = {
     "Banking systems, online stores, factory platforms, and the connections between them. We design for the day things go wrong, and we stay accountable after launch.",
 } as const;
 
-export type CredibilityItem = { name: string; note: string };
-
 /**
- * Named in text only. Samsung is delivered *through Cheil* (not a direct client)
- * and appears as "via Cheil" without the Samsung mark, trademark-safe framing
- * per the agreed build decisions.
+ * Trust strip (brief 6.4). Named in text only, no third-party logos. Samsung is
+ * delivered through Cheil (not a direct client) and always appears as
+ * "Samsung (via Cheil)", the trademark-safe framing the brief specifies.
  */
 export const credibility = {
   label: "Trusted in production by",
-  items: [
-    { name: "Samsung CRM delivery", note: "via Cheil" },
-    { name: "Brand Name Marketing", note: "retained engineering" },
-    { name: "FG Uniforms", note: "TrimBase platform" },
-  ] satisfies CredibilityItem[],
+  names: ["Samsung (via Cheil)", "Brand Name Marketing", "FG Uniforms"],
 } as const;

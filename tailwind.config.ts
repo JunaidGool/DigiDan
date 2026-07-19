@@ -26,10 +26,13 @@ const config: Config = {
           900: "#0B4A3B",
         },
         // Burnt orange (brief: orange #C4531D, orange-l #E89B6E, orange-d #9C3F14).
+        // 600 is a slightly deeper orange reserved for orange-fill buttons so
+        // cream label text clears WCAG AA (the 500 band carries large text only).
         coral: {
           100: "#F6E0D2",
           300: "#E89B6E",
           500: "#C4531D",
+          600: "#A8431C",
           900: "#9C3F14",
         },
         // Harvest gold (brief: gold #E3A21A, gold-l #F2C36B, gold-d #8A5E08).

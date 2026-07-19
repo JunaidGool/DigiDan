@@ -10,7 +10,7 @@ export const H = 34; // pixel height of one z-unit (cubic)
 
 export type Pt = [number, number];
 export type Box = [number, number, number, number, number, number];
-export type Family = "teal" | "coral" | "amber";
+export type Family = "teal" | "coral" | "amber" | "olive";
 
 export const iso = (x: number, y: number, z: number): Pt => [
   (x - y) * TW,
@@ -23,6 +23,7 @@ export const BLOCK_FILLS: Record<Family, { light: string; mid: string; dark: str
   teal: { light: "#8FCBB4", mid: "#14705C", dark: "#0B4A3B" },
   coral: { light: "#E89B6E", mid: "#C4531D", dark: "#9C3F14" },
   amber: { light: "#F2C36B", mid: "#E3A21A", dark: "#8A5E08" },
+  olive: { light: "#9FAF62", mid: "#6B7A34", dark: "#4E5A22" },
 };
 
 export function boxFaces(

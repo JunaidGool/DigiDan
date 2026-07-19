@@ -46,5 +46,5 @@ export const aboutIntro = {
 
 export const closing = {
   heading: "Have a system that needs building? Let's find the first block.",
-  cta: { label: "Start a build", href: "/contact" },
+  cta: { label: "Get in touch", href: "/contact" },
 } as const;

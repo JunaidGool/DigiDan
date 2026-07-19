@@ -4,16 +4,16 @@ import { Staircase } from "@/components/iso/Staircase";
 import { MobileStaircase } from "@/components/iso/MobileStaircase";
 import { Reveal } from "@/components/Reveal";
 
-// mid-stop block fills; the staircase climbs teal -> amber -> coral.
-const FILL: Record<Step["family"], string> = {
-  teal: "bg-teal-500",
-  amber: "bg-amber-400",
-  coral: "bg-coral-500",
+// Number badges: family tint with same-family dark text (AA on every family).
+const BADGE: Record<Step["family"], string> = {
+  teal: "bg-teal-100 text-teal-900",
+  amber: "bg-amber-100 text-amber-900",
+  coral: "bg-coral-100 text-coral-900",
 };
 
 export function Approach() {
   return (
-    <section id="approach" className="scroll-mt-20 bg-paper-warm py-20 md:py-28">
+    <section id="approach" className="scroll-mt-20 py-20 md:py-28">
       <div className="shell">
         <span className="eyebrow">{approachIntro.eyebrow}</span>
         <h2 className="mt-4 text-3xl md:text-4xl">{approachIntro.heading}</h2>
@@ -35,7 +35,7 @@ export function Approach() {
           {steps.map((s) => (
             <li key={s.n} className="flex gap-4">
               <span
-                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-md font-display text-sm font-medium text-paper ${FILL[s.family]}`}
+                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-md font-display text-sm font-semibold ${BADGE[s.family]}`}
               >
                 {s.n}
               </span>

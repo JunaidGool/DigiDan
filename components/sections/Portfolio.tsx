@@ -5,7 +5,7 @@ import { IsoCube } from "@/components/iso/IsoCube";
 
 export function Portfolio() {
   return (
-    <section id="work" className="scroll-mt-20 py-20 md:py-28">
+    <section id="work" className="scroll-mt-20 bg-sand py-20 md:py-28">
       <div className="shell">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
@@ -25,7 +25,7 @@ export function Portfolio() {
             <Link
               key={p.slug}
               href={`/work/${p.slug}`}
-              className="group flex flex-col rounded-tile border border-line bg-paper p-6 transition-transform duration-200 ease-settle hover:-translate-y-1 hover:border-ink/20"
+              className="group flex flex-col rounded-tile border-2 border-ink bg-cream p-6 transition-transform duration-200 ease-settle hover:-translate-y-1"
             >
               {/* the blocks this structure was built from */}
               <div className="flex items-end gap-1.5" aria-hidden="true">

@@ -1,10 +1,11 @@
 import { Hero } from "@/components/sections/Hero";
+import { StripeDivider } from "@/components/StripeDivider";
+import { Trust } from "@/components/sections/Trust";
 import { Services } from "@/components/sections/Services";
 import { Approach } from "@/components/sections/Approach";
 import { Portfolio } from "@/components/sections/Portfolio";
 import { Stats } from "@/components/sections/Stats";
 import { Harness } from "@/components/sections/Harness";
-import { Leadership } from "@/components/sections/Leadership";
 import type { Metadata } from "next";
 import { site } from "@/content/site";
 
@@ -45,12 +46,13 @@ export default function Home() {
       />
       <main id="main">
         <Hero />
+        <StripeDivider />
+        <Trust />
         <Services />
         <Approach />
-        <Portfolio />
         <Stats />
+        <Portfolio />
         <Harness />
-        <Leadership />
       </main>
     </>
   );
