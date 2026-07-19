@@ -193,6 +193,25 @@ export const capabilityHighlights = [
 ] as const;
 
 /**
+ * Ecosystem graph. Illustrates the statement: the DigiDan core in the middle,
+ * with the real-world systems it connects arranged around it. Node labels are
+ * the same systems named in the approved statement copy.
+ */
+export const ecosystem = {
+  label: "ONE CONNECTED SYSTEM",
+  title: "Your software has to work with everything around it.",
+  core: "DIGIDAN CORE",
+  nodes: [
+    "Payment systems",
+    "Factory floors",
+    "Cloud services",
+    "Online stores",
+    "APIs and data feeds",
+    "Legacy systems",
+  ],
+} as const;
+
+/**
  * Closing call to action. British English, no em dashes, in the DigiDan voice.
  */
 export const cta = {
@@ -202,4 +221,7 @@ export const cta = {
     "Tell us what you are trying to run in the real world. We design for all of it: the people, the hardware, the data and what happens when something fails.",
   primary: "Start a project",
   secondary: "View capabilities",
+  emailPlaceholder: "Enter your work email",
+  emailAction: "Talk to us",
+  emailNote: "We only use your address to reply to you. Nothing else.",
 } as const;

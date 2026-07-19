@@ -5,6 +5,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Card } from "@/components/ui/Card";
 import { Reveal } from "@/components/Reveal";
 import { IconLedger, IconPlatform, IconAI, Tick } from "@/components/ui/icons";
+import { accentAt } from "@/components/ui/brand";
 
 const ICONS = [IconLedger, IconPlatform, IconAI];
 
@@ -12,13 +13,15 @@ const ICONS = [IconLedger, IconPlatform, IconAI];
  * Wrap the highlight phrase (an exact substring of the card copy) in the accent.
  * Falls back to plain text if the phrase is not present.
  */
-function withHighlight(text: string, phrase: string) {
+function withHighlight(text: string, phrase: string, color: string) {
   const at = text.indexOf(phrase);
   if (at === -1) return text;
   return (
     <>
       {text.slice(0, at)}
-      <span className="font-semibold text-orange-light">{phrase}</span>
+      <span className="font-semibold" style={{ color }}>
+        {phrase}
+      </span>
       {text.slice(at + phrase.length)}
     </>
   );
@@ -41,21 +44,31 @@ export function Capabilities() {
         <div className="mt-14 grid gap-6 wide:grid-cols-3">
           {capabilities.blades.map((blade, i) => {
             const Icon = ICONS[i];
+            const accent = accentAt(i); // teal / orange / yellow per the logo
             return (
               <Reveal key={blade.index} delay={i}>
-                <Card interactive className="flex h-full flex-col p-8">
-                  <Icon size={56} className="text-orange" title={blade.title} />
-                  <p className="mt-6 font-mono text-xs uppercase tracking-[0.2em] text-fog">
+                <Card className="group flex h-full flex-col overflow-hidden p-8 transition-[transform,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-white/20">
+                  {/* Brand accent bar in the card's logo colour. */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"
+                    style={{ backgroundColor: accent }}
+                  />
+                  <Icon size={56} style={{ color: accent }} title={blade.title} />
+                  <p
+                    className="mt-6 font-mono text-xs uppercase tracking-[0.2em]"
+                    style={{ color: accent }}
+                  >
                     {blade.index}
                   </p>
                   <h3 className="mt-2 text-xl font-bold text-white">{blade.title}</h3>
                   <p className="mt-3 text-ash">
-                    {withHighlight(blade.card, capabilityHighlights[i])}
+                    {withHighlight(blade.card, capabilityHighlights[i], accent)}
                   </p>
                   <ul className="mt-7 space-y-3 border-t border-line pt-6">
                     {blade.bullets.map((b) => (
                       <li key={b} className="flex items-start gap-3 text-sm text-ash">
-                        <Tick className="mt-0.5 shrink-0 text-orange" />
+                        <Tick className="mt-0.5 shrink-0" style={{ color: accent }} />
                         <span>{b}</span>
                       </li>
                     ))}

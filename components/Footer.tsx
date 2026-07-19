@@ -1,7 +1,7 @@
 import { LogoMark, Wordmark } from "./Logo";
 import { Container } from "./ui/Container";
 import { Button } from "./ui/Button";
-import { nav, footer, site, CONTACT_HREF } from "@/content/home";
+import { nav, footer, site, hero, CONTACT_HREF } from "@/content/home";
 
 /**
  * Footer: a hairline rule seals the page, then a two-part row. Left: the mark,
@@ -15,10 +15,11 @@ export function Footer() {
         <div className="grid gap-12 wide:grid-cols-[1.4fr_1fr]">
           <div>
             <span className="flex items-center gap-2.5 text-white">
-              <LogoMark size={32} tone="mono" title="DigiDan" />
+              <LogoMark size={32} tone="brand" title="DigiDan" />
               <Wordmark className="text-base text-white" />
             </span>
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-ash">
+            <p className="mt-5 text-lg font-semibold text-white">{hero.tagline}</p>
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-ash">
               {site.description}
             </p>
             <Button href={CONTACT_HREF} className="mt-8" withArrow>

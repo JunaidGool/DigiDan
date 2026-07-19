@@ -1,7 +1,7 @@
-import { cta, CONTACT_HREF } from "@/content/home";
+import { cta } from "@/content/home";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/Reveal";
+import { EmailCta } from "@/components/ui/EmailCta";
 
 /**
  * Closing call to action: a full-width gradient panel that lifts the eye before
@@ -22,14 +22,8 @@ export function CTA() {
               <p className="mx-auto mt-5 max-w-2xl text-lg text-ash">
                 {cta.paragraph}
               </p>
-              <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-                <Button href={CONTACT_HREF} size="lg" withArrow>
-                  {cta.primary}
-                </Button>
-                <Button href="#capabilities" variant="secondary" size="lg">
-                  {cta.secondary}
-                </Button>
-              </div>
+              <EmailCta />
+              <p className="mt-4 text-xs text-fog">{cta.emailNote}</p>
             </div>
           </div>
         </Reveal>

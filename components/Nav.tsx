@@ -55,7 +55,7 @@ export function Nav() {
             aria-label="DigiDan home"
             className="flex shrink-0 items-center gap-2.5 text-white"
           >
-            <LogoMark size={30} tone="mono" title="DigiDan" />
+            <LogoMark size={30} tone="brand" title="DigiDan" />
             <Wordmark className="text-[0.95rem] text-white" />
           </a>
 
@@ -98,7 +98,7 @@ export function Nav() {
         >
           <div className="flex h-16 shrink-0 items-center justify-between px-5">
             <span className="flex items-center gap-2.5 text-white">
-              <LogoMark size={30} tone="mono" title="DigiDan" />
+              <LogoMark size={30} tone="brand" title="DigiDan" />
               <Wordmark className="text-[0.95rem] text-white" />
             </span>
             <button

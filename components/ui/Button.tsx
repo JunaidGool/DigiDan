@@ -13,7 +13,7 @@ import { ArrowRight } from "lucide-react";
  * Renders as an <a> when `href` is set, otherwise a <button>. The sheen and
  * lift are pure CSS, so they degrade gracefully and respect reduced motion.
  */
-type Variant = "primary" | "secondary" | "ghost" | "icon";
+type Variant = "primary" | "secondary" | "ghost" | "icon" | "outline-gradient";
 type Size = "md" | "lg";
 
 type Common = {
@@ -47,6 +47,11 @@ const variants: Record<Variant, string> = {
     "border border-white/15 bg-white/[0.02] text-white hover:border-white/40 " +
     "hover:bg-white/[0.06] hover:-translate-y-0.5 active:translate-y-0",
   ghost: "px-1 text-ash hover:text-white",
+  // Gradient border over a dark fill (padding-box vs border-box trick), echoing
+  // CoLab's "Talk to an expert" pill in the DigiDan brand gradient.
+  "outline-gradient":
+    "border border-transparent bg-ink text-white hover:-translate-y-0.5 active:translate-y-0 " +
+    "[background:linear-gradient(#050609,#050609)_padding-box,linear-gradient(92deg,#2DE1C6,#F07E26_55%,#F5C518)_border-box]",
   icon:
     "h-12 w-12 rounded-full border border-white/15 bg-white/[0.04] text-white " +
     "hover:border-white/40 hover:bg-white/[0.10] active:scale-95",

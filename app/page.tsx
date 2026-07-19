@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { StatementBand } from "@/components/sections/StatementBand";
+import { Ecosystem } from "@/components/sections/Ecosystem";
 import { Capabilities } from "@/components/sections/Capabilities";
 import { Overview } from "@/components/sections/Overview";
 import { Work } from "@/components/sections/Work";
@@ -46,6 +47,7 @@ export default function Home() {
         <Hero />
         <TrustBar />
         <StatementBand />
+        <Ecosystem />
         <Capabilities />
         <Overview />
         <Work />

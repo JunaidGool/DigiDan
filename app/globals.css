@@ -44,7 +44,7 @@
     pointer-events: none;
     background:
       radial-gradient(60% 42% at 82% -4%, rgba(240, 126, 38, 0.14) 0%, transparent 60%),
-      radial-gradient(55% 40% at 6% 8%, rgba(90, 46, 82, 0.16) 0%, transparent 60%);
+      radial-gradient(55% 40% at 6% 8%, rgba(45, 225, 198, 0.10) 0%, transparent 60%);
   }
 
   h1,

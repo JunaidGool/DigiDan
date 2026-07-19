@@ -83,11 +83,12 @@ const config: Config = {
         lift: "0 30px 70px -35px rgba(0,0,0,0.85)",
       },
       backgroundImage: {
-        // The signature showcase gradient: orange leading into deep plum.
+        // The signature showcase gradient: DigiDan orange leading through burnt
+        // orange into a deep teal-dark, so every stop stays in the brand family.
         ember:
-          "linear-gradient(155deg, #F07E26 0%, #C2521B 30%, #5A2E52 68%, #120E1C 100%)",
+          "linear-gradient(155deg, #F07E26 0%, #C2521B 32%, #1D3F3A 72%, #0A100F 100%)",
         "ember-soft":
-          "radial-gradient(120% 120% at 15% 12%, rgba(240,126,38,0.30) 0%, rgba(90,46,82,0.18) 45%, rgba(5,6,9,0) 78%)",
+          "radial-gradient(120% 120% at 15% 12%, rgba(240,126,38,0.30) 0%, rgba(45,225,198,0.12) 45%, rgba(5,6,9,0) 78%)",
       },
       transitionTimingFunction: {
         out: "cubic-bezier(0.22, 1, 0.36, 1)",

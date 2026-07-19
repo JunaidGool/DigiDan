@@ -1,29 +1,33 @@
 /**
  * Hand-drawn icon set. Each capability icon is a line glyph inside a pointy-top
  * hexagon frame, matching the CoLab iconography but drawn from scratch for
- * DigiDan. Stroke is currentColor so callers set the colour; the frame is
- * rendered a touch dimmer than the glyph.
+ * DigiDan. Stroke is currentColor so callers set the colour (via className or
+ * an inline `style` colour); the frame is rendered a touch dimmer than the glyph.
  */
 
 const HEX = "M32 2 L58 17 L58 47 L32 62 L6 47 L6 17 Z";
+
+type IconProps = {
+  size?: number;
+  className?: string;
+  style?: React.CSSProperties;
+  title?: string;
+};
 
 function HexIcon({
   children,
   size = 56,
   className,
+  style,
   title,
-}: {
-  children: React.ReactNode;
-  size?: number;
-  className?: string;
-  title?: string;
-}) {
+}: IconProps & { children: React.ReactNode }) {
   return (
     <svg
       viewBox="0 0 64 64"
       width={size}
       height={size}
       className={className}
+      style={style}
       role={title ? "img" : "presentation"}
       aria-label={title}
       aria-hidden={title ? undefined : true}
@@ -40,7 +44,7 @@ function HexIcon({
 }
 
 /** Fintech: a currency token, for money moved safely and recorded. */
-export function IconLedger(props: { size?: number; className?: string; title?: string }) {
+export function IconLedger(props: IconProps) {
   return (
     <HexIcon {...props}>
       <circle cx="32" cy="32" r="11" />
@@ -52,7 +56,7 @@ export function IconLedger(props: { size?: number; className?: string; title?: s
 }
 
 /** Software platforms: two stacked, connected panels. */
-export function IconPlatform(props: { size?: number; className?: string; title?: string }) {
+export function IconPlatform(props: IconProps) {
   return (
     <HexIcon {...props}>
       <rect x="19" y="21" width="26" height="12" rx="3" />
@@ -66,7 +70,7 @@ export function IconPlatform(props: { size?: number; className?: string; title?:
 }
 
 /** AI and automation: a decision node branching to checked outputs. */
-export function IconAI(props: { size?: number; className?: string; title?: string }) {
+export function IconAI(props: IconProps) {
   return (
     <HexIcon {...props}>
       <circle cx="24" cy="32" r="5" />
@@ -79,13 +83,20 @@ export function IconAI(props: { size?: number; className?: string; title?: strin
 }
 
 /** Small custom tick used in bullet lists. */
-export function Tick({ className }: { className?: string }) {
+export function Tick({
+  className,
+  style,
+}: {
+  className?: string;
+  style?: React.CSSProperties;
+}) {
   return (
     <svg
       viewBox="0 0 16 16"
       width={16}
       height={16}
       className={className}
+      style={style}
       fill="none"
       stroke="currentColor"
       strokeWidth={2.2}

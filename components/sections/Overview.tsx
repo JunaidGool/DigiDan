@@ -6,6 +6,10 @@ import { Card } from "@/components/ui/Card";
 import { Reveal } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
 import { LiveFeed } from "@/components/LiveFeed";
+import { BRAND } from "@/components/ui/brand";
+
+// Two indicators, carried in two of the logo colours.
+const STAT_ACCENT = [BRAND.teal, BRAND.yellow];
 
 /**
  * Company overview. Left: the eyebrow, two large key indicators and the partner
@@ -23,11 +27,13 @@ export function Overview() {
           <Eyebrow>{label}</Eyebrow>
 
           <div className="mt-8 grid grid-cols-2 gap-5">
-            {numbers.map((n) => (
+            {numbers.map((n, i) => (
               <Card key={n.caption} className="p-6">
                 <p className="text-5xl font-extrabold tracking-tight text-white wide:text-6xl">
                   <CountUp value={n.value} />
-                  <span className="text-orange">{n.suffix}</span>
+                  <span style={{ color: STAT_ACCENT[i % STAT_ACCENT.length] }}>
+                    {n.suffix}
+                  </span>
                 </p>
                 <p className="mt-3 text-sm text-ash">{n.caption}</p>
               </Card>
