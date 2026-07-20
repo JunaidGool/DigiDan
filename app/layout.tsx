@@ -28,8 +28,29 @@ const title = "DigiDan: software strong enough to depend on";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title,
+  title: {
+    default: title,
+    template: "%s | DigiDan",
+  },
   description: site.description,
+  applicationName: site.name,
+  authors: [{ name: site.legalName, url: site.url }],
+  creator: site.legalName,
+  publisher: site.legalName,
+  category: "technology",
+  keywords: [
+    "software engineering South Africa",
+    "custom software development",
+    "nopCommerce development",
+    "e-commerce development",
+    "systems integration",
+    "API integration",
+    "AI automation",
+    "legacy system modernisation",
+    "DigiDan",
+  ],
+  alternates: { canonical: "/" },
+  manifest: "/manifest.webmanifest",
   openGraph: {
     type: "website",
     locale: "en_ZA",
@@ -45,7 +66,17 @@ export const metadata: Metadata = {
     description: site.description,
     images: ["/og.png"],
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export const viewport: Viewport = {

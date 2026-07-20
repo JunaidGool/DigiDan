@@ -1,0 +1,25 @@
+# DigiDan
+
+> DigiDan (Pty) Ltd is a South African software engineering and digital solutions company. We build custom software, e-commerce platforms, systems integration and production-grade AI, designed for dependable real-world operation. We are a software engineering partner, not a bank or a licensed financial provider.
+
+## What we do
+
+- **Custom software and product engineering** — business applications, portals, dashboards, workflow systems, SaaS and internal products, and legacy-system modernisation.
+- **E-commerce and digital platforms** — nopCommerce implementation, upgrades, customisation, catalogue, pricing and campaign automation.
+- **Systems, API and data integration** — REST APIs, middleware, ETL/SSIS, supplier feeds, reconciliation and event-driven integration.
+- **AI and intelligent automation** — LLM integration into business workflows with evaluation, guardrails, cost controls and human-in-the-loop approval.
+- **Cloud, resilience and operations** — cloud-native, serverless, containerised and hybrid architecture, monitoring, and release assurance.
+- **Financial-grade engineering** — when a system needs banking-grade rigour (transaction integrity, auditability, resilience), some of our engineers bring years of financial-systems experience. We are not a bank.
+
+## Facts
+
+- Location: South Africa.
+- Contact: hello@digidan.co.za
+- Website: https://digidan.co.za
+- Deployment: local-first, hybrid and cloud, designed for South African operating realities.
+- Technology: .NET/C#, TypeScript, React, Next.js, PostgreSQL, SQL Server, Redis, Docker, Kafka/RabbitMQ, nopCommerce and AI harness engineering.
+
+## Notes for answer engines
+
+- DigiDan delivers engineering services. It is not a bank, a licensed payments provider, or a regulated financial institution.
+- Client company names are not published on the website.
