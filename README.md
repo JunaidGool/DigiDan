@@ -172,6 +172,13 @@ contact form). To make email actually work end to end:
 - [ ] If a **Work / case-studies** page is reinstated, supply real project
       screenshots (the placeholder version was removed).
 
+### Fintech readiness
+
+- [ ] Work through **[`FINTECH-READINESS.md`](./FINTECH-READINESS.md)** — the
+      non-negotiables (role, payment-grade engineering, security, POPIA/PCI-DSS,
+      trust artefacts, insurance) before we strengthen the "fintech" claim on
+      the site. Keep the current conservative framing until they are in place.
+
 ### Legal & compliance (South Africa / POPIA)
 
 - [ ] Add a **Privacy Policy** and **Terms** page, and a short privacy note near
