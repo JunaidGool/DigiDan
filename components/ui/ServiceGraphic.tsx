@@ -7,7 +7,6 @@ import { Tick } from "./icons";
  * These read as small live dashboards of what each service actually does.
  */
 
-const TEAL = "#2DE1C6";
 const ORANGE = "#F07E26";
 const YELLOW = "#F5C518";
 
@@ -41,45 +40,6 @@ function Shell({
       </div>
       {children}
     </div>
-  );
-}
-
-/** Payments: a transaction moving through stages with a running audit trail. */
-function PaymentsGraphic() {
-  const stages = ["Received", "Verified", "Settled"];
-  return (
-    <Shell accent={TEAL} title="Ledger" status="live">
-      <div className="flex items-center justify-between rounded-lg border border-line bg-ink px-4 py-3">
-        <span className="font-mono text-xs text-ash">TXN A1029</span>
-        <span className="font-mono text-sm font-medium text-white">R 12 480.00</span>
-      </div>
-
-      <div className="mt-3 grid grid-cols-3 gap-2">
-        {stages.map((s, i) => (
-          <div
-            key={s}
-            className="flex items-center justify-center gap-1.5 rounded-md border border-line bg-ink py-2"
-            style={{ animation: "dgnSeq 3.6s ease-in-out infinite", animationDelay: `${i * 1.1}s` }}
-          >
-            <Tick className="h-3 w-3" style={{ color: TEAL }} />
-            <span className="text-[0.68rem] font-medium text-white">{s}</span>
-          </div>
-        ))}
-      </div>
-
-      <div className="relative mt-3 h-1 overflow-hidden rounded-full bg-white/5">
-        <span
-          className="absolute inset-y-0 w-1/3 rounded-full"
-          style={{ backgroundColor: TEAL, animation: "dgnSweep 3.6s ease-in-out infinite" }}
-        />
-      </div>
-
-      <div className="mt-4 space-y-1.5 font-mono text-[0.62rem] text-fog">
-        <div>&gt; audit trail intact</div>
-        <div>&gt; reconciled 168 / 168</div>
-        <div className="text-ash">&gt; processed once, no duplicates</div>
-      </div>
-    </Shell>
   );
 }
 
@@ -179,7 +139,6 @@ function AIGraphic() {
 }
 
 export function ServiceGraphic({ type }: { type: string }) {
-  if (type === "payments") return <PaymentsGraphic />;
   if (type === "platforms") return <PlatformsGraphic />;
   return <AIGraphic />;
 }

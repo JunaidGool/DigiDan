@@ -1,10 +1,10 @@
 import { accentAt } from "./brand";
 
 /**
- * Custom product marks. Each of DigiDan's own products gets a distinct
- * hand-drawn line glyph, so the work grid carries real identity instead of a
- * generic bullet. Colour is passed in (cycled through the brand palette by the
- * caller). Unknown names fall back to a neutral block so nothing ever breaks.
+ * Custom product marks: a distinct hand-drawn line glyph per project, selected
+ * by a `type` key so it does not depend on the project name. Colour is cycled
+ * through the brand palette by the caller's index. Unknown types fall back to a
+ * neutral block.
  */
 type MarkProps = { size?: number; color?: string; className?: string };
 
@@ -33,7 +33,7 @@ function Frame({
 }
 
 /** TrimBase: a trimmed block sitting on a baseline. */
-function TrimBase(p: MarkProps) {
+function Trim(p: MarkProps) {
   return (
     <Frame {...p}>
       <path d="M9 20 V12 H19 L23 16 V20 Z" />
@@ -42,55 +42,48 @@ function TrimBase(p: MarkProps) {
   );
 }
 
-/** DeploySeal: a seal shield with an upward deploy chevron. */
-function DeploySeal(p: MarkProps) {
+/** DeploySeal: a seal shield with an upward sign-off tick. */
+function Seal(p: MarkProps) {
   return (
     <Frame {...p}>
       <path d="M16 5 L25 9 V16 C25 21 21 24 16 27 C11 24 7 21 7 16 V9 Z" />
-      <path d="M12 17 L16 13 L20 17" />
-      <path d="M16 13 V21" />
+      <path d="M12 16 L15 19 L20 13" />
     </Frame>
   );
 }
 
-/** JujHub: a central hub wired to four nodes. */
-function JujHub(p: MarkProps) {
-  return (
-    <Frame {...p}>
-      <circle cx="16" cy="16" r="3.2" />
-      <path d="M13.5 13.5 L9 9 M18.5 13.5 L23 9 M13.5 18.5 L9 23 M18.5 18.5 L23 23" />
-      <circle cx="8" cy="8" r="2" />
-      <circle cx="24" cy="8" r="2" />
-      <circle cx="8" cy="24" r="2" />
-      <circle cx="24" cy="24" r="2" />
-    </Frame>
-  );
-}
-
-/** ProductLens: an aperture of nested rings with a blade line. */
-function ProductLens(p: MarkProps) {
+/** Web Watchdog: a radar sweep watching a fleet of sites. */
+function Radar(p: MarkProps) {
   return (
     <Frame {...p}>
       <circle cx="16" cy="16" r="10" />
-      <circle cx="16" cy="16" r="4" />
-      <path d="M16 6 L20.5 12.5" />
-      <path d="M26 16 L18.5 16" strokeOpacity={0.6} />
+      <circle cx="16" cy="16" r="5" strokeOpacity={0.6} />
+      <circle cx="16" cy="16" r="1.6" fill="currentColor" stroke="none" />
+      <path d="M16 16 L24.5 10.5" />
     </Frame>
   );
 }
 
-/** Inboxlio: an inbox tray receiving a downward flow. */
-function Inboxlio(p: MarkProps) {
+/** CRM and campaign engineering: an envelope. */
+function Mail(p: MarkProps) {
   return (
     <Frame {...p}>
-      <path d="M6 18 H11 L13 21 H19 L21 18 H26 V25 H6 Z" />
-      <path d="M16 6 V13" />
-      <path d="M12.5 10 L16 13.5 L19.5 10" />
+      <rect x="6" y="9" width="20" height="14" rx="2.5" />
+      <path d="M7 11 L16 18 L25 11" />
     </Frame>
   );
 }
 
-/** Fallback block. */
+/** E-commerce: a shopping bag. */
+function Store(p: MarkProps) {
+  return (
+    <Frame {...p}>
+      <path d="M9 11 H23 L24 26 H8 Z" />
+      <path d="M12.5 11 V9.5 A3.5 3.5 0 0 1 19.5 9.5 V11" />
+    </Frame>
+  );
+}
+
 function Generic(p: MarkProps) {
   return (
     <Frame {...p}>
@@ -100,22 +93,22 @@ function Generic(p: MarkProps) {
 }
 
 const MARKS: Record<string, (p: MarkProps) => React.JSX.Element> = {
-  TrimBase,
-  DeploySeal,
-  JujHub,
-  ProductLens,
-  Inboxlio,
+  trim: Trim,
+  seal: Seal,
+  radar: Radar,
+  mail: Mail,
+  store: Store,
 };
 
 export function ProductMark({
-  name,
+  type,
   index = 0,
   size = 30,
 }: {
-  name: string;
+  type: string;
   index?: number;
   size?: number;
 }) {
-  const Mark = MARKS[name] ?? Generic;
+  const Mark = MARKS[type] ?? Generic;
   return <Mark size={size} color={accentAt(index)} />;
 }

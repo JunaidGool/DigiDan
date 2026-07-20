@@ -40,7 +40,7 @@ const NODES: NodeDef[] = [
   { id: "client", label: "Client", pos: [-4.6, 0, -0.4], s: 0.46, color: TEAL },
   { id: "gateway", label: "API Gateway", pos: [-1.9, 0, 0.9], s: 0.5, color: ORANGE },
   { id: "services", label: "Services", pos: [0.7, 0, -0.6], s: 0.82, color: WHITE },
-  { id: "ledger", label: "Ledger", pos: [3.4, 0, 1.0], s: 0.52, color: YELLOW },
+  { id: "ledger", label: "Database", pos: [3.4, 0, 1.0], s: 0.52, color: YELLOW },
   { id: "queue", label: "Queue", pos: [3.2, 0, -2.1], s: 0.48, color: TEAL },
   { id: "ai", label: "AI", pos: [0.5, 0, 2.5], s: 0.46, color: ORANGE },
 ];

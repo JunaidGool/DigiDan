@@ -25,12 +25,11 @@ const orgSchema = {
     addressRegion: "South Africa",
   },
   knowsAbout: [
-    "Fintech engineering",
-    "Payments and financial transaction systems",
     "Custom software platforms",
     "nopCommerce",
     "Systems and API integration",
     "AI and automation",
+    "Legacy system modernisation",
   ],
 };
 
