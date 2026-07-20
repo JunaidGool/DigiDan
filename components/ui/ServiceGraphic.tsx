@@ -83,8 +83,8 @@ function FintechGraphic() {
       </div>
       <div className="mt-4 space-y-1.5 font-mono text-[0.62rem] text-fog">
         <div>&gt; idempotent consumers armed</div>
-        <div>&gt; iso 20022 mapped</div>
-        <div className="text-ash">&gt; pci-dss conscious</div>
+        <div>&gt; audit trail append-only</div>
+        <div className="text-ash">&gt; reconciliation pass</div>
       </div>
     </Shell>
   );
