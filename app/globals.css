@@ -20,10 +20,14 @@
     background-color: var(--bg);
     scroll-behavior: smooth;
     overflow-x: clip;
+    overscroll-behavior-x: none;
     -webkit-text-size-adjust: 100%;
   }
 
   body {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
     background-color: var(--bg);
     color: #ffffff;
     font-family: var(--font-sans), system-ui, sans-serif;
@@ -33,6 +37,7 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     overflow-x: clip;
+    overscroll-behavior-x: none;
   }
 
   /* Two fixed, very soft warm glows anchor the page without a busy background. */
