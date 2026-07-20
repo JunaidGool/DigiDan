@@ -181,9 +181,14 @@ contact form). To make email actually work end to end:
 
 ### Legal & compliance (South Africa / POPIA)
 
-- [ ] Add a **Privacy Policy** and **Terms** page, and a short privacy note near
-      the contact form explaining how the email address is used (POPIA). No
-      cookie banner is needed while analytics stays cookieless.
+- [x] **Privacy Policy** (`/privacy`) and **Terms of Use** (`/terms`) pages
+      drafted on-brand, linked in the footer and sitemap. **DRAFT** — before
+      publishing: fill the placeholders (Information Officer name + postal
+      address, effective date), verify the Information Regulator's current
+      contact details, and have both reviewed by a qualified attorney.
+- [ ] Add a short privacy note near the contact form explaining how the email
+      address is used (POPIA). No cookie banner is needed while analytics stays
+      cookieless.
 
 ### Polish (nice to have)
 
