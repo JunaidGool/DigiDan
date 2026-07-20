@@ -90,6 +90,43 @@
     }
   }
 
+  /* Long-form legal / prose pages. */
+  .legal {
+    color: #9ba1af;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  .legal h2 {
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-top: 2.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .legal h2:first-child {
+    margin-top: 0;
+  }
+  .legal p {
+    margin-top: 1rem;
+  }
+  .legal ul {
+    margin-top: 1rem;
+    padding-left: 1.25rem;
+    list-style: disc;
+  }
+  .legal li {
+    margin-top: 0.4rem;
+  }
+  .legal a {
+    color: #ff9c52;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .legal strong {
+    color: #ffffff;
+    font-weight: 600;
+  }
+
   /* Small uppercase eyebrow / kicker. */
   .kicker {
     display: inline-flex;

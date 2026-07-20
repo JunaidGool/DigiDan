@@ -43,9 +43,18 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-14 flex flex-col gap-2 border-t border-line pt-8 text-[0.62rem] uppercase tracking-[0.2em] text-fog wide:flex-row wide:items-center wide:justify-between">
-          <span>{footer.legalName}</span>
-          <span>{footer.location}</span>
+        <div className="mt-14 flex flex-col gap-4 border-t border-line pt-8 text-[0.62rem] uppercase tracking-[0.2em] text-fog wide:flex-row wide:items-center wide:justify-between">
+          <span>
+            {footer.legalName} &nbsp;·&nbsp; {footer.location}
+          </span>
+          <nav aria-label="Legal" className="flex gap-6">
+            <a href="/privacy" className="transition-colors hover:text-white">
+              Privacy
+            </a>
+            <a href="/terms" className="transition-colors hover:text-white">
+              Terms
+            </a>
+          </nav>
         </div>
       </Container>
     </footer>
