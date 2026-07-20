@@ -33,7 +33,7 @@ export const hero = {
   paragraph:
     "Tell us the problem. We build the custom software and automation to solve it, and we make it hold up in the real world, not just in a demo.",
   primary: "Start a project",
-  secondary: "See what we can do",
+  secondary: "See how we can help",
   cubeCaption: "A LIVE SYSTEM, ASSEMBLING",
 } as const;
 
@@ -180,7 +180,7 @@ export const cta = {
   paragraph:
     "Whatever you are trying to run in the real world, tell us the problem. We will design for all of it: the people, the data and what happens when something fails.",
   primary: "Start a project",
-  secondary: "See what we can do",
+  secondary: "See how we can help",
   emailPlaceholder: "Enter your work email",
   emailAction: "Talk to us",
   emailNote: "We only use your address to reply to you. Nothing else.",
