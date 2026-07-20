@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
-import { TrustBar } from "@/components/sections/TrustBar";
 import { StatementBand } from "@/components/sections/StatementBand";
 import { Ecosystem } from "@/components/sections/Ecosystem";
-import { Capabilities } from "@/components/sections/Capabilities";
+import { Services } from "@/components/sections/Services";
 import { Overview } from "@/components/sections/Overview";
-import { Work } from "@/components/sections/Work";
 import { CTA } from "@/components/sections/CTA";
 import { site } from "@/content/home";
 
@@ -45,12 +43,10 @@ export default function Home() {
       />
       <main id="top">
         <Hero />
-        <TrustBar />
         <StatementBand />
         <Ecosystem />
-        <Capabilities />
+        <Services />
         <Overview />
-        <Work />
         <CTA />
       </main>
     </>

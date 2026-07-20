@@ -32,7 +32,7 @@ export function Hero() {
               <Button href={CONTACT_HREF} size="lg" withArrow>
                 {hero.primary}
               </Button>
-              <Button href="#capabilities" variant="secondary" size="lg">
+              <Button href="#services" variant="secondary" size="lg">
                 {hero.secondary}
               </Button>
             </div>

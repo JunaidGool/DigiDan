@@ -51,7 +51,7 @@ export function Nav() {
       >
         <div className="shell flex h-16 items-center justify-between wide:h-20">
           <a
-            href="#top"
+            href="/"
             aria-label="DigiDan home"
             className="flex shrink-0 items-center gap-2.5 text-white"
           >
