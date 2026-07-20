@@ -147,6 +147,33 @@
 }
 
 /* ---------------------------------------------------------------------------
+   Service-graphic motion (CSS only, so the panels animate with no JS).
+   --------------------------------------------------------------------------- */
+@keyframes dgnSeq {
+  0%, 10% { opacity: 0.28; }
+  22%, 44% { opacity: 1; }
+  58%, 100% { opacity: 0.28; }
+}
+@keyframes dgnSweep {
+  0% { transform: translateX(-140%); }
+  65%, 100% { transform: translateX(240%); }
+}
+@keyframes dgnFlow {
+  0% { left: 4%; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { left: 96%; opacity: 0; }
+}
+@keyframes dgnFill {
+  0%, 100% { width: 18%; }
+  50% { width: 84%; }
+}
+@keyframes dgnFlip {
+  0%, 45% { background-color: rgba(255,255,255,0.06); color: #9BA1AF; }
+  55%, 100% { background-color: rgba(45,225,198,0.16); color: #2DE1C6; }
+}
+
+/* ---------------------------------------------------------------------------
    Motion. Restrained. Honour the reduced-motion preference everywhere.
    --------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
