@@ -26,7 +26,7 @@ export const nav = [
 ] as const;
 
 export const hero = {
-  eyebrow: "CUSTOM SOFTWARE AND AUTOMATION",
+  eyebrow: "CUSTOM SOFTWARE, PLATFORMS AND AI",
   legal: "DIGIDAN (PTY) LTD",
   h1: "Software strong enough to depend on.",
   tagline: "Built for the real world.",
@@ -91,44 +91,49 @@ export const overview = {
     { value: 8, suffix: "+", caption: "Years engineering complex systems" },
   ],
   paragraph:
-    "DigiDan is led by Danyal Motan and Junaid Gool as equal partners. We think about the whole system: the people, the hardware, the networks, the data, the business rules, and what happens when something fails. That is how we build software that holds up in the real world.",
+    "DigiDan is a South African software engineering and digital solutions company. We combine more than twenty years of software development leadership with deep work across custom software, e-commerce, systems integration and production-grade AI. We think about the whole system: the people, the data, the business rules and what happens when something fails. That is how we build software that holds up in the real world.",
 } as const;
 
 export const work = {
   title: "Selected work",
   label: "LIVE AND IN USE TODAY",
   intro:
-    "A few of the systems we have designed, built and still run. Each one solves a real problem for the business using it.",
+    "A selection of the platforms and products we have designed, built and still support. Each one solves a real operating problem for the business using it.",
   items: [
     {
       name: "TrimBase",
-      graphic: "platforms",
+      mark: "trim",
+      stack: "React · ASP.NET Core · PostgreSQL · Docker",
       blurb:
-        "A lean base platform that gives a new product only the parts it needs to launch, with room to grow.",
+        "A local-first operations platform for garment manufacturing. It turns cut sheets and bills of materials into clear trim requirements, shortages, purchase needs and production readiness, with live dashboards for stock, receiving and jobs ready to run.",
     },
     {
       name: "DeploySeal",
-      graphic: "platforms",
+      mark: "seal",
+      stack: ".NET 9 · Next.js · PostgreSQL · Redis · Docker",
       blurb:
-        "Release assurance that seals a build before it ships, so what reaches production is exactly what was tested.",
+        "Launch sign-off and release assurance. It replaces informal go-live approvals with structured UAT, contextual issue capture, closed-loop resolution and formal, exportable approval records, so a team can answer one question with evidence: is this ready to go live?",
     },
     {
-      name: "JujHub",
-      graphic: "platforms",
+      name: "Web Watchdog",
+      mark: "radar",
+      stack: ".NET · Monitoring · Alerting",
       blurb:
-        "A hub that connects the systems a business already runs, moving data between them cleanly and on time.",
+        "A secure multi-site monitoring platform with historical uptime, downtime and speed reporting, automated alerts, retention controls and operational statistics across a fleet of sites.",
     },
     {
-      name: "ProductLens",
-      graphic: "ai",
+      name: "CRM and campaign engineering",
+      mark: "mail",
+      stack: "Responsive HTML · Validation harness · Automation",
       blurb:
-        "A review layer that reads product data and surfaces the issues a person needs to see, before customers do.",
+        "High-volume, regional email and digital campaign production for a global electronics brand, delivered through an agency partner. A reusable validation harness checks structure, links, assets and packaging before every handover.",
     },
     {
-      name: "Inboxlio",
-      graphic: "ai",
+      name: "E-commerce and data operations",
+      mark: "store",
+      stack: "nopCommerce · .NET · REST · SSIS",
       blurb:
-        "Inbound messages triaged and routed automatically, with a person in control of anything that matters.",
+        "Retained development and support across managed nopCommerce stores: supplier and catalogue data, branding and pricing rules, integrations, monitoring and day-to-day operational tooling.",
     },
   ],
 } as const;

@@ -4,20 +4,21 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/Reveal";
-import { ServiceGraphic } from "@/components/ui/ServiceGraphic";
 import { ProductMark } from "@/components/ui/ProductMark";
+import { ProjectPlaceholder } from "@/components/ui/ProjectPlaceholder";
 
 export const metadata: Metadata = {
-  title: "Work: systems we have built | DigiDan",
+  title: "Work: platforms and products we have built | DigiDan",
   description:
-    "A few of the systems DigiDan has designed, built and still run, each solving a real problem for the business using it.",
+    "A selection of the platforms and products DigiDan has designed, built and still supports, each solving a real operating problem for the business using it.",
   alternates: { canonical: "/work" },
 };
 
 /**
- * Work page. Projects laid out CoLab-style: benefit copy on one side, a graphic
- * on the other, alternating down the page. The graphics are the custom animated
- * service panels as placeholders until real project images are supplied.
+ * Work page. Real projects from the company profile, laid out CoLab-style:
+ * project detail on one side, a graphic on the other, alternating down the page.
+ * The graphics are branded placeholders until real project screenshots are
+ * supplied. Client companies are not named on the site.
  */
 export default function WorkPage() {
   return (
@@ -41,7 +42,7 @@ export default function WorkPage() {
                   <Reveal className={reverse ? "wide:order-2" : undefined}>
                     <div className="flex items-center gap-3">
                       <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-line bg-raised">
-                        <ProductMark name={p.name} index={i} size={24} />
+                        <ProductMark type={p.mark} index={i} size={24} />
                       </span>
                       <span className="font-mono text-xs uppercase tracking-[0.2em] text-fog">
                         {String(i + 1).padStart(2, "0")}
@@ -49,14 +50,20 @@ export default function WorkPage() {
                     </div>
                     <h2 className="mt-5 text-h3 font-bold text-white">{p.name}</h2>
                     <p className="mt-4 text-lg leading-relaxed text-ash">{p.blurb}</p>
-                    <span className="mt-6 inline-flex items-center gap-1.5 rounded-full border border-orange/30 bg-orange/10 px-3 py-1 text-[0.62rem] font-medium uppercase tracking-[0.16em] text-orange-light">
-                      <span className="h-1.5 w-1.5 animate-blink rounded-full bg-orange" />
-                      Live and in use
-                    </span>
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {p.stack.split(" · ").map((tech) => (
+                        <span
+                          key={tech}
+                          className="rounded-full border border-line bg-surface px-3 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-ash"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </Reveal>
 
                   <Reveal delay={1} className={reverse ? "wide:order-1" : undefined}>
-                    <ServiceGraphic type={p.graphic} />
+                    <ProjectPlaceholder name={p.name} mark={p.mark} index={i} />
                   </Reveal>
                 </div>
               );
