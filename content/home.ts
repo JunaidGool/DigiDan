@@ -22,7 +22,6 @@ export const site = {
 export const nav = [
   { label: "What we do", href: "/#services" },
   { label: "Company", href: "/#overview" },
-  { label: "Work", href: "/work" },
 ] as const;
 
 export const hero = {
@@ -92,50 +91,6 @@ export const overview = {
   ],
   paragraph:
     "DigiDan is a South African software engineering and digital solutions company. We combine more than twenty years of software development leadership with deep work across custom software, e-commerce, systems integration and production-grade AI. We think about the whole system: the people, the data, the business rules and what happens when something fails. That is how we build software that holds up in the real world.",
-} as const;
-
-export const work = {
-  title: "Selected work",
-  label: "LIVE AND IN USE TODAY",
-  intro:
-    "A selection of the platforms and products we have designed, built and still support. Each one solves a real operating problem for the business using it.",
-  items: [
-    {
-      name: "TrimBase",
-      mark: "trim",
-      stack: "React · ASP.NET Core · PostgreSQL · Docker",
-      blurb:
-        "A local-first operations platform for garment manufacturing. It turns cut sheets and bills of materials into clear trim requirements, shortages, purchase needs and production readiness, with live dashboards for stock, receiving and jobs ready to run.",
-    },
-    {
-      name: "DeploySeal",
-      mark: "seal",
-      stack: ".NET 9 · Next.js · PostgreSQL · Redis · Docker",
-      blurb:
-        "Launch sign-off and release assurance. It replaces informal go-live approvals with structured UAT, contextual issue capture, closed-loop resolution and formal, exportable approval records, so a team can answer one question with evidence: is this ready to go live?",
-    },
-    {
-      name: "Web Watchdog",
-      mark: "radar",
-      stack: ".NET · Monitoring · Alerting",
-      blurb:
-        "A secure multi-site monitoring platform with historical uptime, downtime and speed reporting, automated alerts, retention controls and operational statistics across a fleet of sites.",
-    },
-    {
-      name: "CRM and campaign engineering",
-      mark: "mail",
-      stack: "Responsive HTML · Validation harness · Automation",
-      blurb:
-        "High-volume, regional email and digital campaign production for a global electronics brand, delivered through an agency partner. A reusable validation harness checks structure, links, assets and packaging before every handover.",
-    },
-    {
-      name: "E-commerce and data operations",
-      mark: "store",
-      stack: "nopCommerce · .NET · REST · SSIS",
-      blurb:
-        "Retained development and support across managed nopCommerce stores: supplier and catalogue data, branding and pricing rules, integrations, monitoring and day-to-day operational tooling.",
-    },
-  ],
 } as const;
 
 export const footer = {
