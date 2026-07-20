@@ -101,7 +101,7 @@ export const overview = {
   label: "WHO YOU WORK WITH",
   numbers: [
     { value: 20, suffix: "+", caption: "Years software leadership" },
-    { value: 8, suffix: "+", caption: "Years engineering complex systems" },
+    { value: 8, suffix: "+", caption: "Years financial systems engineering" },
   ],
   paragraph:
     "DigiDan is a South African software engineering and digital solutions company. We combine more than twenty years of software development leadership with deep work across custom software, e-commerce, systems integration and production-grade AI. We think about the whole system: the people, the data, the business rules and what happens when something fails. That is how we build software that holds up in the real world.",
