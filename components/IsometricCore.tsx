@@ -309,7 +309,7 @@ export function IsometricCore() {
   }, []);
 
   return (
-    <div className="relative h-[440px] w-full touch-none select-none wide:h-[520px]">
+    <div className="relative h-[440px] w-full select-none wide:h-[520px]">
       <div ref={mountRef} aria-hidden="true" className="absolute inset-0" />
       <div ref={labelsRef} aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden" />
     </div>
