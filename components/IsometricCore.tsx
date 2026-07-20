@@ -183,11 +183,16 @@ export function IsometricCore() {
       // --- Interaction -----------------------------------------------------
       const pointer = { x: 0, y: 0, tx: 0, ty: 0 };
       const onPointer = (ev: PointerEvent) => {
+        // Only a real mouse tilts the rig. Touch pointermove fires while the
+        // user drags to scroll, which would swing the scene left and right.
+        if (ev.pointerType === "touch") return;
         const r = mount.getBoundingClientRect();
         pointer.tx = ((ev.clientX - (r.left + r.width / 2)) / (r.width / 2)) || 0;
         pointer.ty = ((ev.clientY - (r.top + r.height / 2)) / (r.height / 2)) || 0;
       };
-      if (!reduce) window.addEventListener("pointermove", onPointer, { passive: true });
+      const finePointer = window.matchMedia("(pointer: fine)").matches;
+      if (!reduce && finePointer)
+        window.addEventListener("pointermove", onPointer, { passive: true });
 
       let scrollFade = 1;
       const onScroll = () => {
