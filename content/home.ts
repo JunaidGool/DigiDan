@@ -15,8 +15,9 @@ export const site = {
   domain: "digidan.co.za",
   location: "South Africa",
   description:
-    "We build custom software, online platforms and practical AI systems. We design for the full environment your software runs in, not just the screens and code.",
+    "DigiDan is a South African software engineering and digital solutions company. We build custom software, e-commerce platforms, systems integration and production-grade AI, designed for dependable real-world operation.",
   wordmark: "d g d n",
+  email: "hello@digidan.co.za",
 } as const;
 
 export const nav = [
@@ -110,6 +111,46 @@ export const footer = {
   legalName: "DIGIDAN (PTY) LTD",
   location: "SOUTH AFRICA | DIGIDAN.CO.ZA",
   contact: "Contact us",
+} as const;
+
+/**
+ * Frequently asked questions. Plain, factual answers drawn from the company
+ * profile. Rendered visibly and mirrored into FAQPage structured data, so both
+ * people and answer engines get clear, accurate responses.
+ */
+export const faq = {
+  label: "QUESTIONS",
+  title: "Common questions",
+  items: [
+    {
+      q: "What does DigiDan do?",
+      a: "DigiDan is a South African software engineering and digital solutions company. We build custom software, e-commerce platforms, systems integration and production-grade AI, and we support them once they are live.",
+    },
+    {
+      q: "Where is DigiDan based?",
+      a: "We are based in South Africa and work with clients locally and remotely. Our deployment patterns, local-first, hybrid and cloud, are designed for South African operating realities.",
+    },
+    {
+      q: "What services does DigiDan offer?",
+      a: "Custom software and product engineering, e-commerce and digital platforms including nopCommerce, systems, API and data integration, AI and intelligent automation, and cloud, resilience and operations.",
+    },
+    {
+      q: "Do you build and support online stores?",
+      a: "Yes. We implement, customise, extend and support nopCommerce stores, covering catalogue, pricing, integrations, monitoring and day-to-day operational tooling.",
+    },
+    {
+      q: "Do you work with AI and automation?",
+      a: "Yes. We integrate AI into business workflows with clear rules, evaluation, cost controls and a person in control of anything that touches records or money.",
+    },
+    {
+      q: "Is DigiDan a bank or a fintech company?",
+      a: "No. DigiDan is a software engineering partner, not a bank or a licensed financial provider. Some of our engineers have deep financial-systems experience, which we bring to your software when the work calls for that level of rigour.",
+    },
+    {
+      q: "How do I start a project?",
+      a: "Tell us the problem you are trying to solve. Email hello@digidan.co.za and we will take it from there.",
+    },
+  ],
 } as const;
 
 /**

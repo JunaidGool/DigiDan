@@ -1,13 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-80 -97 160 177">
-  <g fill="none" stroke="#A9851E" stroke-width="6" stroke-linejoin="round">
-    <polygon points="-68,34 0,68 0,34 -68,0"/>
-    <polygon points="68,34 0,68 0,34 68,0"/>
-    <polygon points="0,-34 68,0 0,34 -68,0"/>
-    <polygon points="0,0 34,17 34,-51 0,-68"/>
-    <polygon points="68,0 34,17 34,-51 68,-68"/>
-    <polygon points="34,-85 68,-68 34,-51 0,-68"/>
-    <polygon points="-68,0 -34,17 -34,-17 -68,-34"/>
-    <polygon points="0,0 -34,17 -34,-17 0,-34"/>
-    <polygon points="-34,-51 0,-34 -34,-17 -68,-34"/>
+  <g fill="none" stroke-width="8" stroke-linejoin="round">
+    <g stroke="#2DE1C6">
+      <polygon points="-68,34 0,68 0,34 -68,0"/>
+      <polygon points="68,34 0,68 0,34 68,0"/>
+      <polygon points="0,-34 68,0 0,34 -68,0"/>
+    </g>
+    <g stroke="#F07E26">
+      <polygon points="0,0 34,17 34,-51 0,-68"/>
+      <polygon points="68,0 34,17 34,-51 68,-68"/>
+      <polygon points="34,-85 68,-68 34,-51 0,-68"/>
+    </g>
+    <g stroke="#F5C518">
+      <polygon points="-68,0 -34,17 -34,-17 -68,-34"/>
+      <polygon points="0,0 -34,17 -34,-17 0,-34"/>
+      <polygon points="-34,-51 0,-34 -34,-17 -68,-34"/>
+    </g>
   </g>
 </svg>
