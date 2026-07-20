@@ -48,6 +48,20 @@ export const services = {
     "The questions we answer for businesses like yours. Tell us which one is keeping you up, and we will build the system that settles it.",
   items: [
     {
+      id: "fintech",
+      graphic: "fintech",
+      kicker: "FINANCIAL-GRADE ENGINEERING",
+      title: "Build to the standards banks and payment systems run on.",
+      body: "Our engineers have spent years building the systems behind self-service banking, transactions and financial operations. We bring that discipline to whatever you are building: transaction integrity, auditability, resilience and security. We are the engineering partner behind financial-grade software, not a bank.",
+      bullets: [
+        "Processed once and reconcilable, with a full audit trail",
+        "Self-service and edge: kiosk, card, biometric and device integration",
+        "Event-driven architecture built for high-volume, exactly-once processing",
+        "Standards-aware and security-conscious (ISO 8583/20022, PCI-DSS)",
+      ],
+      note: "We deliver engineering services. We are not a bank or a licensed financial provider.",
+    },
+    {
       id: "platforms",
       graphic: "platforms",
       kicker: "MODERNISE WHAT YOU RUN ON",

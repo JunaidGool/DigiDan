@@ -9,6 +9,7 @@ import { BRAND } from "@/components/ui/brand";
 
 // Each service takes the colour of its graphic panel.
 const ACCENT: Record<string, string> = {
+  fintech: BRAND.teal,
   platforms: BRAND.orange,
   ai: BRAND.yellow,
 };
@@ -55,6 +56,11 @@ export function Services() {
                       </li>
                     ))}
                   </ul>
+                  {"note" in s && s.note && (
+                    <p className="mt-6 border-l-2 border-line pl-3 text-xs text-fog">
+                      {s.note}
+                    </p>
+                  )}
                 </Reveal>
 
                 <Reveal
