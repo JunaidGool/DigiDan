@@ -7,6 +7,7 @@ import { Tick } from "./icons";
  * These read as small live dashboards of what each service actually does.
  */
 
+const TEAL = "#2DE1C6";
 const ORANGE = "#F07E26";
 const YELLOW = "#F5C518";
 
@@ -40,6 +41,52 @@ function Shell({
       </div>
       {children}
     </div>
+  );
+}
+
+/**
+ * Financial-grade engineering: an integrity panel showing the disciplines that
+ * matter in financial systems. Deliberately about engineering (exactly-once,
+ * audit, reconciliation), not a money/payment UI, so it never reads as a bank.
+ */
+function FintechGraphic() {
+  const checks = [
+    "Exactly-once processing",
+    "Append-only audit trail",
+    "Reconciled, end of day",
+  ];
+  return (
+    <Shell accent={TEAL} title="Integrity" status="verified">
+      <div className="space-y-2">
+        {checks.map((c, i) => (
+          <div
+            key={c}
+            className="flex items-center gap-2 rounded-md border border-line bg-ink px-3 py-2"
+            style={{ animation: "dgnSeq 3.6s ease-in-out infinite", animationDelay: `${i * 0.9}s` }}
+          >
+            <Tick className="h-3.5 w-3.5" style={{ color: TEAL }} />
+            <span className="text-[0.72rem] text-white">{c}</span>
+          </div>
+        ))}
+        <div className="flex items-center gap-3 rounded-md border border-line bg-ink px-3 py-2">
+          <span className="text-[0.72rem] text-ash">Reconciliation</span>
+          <div className="relative h-1.5 flex-1 overflow-hidden rounded-full bg-white/5">
+            <span
+              className="absolute inset-y-0 left-0 rounded-full"
+              style={{ backgroundColor: TEAL, animation: "dgnFill 3.6s ease-in-out infinite" }}
+            />
+          </div>
+          <span className="font-mono text-[0.62rem]" style={{ color: TEAL }}>
+            ok
+          </span>
+        </div>
+      </div>
+      <div className="mt-4 space-y-1.5 font-mono text-[0.62rem] text-fog">
+        <div>&gt; idempotent consumers armed</div>
+        <div>&gt; audit trail append-only</div>
+        <div className="text-ash">&gt; reconciliation pass</div>
+      </div>
+    </Shell>
   );
 }
 
@@ -139,6 +186,7 @@ function AIGraphic() {
 }
 
 export function ServiceGraphic({ type }: { type: string }) {
+  if (type === "fintech") return <FintechGraphic />;
   if (type === "platforms") return <PlatformsGraphic />;
   return <AIGraphic />;
 }
