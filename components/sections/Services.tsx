@@ -5,7 +5,13 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/Reveal";
 import { ServiceGraphic } from "@/components/ui/ServiceGraphic";
 import { Tick } from "@/components/ui/icons";
-import { accentAt } from "@/components/ui/brand";
+import { BRAND } from "@/components/ui/brand";
+
+// Each service takes the colour of its graphic panel.
+const ACCENT: Record<string, string> = {
+  platforms: BRAND.orange,
+  ai: BRAND.yellow,
+};
 
 /**
  * What we can do for you: the centre of the home page. Each service is a
@@ -25,7 +31,7 @@ export function Services() {
 
         <div className="mt-16 space-y-20 wide:mt-24 wide:space-y-28">
           {services.items.map((s, i) => {
-            const accent = accentAt(i);
+            const accent = ACCENT[s.graphic] ?? BRAND.orange;
             const reverse = i % 2 === 1;
             return (
               <div
